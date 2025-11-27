@@ -1,8 +1,8 @@
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class EliteMember extends Member {
 
-    public EliteMember(LocalDateTime birthday, int id, String memberType, String email, String name) {
+    public EliteMember(LocalDate birthday, int id, String memberType, String email, String name) {
         super(birthday, id, memberType, email, name);
     }
 }
