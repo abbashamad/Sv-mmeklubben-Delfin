@@ -7,6 +7,8 @@ public class Member {
     private String name;
     Subscriptions subscriptions;
 
+
+
     public Member(LocalDate birthday, int id, String email, String name) {
         this.birthday = birthday;
         this.id = id;
