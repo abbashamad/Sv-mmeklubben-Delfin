@@ -14,10 +14,11 @@ ArrayList <SwimResults> swimResults;
     }
 
     public void addSwimResultsToList(LocalDate swimDate, LocalDateTime swimTime, Disciplines disciplines){
-        this.swimResults.add(new SwimResults(swimDate,swimTime,disciplines));
+        this.swimResults.add(new SwimResults(disciplines,swimTime, swimDate));
     }
-public void addCompetitionResultToList(int discipline, double time, double date, int placement, String location){
-        this.swimResults.add(new SwimResults(discipline,time,date,placement,location));
+
+    public void addCompetitionResultToList(Disciplines discipline, LocalDateTime time, LocalDate date, int placement, String location){
+        this.swimResults.add(new StaevneTimeReg(discipline,time, date, placement,location));
 }
 
 }
