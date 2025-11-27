@@ -9,6 +9,7 @@ public class Member {
 
 
 
+
     public Member(LocalDate birthday, int id, String email, String name) {
         this.birthday = birthday;
         this.id = id;
