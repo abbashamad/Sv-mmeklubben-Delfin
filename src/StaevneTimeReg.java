@@ -1,13 +1,16 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 public class StaevneTimeReg extends SwimResults {
 
     private int placement;
     private String location;
 
-    public StaevneTimeReg(int discipline, double time, double date, int id,
+    public StaevneTimeReg(Disciplines discipline, LocalDateTime time, LocalDate date,
                           int placement, String location) {
 
-        super(discipline, time, date, id);
-
+        super(discipline, time, date);
         this.placement = placement;
         this.location = location;
     }
@@ -23,10 +26,9 @@ public class StaevneTimeReg extends SwimResults {
     @Override
     public String toString() {
         return "StaevneTimeReg {" +
-                "discipline=" + getDisciplineName() +
-                ", time=" + getTime() +
-                ", date=" + getDate() +
-                ", id=" + getId() +
+                "discipline=" + getDisciplines()+
+                ", time=" + getSwimTime() +
+                ", date=" + getSwimDate() +
                 ", placement=" + placement +
                 ", location='" + location + '\'' +
                 '}';

@@ -7,7 +7,7 @@ public class SwimResults {
     private LocalDateTime swimTime;
     private LocalDate swimDate;
 
-    public SwimResults( LocalDate swimDate, LocalDateTime swimTime, Disciplines disciplines) {
+    public SwimResults( Disciplines disciplines,  LocalDateTime swimTime, LocalDate swimDate) {
         this.swimDate = swimDate;
         this.swimTime = swimTime;
         this.disciplines = disciplines;
