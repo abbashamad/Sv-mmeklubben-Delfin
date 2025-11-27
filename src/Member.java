@@ -35,6 +35,14 @@ public class Member {
         return name;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Member{" +
+                "birthday=" + birthday +
+                ", id=" + id +
+                ", memberType='" + memberType + '\'' +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
