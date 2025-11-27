@@ -30,6 +30,4 @@ public class SwimResults {
     public LocalDate getSwimDate() {
         return swimDate;
     }
-
-
 }
