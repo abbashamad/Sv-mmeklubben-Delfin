@@ -9,13 +9,13 @@ public class MemberList {
         this.list = new ArrayList<>();
     }
 
-    public void addMemberToMemberList(LocalDate birthday, int id, String memberType, String email, String name) {
-        Member member = new Member(birthday, id, memberType, email, name);
+    public void addMemberToMemberList(LocalDate birthday, int id, String email, String name) {
+        Member member = new Member(birthday, id,  email, name);
         this.list.add(member);
     }
 
-    public void addEliteToMemberList(LocalDate birthday, int id, String memberType, String email, String name) {
-        Member member = new Member(birthday, id, memberType, email, name);
+    public void addEliteToMemberList(LocalDate birthday, int id, String email, String name) {
+        Member member = new Member(birthday, id, email, name);
         this.list.add(member);
     }
 

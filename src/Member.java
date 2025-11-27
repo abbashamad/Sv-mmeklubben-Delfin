@@ -3,16 +3,16 @@ import java.time.LocalDate;
 public class Member {
     private LocalDate birthday;
     private int id;
-    private String memberType;
     private String email;
     private String name;
+    Subscriptions subscriptions;
 
-    public Member(LocalDate birthday, int id, String memberType, String email, String name) {
+    public Member(LocalDate birthday, int id, String email, String name) {
         this.birthday = birthday;
         this.id = id;
-        this.memberType = memberType;
         this.email = email;
         this.name = name;
+        this.subscriptions = new Subscriptions();
     }
 
     public LocalDate getBirthday() {
@@ -23,10 +23,6 @@ public class Member {
         return id;
     }
 
-    public String getMemberType() {
-        return memberType;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -35,14 +31,5 @@ public class Member {
         return name;
     }
 
-    @Override
-    public String toString() {
-        return "Member{" +
-                "birthday=" + birthday +
-                ", id=" + id +
-                ", memberType='" + memberType + '\'' +
-                ", email='" + email + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
+
 }
