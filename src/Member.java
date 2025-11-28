@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.Period;
 
 public class Member {
     private LocalDate birthday;
@@ -6,6 +7,7 @@ public class Member {
     private String email;
     private String name;
     Subscriptions subscriptions;
+    MembershipType membershipType;
 
 
 
@@ -15,7 +17,23 @@ public class Member {
         this.id = id;
         this.email = email;
         this.name = name;
+        assignMemberType();
         this.subscriptions = new Subscriptions();
+
+    }
+
+    public void setMembershipType(MembershipType membershipType) {
+        this.membershipType = membershipType;
+    }
+
+    public int getAge(){
+        return Period.between(getBirthday(), LocalDate.now()).getYears();
+    }
+
+    private void assignMemberType(){
+        if (getAge() < 18){
+            setMembershipType(MembershipType.JUNIOR);
+        }else setMembershipType(MembershipType.SENIOR);
     }
 
     public LocalDate getBirthday() {
