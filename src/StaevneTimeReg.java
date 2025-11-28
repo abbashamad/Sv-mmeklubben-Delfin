@@ -7,7 +7,7 @@ public class StaevneTimeReg extends SwimResults {
     private int placement;
     private String location;
 
-    public StaevneTimeReg(Disciplines discipline, LocalDateTime time, LocalDate date,
+    public StaevneTimeReg(Disciplines discipline, SwimTimer time, LocalDate date,
                           int placement, String location) {
 
         super(discipline, time, date);

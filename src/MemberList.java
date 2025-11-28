@@ -9,16 +9,22 @@ public class MemberList {
         this.list = new ArrayList<>();
     }
 
-    public void addMemberToMemberList(LocalDate birthday, int id, String email, String name) {
-        Member member = new Member(birthday, id,  email, name);
+    public void addMemberToMemberList(LocalDate birthday, String email, String name) {
+        Member member = new Member(birthday,  email, name);
         this.list.add(member);
     }
 
-    public void addEliteToMemberList(LocalDate birthday, int id, String email, String name) {
-        Member member = new Member(birthday, id, email, name);
+
+
+    public void addEliteToMemberList(LocalDate birthday, String email, String name) {
+        Member member = new Member(birthday, email, name);
         this.list.add(member);
     }
-
+public void findMemberViaID(int id){
+        for(Member member: list){
+            if(member.getid == id)
+        }
+}
 
     @Override
     public String toString() {
