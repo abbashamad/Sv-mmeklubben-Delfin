@@ -20,4 +20,12 @@ public class EliteMember extends Member {
         this.swimResults.add(new StaevneTimeReg(discipline, time, date, placement, location));
     }
 
+    @Override
+    public String toString() {
+        return "EliteMember{" +
+                "swimResults=" + swimResults +
+                ", subscriptions=" + subscriptions +
+                ", membershipType=" + membershipType +
+                '}';
+    }
 }
