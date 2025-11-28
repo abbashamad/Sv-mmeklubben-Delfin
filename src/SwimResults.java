@@ -4,10 +4,10 @@ import java.time.LocalDateTime;
 public class SwimResults {
     Member member;
     Disciplines disciplines;
-    private LocalDateTime swimTime;
+    private SwimTimer swimTime;
     private LocalDate swimDate;
 
-    public SwimResults(Disciplines disciplines, LocalDateTime swimTime, LocalDate swimDate) {
+    public SwimResults(Disciplines disciplines, SwimTimer swimTime, LocalDate swimDate) {
         this.swimDate = swimDate;
         this.swimTime = swimTime;
         this.disciplines = disciplines;
@@ -22,7 +22,7 @@ public class SwimResults {
     }
 
 
-    public LocalDateTime getSwimTime() {
+    public SwimTimer getSwimTime() {
         return swimTime;
     }
 

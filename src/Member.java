@@ -2,6 +2,7 @@ import java.time.LocalDate;
 
 public class Member {
     private LocalDate birthday;
+    private static int nextId = 1;
     private int id;
     private String email;
     private String name;
@@ -10,9 +11,9 @@ public class Member {
 
 
 
-    public Member(LocalDate birthday, int id, String email, String name) {
+    public Member(LocalDate birthday, String email, String name) {
         this.birthday = birthday;
-        this.id = id;
+        this.id = nextId++;
         this.email = email;
         this.name = name;
         this.subscriptions = new Subscriptions();

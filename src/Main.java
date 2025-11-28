@@ -6,7 +6,11 @@ public class Main {
 
 
         MemberList list = new MemberList();
-        list.addMemberToMemberList(LocalDate.of(2000, 11, 15), 1, "kasper@@@", "Søren");
+        list.addMemberToMemberList(LocalDate.of(2000, 11, 15), "kasper@@@", "Søren");
         System.out.println(list);
+
+        list.addEliteToMemberList(LocalDate.of(2000,10,15) ,"kasperper@@" , "Sisse" );
+        list.
+
     }
 }
