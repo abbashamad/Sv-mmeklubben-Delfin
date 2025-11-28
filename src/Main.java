@@ -10,7 +10,11 @@ public class Main {
         System.out.println(list);
 
         list.addEliteToMemberList(LocalDate.of(2000,10,15) ,"kasperper@@" , "Sisse" );
-        list.
+        EliteMember eleteme = (EliteMember)list.findMemberViaID(2);
+        eleteme.addSwimResultsToList(LocalDate.of(2004,11,5), new SwimTimer(1,22,44),Disciplines.BACKCRAWL);
+
+
+
 
     }
 }
