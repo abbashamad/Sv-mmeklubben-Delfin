@@ -58,5 +58,14 @@ public class Member {
         return name;
     }
 
-
+    @Override
+    public String toString() {
+        return "Member{" +
+                "age=" + getAge()+
+                ", id=" + getId() +
+                ", email='" + getEmail() + '\'' +
+                ", name='" + getName() + '\'' +
+                ", membershipType=" + getMembershipType()+
+                '}';
+    }
 }
