@@ -15,5 +15,3 @@ boolean hasArrears;
         this.hasArrears = hasArrears;
     }
 }
-
-

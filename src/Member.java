@@ -27,6 +27,10 @@ public class Member {
         this.membershipType = membershipType;
     }
 
+    public MembershipType getMembershipType() {
+        return membershipType;
+    }
+
     public int getAge(){
         return Period.between(getBirthday(), LocalDate.now()).getYears();
     }
@@ -40,6 +44,7 @@ public class Member {
     public LocalDate getBirthday() {
         return birthday;
     }
+
 
     public int getId() {
         return id;
