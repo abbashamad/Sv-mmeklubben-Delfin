@@ -7,15 +7,17 @@ public class Member {
     private int id;
     private String email;
     private String name;
+    private Gender gender;
     Subscriptions subscriptions;
     MembershipType membershipType;
 
 
-    public Member(LocalDate birthday, String email, String name) {
+    public Member(LocalDate birthday, String email, String name, Gender gender) {
         this.birthday = birthday;
         this.id = nextId++;
         this.email = email;
         this.name = name;
+        this.gender = gender;
         assignMemberType();
         this.subscriptions = new Subscriptions();
 
