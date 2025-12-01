@@ -18,7 +18,7 @@ public class Member {
         this.email = email;
         this.name = name;
         this.gender = gender;
-        assignMemberType();
+        assignAgeGroup();
         this.subscriptions = new Subscriptions();
 
     }
@@ -27,7 +27,7 @@ public class Member {
         this.ageGroup = ageGroup;
     }
 
-    public AgeGroup getMembershipType() {
+    public AgeGroup getAgeGroup() {
         return ageGroup;
     }
 
@@ -35,7 +35,7 @@ public class Member {
         return Period.between(getBirthday(), LocalDate.now()).getYears();
     }
 
-    private void assignMemberType(){
+    private void assignAgeGroup(){
         if (getAge() < 18){
             setMembershipType(AgeGroup.JUNIOR);
         }else setMembershipType(AgeGroup.SENIOR);
