@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -62,10 +63,16 @@ public class MenuSystem {
         LocalDate birthday = LocalDate.parse(sc.nextLine());
         System.out.print("Enter gender (MALE/FEMALE): ");
         Gender gender = Gender.valueOf(sc.nextLine());
-        // System.out.print("Elite swimmer? (y/n): ");
-        // boolean elite = sc.nextLine().equalsIgnoreCase("y"); //
 
-        memberList.addMemberToMemberList(birthday, email, name, gender);   // Tilføj member til liste obs. navngivning
+        System.out.print("Elite swimmer? (Y/N): ");
+        String answer = sc.next();
+        if (Objects.equals(answer, "Y")){
+            memberList.addEliteToMemberList(birthday, email, name, gender);
+        } else if (Objects.equals(answer, "N")){
+            memberList.addMemberToMemberList(birthday, email, name, gender);
+        } else {
+            System.out.println("Fejl");
+        }
     }
 
     public void EditMemberInfo() {

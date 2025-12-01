@@ -20,8 +20,4 @@ public class EliteMember extends Member {
         this.swimResults.add(new CompetitionResult(member, discipline, time, date, placement, location));
     }
 
-    @Override
-    public String toString() {
-        return "EliteMember" + getName();
-    }
 }
