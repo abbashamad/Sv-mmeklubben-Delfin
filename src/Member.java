@@ -11,8 +11,6 @@ public class Member {
     MembershipType membershipType;
 
 
-
-
     public Member(LocalDate birthday, String email, String name) {
         this.birthday = birthday;
         this.id = nextId++;
