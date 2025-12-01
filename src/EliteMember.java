@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class EliteMember extends Member {
 
@@ -10,6 +11,15 @@ public class EliteMember extends Member {
 
         this.swimResults = new ArrayList<>();
 
+    }
+    public List<SwimResult>timer(Discipline discipline){
+        List<SwimResult>checkingSwimResults = new ArrayList<>();
+        for(SwimResult result : swimResults){
+            if(discipline == result.discipline){
+                checkingSwimResults.add(result);
+            }
+        }
+        return swimResults;
     }
 
     public void addSwimResultsToList(Member member, Discipline discipline, SwimTimer time, LocalDate date) {
