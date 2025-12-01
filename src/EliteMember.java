@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class EliteMember extends Member {
 
-    ArrayList<SwimResults> swimResults;
+    ArrayList<SwimResult> swimResults;
 
     public EliteMember(LocalDate birthday, String email, String name) {
         super(birthday, email, name);
@@ -12,20 +12,16 @@ public class EliteMember extends Member {
 
     }
 
-    public void addSwimResultsToList(LocalDate swimDate, SwimTimer swimTime, Disciplines disciplines) {
-        this.swimResults.add(new SwimResults(disciplines, swimTime, swimDate));
+    public void addSwimResultsToList(LocalDate swimDate, SwimTimer swimTime, Discipline discipline) {
+        this.swimResults.add(new SwimResult(discipline, swimTime, swimDate));
     }
 
-    public void addSwimResultsToList(Disciplines discipline, SwimTimer time, LocalDate date, int placement, String location) {
-        this.swimResults.add(new StaevneTimeReg(discipline, time, date, placement, location));
+    public void addSwimResultsToList(Discipline discipline, SwimTimer time, LocalDate date, int placement, String location) {
+        this.swimResults.add(new CompetitionResult(discipline, time, date, placement, location));
     }
 
     @Override
     public String toString() {
-        return "EliteMember{" +
-                "swimResults=" + swimResults +
-                ", subscriptions=" + subscriptions +
-                ", membershipType=" + membershipType +
-                '}';
+        return "EliteMember" + getName();
     }
 }

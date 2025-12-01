@@ -1,3 +1,3 @@
-public enum Disciplines {
+public enum Discipline {
     CRAWL, BREASTSTROKE, BUTTERFLY, BACKCRAWL
 }

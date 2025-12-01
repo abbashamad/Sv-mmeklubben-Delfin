@@ -12,6 +12,6 @@ public class SwimTimer {
 
     @Override
     public String toString() {
-        return String.format("%02d, %02d, %04d",min,sec,milSec);
+        return String.format("%02d:%02d:%04d",min,sec,milSec);
     }
 }
