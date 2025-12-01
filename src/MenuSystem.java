@@ -60,10 +60,12 @@ public class MenuSystem {
         String email = sc.nextLine();
         System.out.print("Enter Birthday (YYYY-MM-DD): ");
         LocalDate birthday = LocalDate.parse(sc.nextLine());
+        System.out.print("Enter gender (MALE/FEMALE): ");
+        Gender gender = Gender.valueOf(sc.nextLine());
         // System.out.print("Elite swimmer? (y/n): ");
         // boolean elite = sc.nextLine().equalsIgnoreCase("y"); //
 
-        memberList.addMemberToMemberList(birthday, email, name);   // Tilføj member til liste obs. navngivning
+        memberList.addMemberToMemberList(birthday, email, name, gender);   // Tilføj member til liste obs. navngivning
     }
 
     public void EditMemberInfo() {

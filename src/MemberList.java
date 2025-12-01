@@ -15,8 +15,8 @@ public class MemberList {
     }
 
 
-    public void addEliteToMemberList(LocalDate birthday, String email, String name) {
-        EliteMember member = new EliteMember(birthday, email, name);
+    public void addEliteToMemberList(LocalDate birthday, String email, String name, Gender gender) {
+        EliteMember member = new EliteMember(birthday, email, name, gender);
         this.list.add(member);
     }
 
