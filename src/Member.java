@@ -9,7 +9,7 @@ public class Member {
     private String name;
     private Gender gender;
     Subscriptions subscriptions;
-    MembershipType membershipType;
+    AgeGroup ageGroup;
 
 
     public Member(LocalDate birthday, String email, String name, Gender gender) {
@@ -23,12 +23,12 @@ public class Member {
 
     }
 
-    public void setMembershipType(MembershipType membershipType) {
-        this.membershipType = membershipType;
+    public void setMembershipType(AgeGroup ageGroup) {
+        this.ageGroup = ageGroup;
     }
 
-    public MembershipType getMembershipType() {
-        return membershipType;
+    public AgeGroup getMembershipType() {
+        return ageGroup;
     }
 
     public int getAge(){
@@ -37,14 +37,17 @@ public class Member {
 
     private void assignMemberType(){
         if (getAge() < 18){
-            setMembershipType(MembershipType.JUNIOR);
-        }else setMembershipType(MembershipType.SENIOR);
+            setMembershipType(AgeGroup.JUNIOR);
+        }else setMembershipType(AgeGroup.SENIOR);
     }
 
     public LocalDate getBirthday() {
         return birthday;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
 
     public int getId() {
         return id;

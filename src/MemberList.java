@@ -29,6 +29,15 @@ public class MemberList {
         return null;
     }
 
+public List<Member> checkMemberCriteria(AgeGroup ageGroup, Gender gender) {
+    List<Member> criteriaChecking = new ArrayList<>();
+    for (Member member : list) {
+        if (member.ageGroup == ageGroup && member.getGender() == gender) {
+            criteriaChecking.add(member);
+        }
+    }
+    return criteriaChecking;
+}
 
 
     @Override
