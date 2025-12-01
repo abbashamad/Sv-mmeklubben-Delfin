@@ -129,8 +129,13 @@ public class MenuSystem {
         sc.nextLine();
         SwimTimer timer = new SwimTimer(min,sec,milSec);
 
-        String competitiveName = sc.nextLine();
-        //SwimResult result = new SwimResult(member, discipline, timer,competitiveName);
+        String location = sc.nextLine();
+        SwimResult result = new SwimResult(member, discipline, timer, date, int placement, location);
+
+
+
+
+
     }
 
     private void SeeTopSeniorSwimmers() {
