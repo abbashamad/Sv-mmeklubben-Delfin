@@ -31,8 +31,11 @@ public class MemberList {
 
     @Override
     public String toString() {
-        return "MemberList{" +
-                "list=" + list +
-                '}';
+          String s = "";
+        for (Member member : list) {
+              s += member + "\n";
+
+        }
+        return s;
     }
 }

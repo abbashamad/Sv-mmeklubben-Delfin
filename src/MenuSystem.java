@@ -39,14 +39,16 @@ public class MenuSystem {
     public void ShowMemberMenu() {
         System.out.println("\n Medlemsorganisering");
         System.out.println("1. Opret nyt medlem");
-        System.out.println("2. Ret i eksisterende medlemsinfo");
-        System.out.println("3. Tilbage");
+        System.out.println("2. Vis eksisterende medlemmer");
+        System.out.println("3. Ret i eksisterende medlemsinfo");
+        System.out.println("4. Tilbage");
         System.out.print("Vælg: ");
 
         switch (sc.nextLine()) {
             case "1" -> CreateNewMember();
-            case "2" -> EditMemberInfo();
-            case "3" -> showMainMenu();
+            case "2" -> System.out.println(memberList);
+            case "3" -> EditMemberInfo();
+            case "4" -> showMainMenu();
             default -> System.out.println("Forkert valg kammerat");
 
         }  }

@@ -60,12 +60,7 @@ public class Member {
 
     @Override
     public String toString() {
-        return "Member{" +
-                "age=" + getAge()+
-                ", id=" + getId() +
-                ", email='" + getEmail() + '\'' +
-                ", name='" + getName() + '\'' +
-                ", membershipType=" + getMembershipType()+
-                '}';
+        return String.format("%d %s %s",id, name, email);
     }
 }
+
