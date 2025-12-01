@@ -65,7 +65,7 @@ public class MenuSystem {
         Gender gender = Gender.valueOf(sc.nextLine().toUpperCase());
 
         System.out.print("Elite swimmer? (Y/N): ");
-        String answer = sc.next();
+        String answer = sc.next().toUpperCase();
         if (Objects.equals(answer, "Y")){
             memberList.addEliteToMemberList(birthday, email, name, gender);
         } else if (Objects.equals(answer, "N")){
