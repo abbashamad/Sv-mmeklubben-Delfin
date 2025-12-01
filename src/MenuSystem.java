@@ -68,8 +68,10 @@ public class MenuSystem {
         String answer = sc.next().toUpperCase();
         if (Objects.equals(answer, "Y")){
             memberList.addEliteToMemberList(birthday, email, name, gender);
+            sc.nextLine();
         } else if (Objects.equals(answer, "N")){
             memberList.addMemberToMemberList(birthday, email, name, gender);
+            sc.nextLine();
         } else {
             System.out.println("Fejl");
         }
@@ -129,8 +131,11 @@ public class MenuSystem {
         sc.nextLine();
         SwimTimer timer = new SwimTimer(min,sec,milSec);
 
-        String competitiveName = sc.nextLine();
-        //SwimResult result = new SwimResult(member, discipline, timer,competitiveName);
+        System.out.println("Indtast dato:");
+        LocalDate date = LocalDate.parse(sc.nextLine());
+
+        SwimResult result = new SwimResult(member, discipline, timer, date);
+
     }
 
     private void SeeTopSeniorSwimmers() {
