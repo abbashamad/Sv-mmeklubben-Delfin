@@ -16,7 +16,7 @@ public class MemberList {
 
 
     public void addEliteToMemberList(LocalDate birthday, String email, String name) {
-        EliteMember member = new EliteMember(birthday, email, name);
+        Member member = new Member(birthday, email, name);
         this.list.add(member);
     }
 
@@ -36,3 +36,4 @@ public class MemberList {
                 '}';
     }
 }
+
