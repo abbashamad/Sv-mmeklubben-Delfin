@@ -62,7 +62,7 @@ public class MenuSystem {
         System.out.print("Enter Birthday (YYYY-MM-DD): ");
         LocalDate birthday = LocalDate.parse(sc.nextLine());
         System.out.print("Enter gender (MALE/FEMALE): ");
-        Gender gender = Gender.valueOf(sc.nextLine());
+        Gender gender = Gender.valueOf(sc.nextLine().toUpperCase());
 
         System.out.print("Elite swimmer? (Y/N): ");
         String answer = sc.next();
