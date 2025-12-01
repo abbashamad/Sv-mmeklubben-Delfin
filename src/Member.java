@@ -12,7 +12,6 @@ public class Member {
 
 
 
-
     public Member(LocalDate birthday, String email, String name) {
         this.birthday = birthday;
         this.id = nextId++;
@@ -20,7 +19,6 @@ public class Member {
         this.name = name;
         assignMemberType();
         this.subscriptions = new Subscriptions();
-
     }
 
     public void setMembershipType(MembershipType membershipType) {
@@ -44,7 +42,6 @@ public class Member {
     public LocalDate getBirthday() {
         return birthday;
     }
-
 
     public int getId() {
         return id;

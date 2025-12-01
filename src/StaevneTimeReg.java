@@ -1,19 +1,16 @@
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
-public class StaevneTimeReg extends SwimResults {
+public class StaevneTimeReg extends SwimResult {
 
     private int placement;
     private String location;
 
-    public StaevneTimeReg(Disciplines discipline, SwimTimer time, LocalDate date,
+    public StaevneTimeReg(Discipline discipline, SwimTimer time, LocalDate date,
                           int placement, String location) {
 
         super(discipline, time, date);
         this.placement = placement;
-        this.location = location;
-    }
+        this.location = location;}
 
     public int getPlacement() {
         return placement;
