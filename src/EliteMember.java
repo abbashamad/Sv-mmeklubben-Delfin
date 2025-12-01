@@ -5,8 +5,8 @@ public class EliteMember extends Member {
 
     ArrayList<SwimResult> swimResults;
 
-    public EliteMember(LocalDate birthday, String email, String name) {
-        super(birthday, email, name);
+    public EliteMember(LocalDate birthday, String email, String name, Gender gender) {
+        super(birthday, email, name, gender);
 
         this.swimResults = new ArrayList<>();
 
