@@ -6,6 +6,7 @@ public class Main {
 
 
         MemberList list = new MemberList();
+
         MenuSystem menu = new MenuSystem(list);
 
         menu.showMainMenu();

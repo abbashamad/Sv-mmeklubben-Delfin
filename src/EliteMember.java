@@ -12,12 +12,12 @@ public class EliteMember extends Member {
 
     }
 
-    public void addSwimResultsToList(LocalDate swimDate, SwimTimer swimTime, Discipline discipline) {
-        this.swimResults.add(new SwimResult(discipline, swimTime, swimDate));
-    }
+//    public void addSwimResultsToList(LocalDate swimDate, SwimTimer swimTime, Discipline discipline) {
+//        this.swimResults.add(new SwimResult(discipline, swimTime, swimDate));
+//    }
 
-    public void addSwimResultsToList(Discipline discipline, SwimTimer time, LocalDate date, int placement, String location) {
-        this.swimResults.add(new CompetitionResult(discipline, time, date, placement, location));
+    public void addSwimResultsToList(Member member, Discipline discipline, SwimTimer time, LocalDate date, int placement, String location) {
+        this.swimResults.add(new CompetitionResult(member, discipline, time, date, placement, location));
     }
 
     @Override

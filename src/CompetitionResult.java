@@ -4,10 +4,10 @@ public class CompetitionResult extends SwimResult {
     private int placement;
     private String location;
 
-    public CompetitionResult(Discipline discipline, SwimTimer time, LocalDate date,
+    public CompetitionResult(Member member, Discipline discipline, SwimTimer time, LocalDate date,
                              int placement, String location) {
 
-        super(discipline, time, date);
+        super(member, discipline, time, date);
         this.placement = placement;
         this.location = location;
     }

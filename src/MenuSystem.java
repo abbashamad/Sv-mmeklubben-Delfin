@@ -119,7 +119,7 @@ public class MenuSystem {
         SwimTimer timer = new SwimTimer(min,sec,milSec);
 
         String competitiveName = sc.nextLine();
-        SwimResult result = new SwimResult(member, discipline, timer,competitiveName);
+        //SwimResult result = new SwimResult(member, discipline, timer,competitiveName);
     }
 
     private void SeeTopSeniorSwimmers() {
