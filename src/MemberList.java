@@ -52,7 +52,7 @@ public class MemberList {
 
     @Override
     public String toString() {
-        String s = "";
+        String s = String.format("%-5s %-20s %-20s","ID" ,"NAME", "E-MAIL") + "\n";
         for (Member member : list) {
             s += member + "\n";
 

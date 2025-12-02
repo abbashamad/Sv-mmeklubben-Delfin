@@ -28,8 +28,6 @@ public class MenuSystem {
                 case "4" -> running = false;
                 default -> System.out.println("Invalid choice.");
             }
-
-
         }
     }
 
@@ -38,7 +36,7 @@ public class MenuSystem {
         System.out.println("\n Medlemsorganisering");
         System.out.println("1. Opret nyt medlem");
         System.out.println("2. Vis eksisterende medlemmer");
-        System.out.println("3. Ret i eksisterende medlemsinfo");
+        System.out.println("3. Ret i eksisterende medlemsinfo"); // HVAD SKAL VI RETTE? KUN AKTIV / PASSIV?
         System.out.println("4. Tilbage");
         System.out.print("Vælg: ");
 
@@ -227,6 +225,7 @@ public class MenuSystem {
     }
 
     public void ShowAccountingMenu() {
+
     }
 
 

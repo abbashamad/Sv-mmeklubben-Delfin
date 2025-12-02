@@ -6,7 +6,7 @@ public class Main {
 
         MemberList list = new MemberList();
 
-        list.addEliteToMemberList(LocalDate.of(2011,11,5),"SSSSSSSSSSSSSSSSSSS@@RR", "NAMENAMENAMENAMENAME", Gender.FEMALE);
+        list.addEliteToMemberList(LocalDate.of(2011,11,5),"SSSSSSSSSSSS@RR", "NAMENAMENAMENANAM", Gender.FEMALE);
         EliteMember elite1 = (EliteMember)list.findMemberViaID(1);
         elite1.addCompSwimResultsToList(Discipline.CRAWL, new SwimTimer(1,3,82), LocalDate.of(2011,9,10) ,1, "Horsens");
 
