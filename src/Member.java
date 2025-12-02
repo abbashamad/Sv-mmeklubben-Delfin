@@ -8,7 +8,7 @@ public class Member {
     private String email;
     private String name;
     private Gender gender;
-    Subscriptions subscriptions;
+    Subscription subscription;
     AgeGroup ageGroup;
 
 
@@ -19,7 +19,7 @@ public class Member {
         this.name = name;
         this.gender = gender;
         assignAgeGroup();
-        this.subscriptions = new Subscriptions();
+        this.subscription = new Subscription();
 
     }
 
@@ -34,6 +34,10 @@ public class Member {
     public int getAge(){
         return Period.between(getBirthday(), LocalDate.now()).getYears();
     }
+
+    public double getPayment(){
+       return subscription.payment(getAge());
+        }
 
     private void assignAgeGroup(){
         if (getAge() < 18){
