@@ -8,8 +8,8 @@ public class Member {
     private String email;
     private String name;
     private Gender gender;
-    Subscription subscription;
-    AgeGroup ageGroup;
+    private Subscription subscription;
+    private AgeGroup ageGroup;
 
 
     public Member(LocalDate birthday, String email, String name, Gender gender) {
@@ -35,10 +35,6 @@ public class Member {
         return Period.between(getBirthday(), LocalDate.now()).getYears();
     }
 
-    public double getPayment(){
-       return subscription.payment(getAge());
-        }
-
     private void assignAgeGroup(){
         if (getAge() < 18){
             setMembershipType(AgeGroup.JUNIOR);
@@ -47,6 +43,14 @@ public class Member {
 
     public LocalDate getBirthday() {
         return birthday;
+    }
+
+    public double getPayment(){
+        return subscription.payment(getAge());
+    }
+
+    public Subscription getSubscription() {
+        return subscription;
     }
 
     public Gender getGender() {

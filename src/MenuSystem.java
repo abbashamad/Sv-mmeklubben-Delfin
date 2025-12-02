@@ -1,6 +1,5 @@
 import java.time.LocalDate;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class MenuSystem {
     private MemberList memberList;
@@ -31,7 +30,6 @@ public class MenuSystem {
             }
 
 
-
         }
     }
 
@@ -51,7 +49,8 @@ public class MenuSystem {
             case "4" -> showMainMenu();
             default -> System.out.println("Forkert valg kammerat");
 
-        }  }
+        }
+    }
 
     public void CreateNewMember() {
         System.out.print("Enter Name: ");
@@ -65,10 +64,10 @@ public class MenuSystem {
 
         System.out.print("Elite swimmer? (Y/N): ");
         String answer = sc.next();
-        if (answer.equalsIgnoreCase("Y")){
+        if (answer.equalsIgnoreCase("Y")) {
             memberList.addEliteToMemberList(birthday, email, name, gender);
             sc.nextLine();
-        } else if (answer.equalsIgnoreCase("N")){
+        } else if (answer.equalsIgnoreCase("N")) {
             memberList.addMemberToMemberList(birthday, email, name, gender);
             sc.nextLine();
         } else {
@@ -95,7 +94,9 @@ public class MenuSystem {
             case "4" -> showMainMenu();
             default -> System.out.println("Forkert valg kammerat");
         }
-    } public void CreateNewSwimResult() {
+    }
+
+    public void CreateNewSwimResult() {
         System.out.print("Indtast Medlemsnummer/ID/Navn Eller whatevs ");
         int memberId = sc.nextInt();
         sc.nextLine();
@@ -103,7 +104,16 @@ public class MenuSystem {
         if (member == null) {
             System.out.println("Medlem ikke fundet!");
             return;
+        } else if (!(member instanceof EliteMember)) {
+            System.out.println("Medlem er ikke konkurrence svømmer");
+            return;
         }
+        EliteMember eliteMember = (EliteMember) member;
+
+        System.out.println("Tast 1 for træning og 2 for stævne");
+        int resultType = sc.nextInt();
+        sc.nextLine();
+
         System.out.println("\n Vælg  Svømme-disciplin");
         System.out.println("1. CRAWL");
         System.out.println("2. BREASTSTROKE");
@@ -112,14 +122,15 @@ public class MenuSystem {
         String disciplineChoice = sc.nextLine();
         Discipline discipline;
 
-        switch (disciplineChoice){
+        switch (disciplineChoice) {
             case "1" -> discipline = Discipline.CRAWL;
             case "2" -> discipline = Discipline.BREASTSTROKE;
             case "3" -> discipline = Discipline.BUTTERFLY;
             case "4" -> discipline = Discipline.BACKCRAWL;
-            default ->  {
+            default -> {
                 System.out.println("Forkert valg kammerat");
-                return;    }
+                return;
+            }
         }
         System.out.print("Indtast først antal minutter brugt ");
         int min = sc.nextInt();
@@ -128,13 +139,26 @@ public class MenuSystem {
         System.out.print("Indtast antal millisekunder");
         int milSec = sc.nextInt();
         sc.nextLine();
-        SwimTimer timer = new SwimTimer(min,sec,milSec);
+        SwimTimer timer = new SwimTimer(min, sec, milSec);
 
         System.out.println("Indtast dato:");
         LocalDate date = LocalDate.parse(sc.nextLine());
 
-        SwimResult result = new SwimResult(member, discipline, timer, date);
+        
+        if (resultType == 1){
+            eliteMember.addSwimResultsToList(discipline,timer,date);
+        }else if (resultType == 2){
+            System.out.print("Indtast antal placering");
+            int placement = sc.nextInt();
+            sc.nextLine();
+            System.out.print("Indtast antal stævnets navn");
+            String loacation = sc.nextLine();
 
+            eliteMember.addCompSwimResultsToList(discipline,timer,date,placement,loacation);
+        }else {
+            System.out.println("Forkert valg kammerat");
+            return;
+        }
     }
 
     private void SeeTopSeniorSwimmers() {
@@ -183,7 +207,8 @@ public class MenuSystem {
             case "3" -> TopFiveButterflyJunior();
             case "4" -> TopFiveBcrawlJunior();
             default -> System.out.println("Forkert valg kammerat");
-        } }
+        }
+    }
 
     private void TopFiveButterflyJunior() {
 
@@ -203,7 +228,6 @@ public class MenuSystem {
 
     public void ShowAccountingMenu() {
     }
-
 
 
 }
