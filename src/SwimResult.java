@@ -1,10 +1,10 @@
 import java.time.LocalDate;
 
-public class SwimResult {
-    Member member;
-    Discipline discipline;
-    private SwimTimer swimTime;
-    private LocalDate swimDate;
+public class SwimResult{
+    private final Member member;
+    private final Discipline discipline;
+    private final SwimTimer swimTime;
+    private final LocalDate swimDate;
 
     public SwimResult(Member member, Discipline discipline, SwimTimer swimTime, LocalDate swimDate) {
         this.member = member;

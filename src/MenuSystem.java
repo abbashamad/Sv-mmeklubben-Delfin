@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.util.Objects;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -65,11 +64,11 @@ public class MenuSystem {
         Gender gender = Gender.valueOf(sc.nextLine().toUpperCase());
 
         System.out.print("Elite swimmer? (Y/N): ");
-        String answer = sc.next().toUpperCase();
-        if (Objects.equals(answer, "Y")){
+        String answer = sc.next();
+        if (answer.equalsIgnoreCase("Y")){
             memberList.addEliteToMemberList(birthday, email, name, gender);
             sc.nextLine();
-        } else if (Objects.equals(answer, "N")){
+        } else if (answer.equalsIgnoreCase("N")){
             memberList.addMemberToMemberList(birthday, email, name, gender);
             sc.nextLine();
         } else {

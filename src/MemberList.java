@@ -1,5 +1,7 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MemberList {
@@ -29,16 +31,26 @@ public class MemberList {
         return null;
     }
 
-    public List<Member> checkMemberCriteria(AgeGroup ageGroup, Gender gender) {
-        List<Member> criteriaChecking = new ArrayList<>();
-        for (Member member : list) {
-            if (member.ageGroup == ageGroup && member.getGender() == gender) {
-                criteriaChecking.add(member);
+    private List<EliteMember> checkMemberCriteria(AgeGroup ageGroup, Gender gender, Discipline discipline) {
+        List<EliteMember> criteriaChecking = new ArrayList<>();
+        for (Member member : this.list) {
+            if (member instanceof EliteMember) {
+                if (member.ageGroup == ageGroup && member.getGender() == gender && ((EliteMember) member).isActiveInDiscipline(discipline)) {
+                    criteriaChecking.add((EliteMember) member);
+                }
             }
         }
         return criteriaChecking;
     }
 
+    public List<SwimResult> top5ForDiscipline(AgeGroup ageGroup, Gender gender, Discipline discipline) {
+        List<SwimResult> swimResults = new ArrayList<>();
+        for (EliteMember member : checkMemberCriteria(ageGroup, gender, discipline)) {
+            swimResults.add(member.getBestTimeForDiscipline(discipline));
+        }
+        swimResults.sort(new TimeComparator());
+        return swimResults;
+    }
 
     @Override
     public String toString() {

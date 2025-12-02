@@ -1,33 +1,55 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class EliteMember extends Member {
-
-    ArrayList<SwimResult> swimResults;
+    private ArrayList<SwimResult> swimResults;
+     HashSet<Discipline> activeDiscipline;
 
     public EliteMember(LocalDate birthday, String email, String name, Gender gender) {
         super(birthday, email, name, gender);
-
         this.swimResults = new ArrayList<>();
-
+        this.activeDiscipline = new HashSet<>();
     }
-    public List<SwimResult>timer(Discipline discipline){
-        List<SwimResult>checkingSwimResults = new ArrayList<>();
-        for(SwimResult result : swimResults){
-            if(discipline == result.discipline){
+
+    public void addSwimResultsToList(Discipline discipline, SwimTimer time, LocalDate date) {
+        this.swimResults.add(new SwimResult(this, discipline, time, date));
+        this.activeDiscipline.add(discipline);
+    }
+
+    public void addCompSwimResultsToList(Discipline discipline, SwimTimer time, LocalDate date, int placement, String location) {
+        this.swimResults.add(new CompetitionResult(this, discipline, time, date, placement, location));
+        this.activeDiscipline.add(discipline);
+    }
+
+    public boolean isActiveInDiscipline(Discipline discipline){
+        for (Discipline d : activeDiscipline){
+            if (d == discipline){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public List<SwimResult> getSwimResultForDiscipline(Discipline discipline) {
+        List<SwimResult> checkingSwimResults = new ArrayList<>();
+        for (SwimResult result : swimResults) {
+            if (discipline == result.getDiscipline()) {
                 checkingSwimResults.add(result);
             }
         }
-        return swimResults;
+        return checkingSwimResults;
     }
 
-    public void addSwimResultsToList(Member member, Discipline discipline, SwimTimer time, LocalDate date) {
-        this.swimResults.add(new SwimResult(member, discipline, time, date));
+    public List<SwimResult> sortListByTime(Discipline discipline) {
+        List<SwimResult> list = getSwimResultForDiscipline(discipline);
+        list.sort(new TimeComparator());
+        return list;
     }
 
-    public void addCompSwimResultsToList(Member member, Discipline discipline, SwimTimer time, LocalDate date, int placement, String location) {
-        this.swimResults.add(new CompetitionResult(member, discipline, time, date, placement, location));
+    public SwimResult getBestTimeForDiscipline(Discipline discipline){
+        return sortListByTime(discipline).getFirst();
     }
 
 }
