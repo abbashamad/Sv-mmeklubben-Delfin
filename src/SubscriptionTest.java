@@ -6,35 +6,35 @@ class SubscriptionTest {
 
     @org.junit.jupiter.api.Test
     void paymentPensioner() {
-        Member member = new Member(LocalDate.of(1940,10,10),"@@","name",Gender.FEMALE);
-      assertEquals(1200, member.getPayment());
+        Member member = new Member(LocalDate.of(1940, 10, 10), "@@", "name", Gender.FEMALE);
+        assertEquals(1200, member.getPayment());
     }
 
     @org.junit.jupiter.api.Test
     void paymentSenior() {
-        Member member = new Member(LocalDate.of(2000,10,10),"@@","name",Gender.MALE);
+        Member member = new Member(LocalDate.of(2000, 10, 10), "@@", "name", Gender.MALE);
         assertEquals(1600, member.getPayment());
     }
 
     @org.junit.jupiter.api.Test
     void paymentJunior() {
-        Member member = new Member(LocalDate.of(2010,10,10),"@@","name",Gender.MALE);
+        Member member = new Member(LocalDate.of(2010, 10, 10), "@@", "name", Gender.MALE);
         assertEquals(1000, member.getPayment());
     }
 
     @org.junit.jupiter.api.Test
     void setPassive() {
-        Member member = new Member(LocalDate.of(1940,10,10),"@@","name",Gender.FEMALE);
-      member.getSubscription().setActivity();
-      assertEquals(false,member.getSubscription().isActive());
+        Member member = new Member(LocalDate.of(1940, 10, 10), "@@", "name", Gender.FEMALE);
+        member.getSubscription().setActivity();
+        assertEquals(false, member.getSubscription().isActive());
     }
 
     @org.junit.jupiter.api.Test
     void setActive() {
-        Member member = new Member(LocalDate.of(1940,10,10),"@@","name",Gender.FEMALE);
+        Member member = new Member(LocalDate.of(1940, 10, 10), "@@", "name", Gender.FEMALE);
         member.getSubscription().setActivity();
         member.getSubscription().setActivity();
-        assertEquals(true,member.getSubscription().isActive());
+        assertEquals(true, member.getSubscription().isActive());
     }
 
     @org.junit.jupiter.api.Test
