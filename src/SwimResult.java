@@ -33,6 +33,6 @@ public class SwimResult{
 
     @Override
     public String toString() {
-        return String.format("%-5d %-15s %-15s %-15s %-15s",member.getId(),member.getName(), discipline,swimTime,swimDate);
+        return String.format("%-8d %-15s %-15s %-15s %-15s",member.getId(),member.getName(), discipline,swimTime,swimDate);
     }
 }

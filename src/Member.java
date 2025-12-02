@@ -67,7 +67,7 @@ public class Member {
 
     @Override
     public String toString() {
-        return String.format("%d %s %s",id, name, email);
+        return String.format("%s %-10s %-10s",String.format("%04d ", id) ,name, email);
     }
 }
 
