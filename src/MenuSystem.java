@@ -144,18 +144,18 @@ public class MenuSystem {
         System.out.println("Indtast dato:");
         LocalDate date = LocalDate.parse(sc.nextLine());
 
-        
-        if (resultType == 1){
-            eliteMember.addSwimResultsToList(discipline,timer,date);
-        }else if (resultType == 2){
+
+        if (resultType == 1) {
+            eliteMember.addSwimResultsToList(discipline, timer, date);
+        } else if (resultType == 2) {
             System.out.print("Indtast antal placering");
             int placement = sc.nextInt();
             sc.nextLine();
             System.out.print("Indtast antal stævnets navn");
             String loacation = sc.nextLine();
 
-            eliteMember.addCompSwimResultsToList(discipline,timer,date,placement,loacation);
-        }else {
+            eliteMember.addCompSwimResultsToList(discipline, timer, date, placement, loacation);
+        } else {
             System.out.println("Forkert valg kammerat");
             return;
         }
@@ -171,25 +171,12 @@ public class MenuSystem {
 
 
         switch (sc.nextLine()) {
-            case "1" -> TopFiveCrawlSenior();
-            case "2" -> TopFiveBreastSenior();
-            case "3" -> TopFiveButterflySenior();
-            case "4" -> TopFiveBcrawlSenior();
+            case "1" -> TopFiveCrawl(AgeGroup.SENIOR);
+            case "2" -> TopFiveBreast(AgeGroup.SENIOR);
+            case "3" -> TopFiveButterfly(AgeGroup.SENIOR);
+            case "4" -> TopFiveBcrawl(AgeGroup.SENIOR);
             default -> System.out.println("Forkert valg kammerat");
         }
-    }
-
-    private void TopFiveBreastSenior() {
-
-    }
-
-    private void TopFiveCrawlSenior() {
-    }
-
-    private void TopFiveButterflySenior() {
-    }
-
-    private void TopFiveBcrawlSenior() {
     }
 
     public void SeeTopJuniorSwimmers() {
@@ -202,28 +189,29 @@ public class MenuSystem {
 
 
         switch (sc.nextLine()) {
-            case "1" -> TopFiveCrawlJunior();
-            case "2" -> TopFiveBreastJunior();
-            case "3" -> TopFiveButterflyJunior();
-            case "4" -> TopFiveBcrawlJunior();
+            case "1" -> TopFiveCrawl(AgeGroup.JUNIOR);
+            case "2" -> TopFiveBreast(AgeGroup.JUNIOR);
+            case "3" -> TopFiveButterfly(AgeGroup.JUNIOR);
+            case "4" -> TopFiveBcrawl(AgeGroup.JUNIOR);
             default -> System.out.println("Forkert valg kammerat");
         }
     }
 
-    private void TopFiveButterflyJunior() {
+    private void TopFiveButterfly(AgeGroup ageGroup) {
+        memberList.top5ForDiscipline(ageGroup, Gender.MALE, Discipline.BUTTERFLY);
 
     }
 
-    private void TopFiveBcrawlJunior() {
-
+    private void TopFiveBcrawl(AgeGroup ageGroup) {
+        memberList.top5ForDiscipline(ageGroup, Gender.MALE, Discipline.BACKCRAWL);
     }
 
-    private void TopFiveBreastJunior() {
-
+    private void TopFiveBreast(AgeGroup ageGroup) {
+        memberList.top5ForDiscipline(ageGroup, Gender.MALE, Discipline.BREASTSTROKE);
     }
 
-    private void TopFiveCrawlJunior() {
-
+    private void TopFiveCrawl(AgeGroup ageGroup) {
+        memberList.top5ForDiscipline(ageGroup, Gender.MALE, Discipline.CRAWL);
     }
 
     public void ShowAccountingMenu() {
