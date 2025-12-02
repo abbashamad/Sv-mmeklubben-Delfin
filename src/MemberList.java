@@ -33,7 +33,7 @@ public class MemberList {
         List<EliteMember> criteriaChecking = new ArrayList<>();
         for (Member member : this.list) {
             if (member instanceof EliteMember) {
-                if (member.ageGroup == ageGroup && member.getGender() == gender && ((EliteMember) member).isActiveInDiscipline(discipline)) {
+                if (member.getAgeGroup() == ageGroup && member.getGender() == gender && ((EliteMember) member).isActiveInDiscipline(discipline)) {
                     criteriaChecking.add((EliteMember) member);
                 }
             }
