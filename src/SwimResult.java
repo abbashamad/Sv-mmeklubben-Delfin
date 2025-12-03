@@ -41,8 +41,9 @@ public class SwimResult implements Serializable, Decodable {
         return "";
     }
 
-//    public SwimResult decode(String record) {
-//        String[] fields = record.split(",");
-//        new SwimResult(fields[0],fields
-//    }
+    //SwimResult/void
+    public void decode(String record) {
+        String[] fields = record.split(",");
+        //new SwimResult(fields[0],fields);
+    }
 }

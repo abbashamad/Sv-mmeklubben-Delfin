@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.time.Period;
 
-public class Member implements Serializable {
+public class Member implements Serializable, Decodable{
     private LocalDate birthday;
     private static int nextId = 1;
     private int id;
@@ -21,14 +21,11 @@ public class Member implements Serializable {
 
     }
 
-
-
-
     public int getAge() {
         return Period.between(getBirthday(), LocalDate.now()).getYears();
     }
 
-    private AgeGroup getAgeGroup() {
+    public AgeGroup getAgeGroup() {
         if (getAge() < 18) {
             return AgeGroup.JUNIOR;
         } else return AgeGroup.SENIOR;
@@ -69,12 +66,12 @@ public class Member implements Serializable {
 
     @Override
     public String serialize() {
-        return String.format("%s,%s,%s,%s,%s,%s%n",
-                id,
-                email,
-                name,
-                gender,
-                subscription );
+        return String.format("M,%s,%s,%s,%s,%s%n",birthday, email, name, gender, subscription.isActive());
+
+    }
+
+    @Override
+    public void decode(String record) {
 
     }
 }

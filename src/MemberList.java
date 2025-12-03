@@ -4,24 +4,28 @@ import java.util.List;
 
 public class MemberList {
     private List<Member> memberList;
+    List<Serializable> serializables;
 
     public MemberList() {
         this.memberList = new ArrayList<>();
+        this.serializables = new ArrayList<>();
     }
 
-    public String totalIncome(){
+    public String totalIncome() {
         return "Forventet samlet indkomst er: " + Economy.totalIncome(memberList);
     }
 
     public void addMemberToMemberList(LocalDate birthday, String email, String name, Gender gender) {
         Member member = new Member(birthday, email, name, gender);
         this.memberList.add(member);
+        this.serializables.add(member);
     }
 
 
     public void addEliteToMemberList(LocalDate birthday, String email, String name, Gender gender) {
         EliteMember member = new EliteMember(birthday, email, name, gender);
         this.memberList.add(member);
+        this.serializables.add(member);
     }
 
     public Member findMemberViaID(int id) {
