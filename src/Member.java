@@ -1,15 +1,14 @@
 import java.time.LocalDate;
 import java.time.Period;
 
-public class Member {
+public class Member implements Serializable, Decodable{
     private LocalDate birthday;
     private static int nextId = 1;
     private int id;
     private String email;
     private String name;
     private Gender gender;
-    Subscriptions subscriptions;
-    AgeGroup ageGroup;
+    private Subscription subscription;
 
 
     public Member(LocalDate birthday, String email, String name, Gender gender) {
@@ -18,31 +17,30 @@ public class Member {
         this.email = email;
         this.name = name;
         this.gender = gender;
-        assignMemberType();
-        this.subscriptions = new Subscriptions();
+        this.subscription = new Subscription();
 
     }
 
-    public void setMembershipType(AgeGroup ageGroup) {
-        this.ageGroup = ageGroup;
-    }
-
-    public AgeGroup getMembershipType() {
-        return ageGroup;
-    }
-
-    public int getAge(){
+    public int getAge() {
         return Period.between(getBirthday(), LocalDate.now()).getYears();
     }
 
-    private void assignMemberType(){
-        if (getAge() < 18){
-            setMembershipType(AgeGroup.JUNIOR);
-        }else setMembershipType(AgeGroup.SENIOR);
+    public AgeGroup getAgeGroup() {
+        if (getAge() < 18) {
+            return AgeGroup.JUNIOR;
+        } else return AgeGroup.SENIOR;
     }
 
     public LocalDate getBirthday() {
         return birthday;
+    }
+
+    public double getPayment() {
+        return subscription.payment(getAge());
+    }
+
+    public Subscription getSubscription() {
+        return subscription;
     }
 
     public Gender getGender() {
@@ -63,7 +61,18 @@ public class Member {
 
     @Override
     public String toString() {
-        return String.format("%d %s %s",id, name, email);
+        return String.format("%s %-10s %-10s", String.format("%04d ", id), name, email);
+    }
+
+    @Override
+    public String serialize() {
+        return String.format("M,%s,%s,%s,%s,%s%n",birthday, email, name, gender, subscription.isActive());
+
+    }
+
+    @Override
+    public void decode(String record) {
+
     }
 }
 

@@ -3,25 +3,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MemberList {
-    List<Member> list;
+    private List<Member> memberList;
+    List<Serializable> serializables;
 
     public MemberList() {
-        this.list = new ArrayList<>();
+        this.memberList = new ArrayList<>();
+        this.serializables = new ArrayList<>();
+    }
+
+    public String totalIncome() {
+        return "Forventet samlet indkomst er: " + Economy.totalIncome(memberList);
     }
 
     public void addMemberToMemberList(LocalDate birthday, String email, String name, Gender gender) {
         Member member = new Member(birthday, email, name, gender);
-        this.list.add(member);
+        this.memberList.add(member);
+        this.serializables.add(member);
     }
 
 
     public void addEliteToMemberList(LocalDate birthday, String email, String name, Gender gender) {
         EliteMember member = new EliteMember(birthday, email, name, gender);
-        this.list.add(member);
+        this.memberList.add(member);
+        this.serializables.add(member);
     }
 
     public Member findMemberViaID(int id) {
-        for (Member member : list) {
+        for (Member member : memberList) {
             if (member.getId() == id) {
                 return member;
             }
@@ -29,22 +37,32 @@ public class MemberList {
         return null;
     }
 
-public List<Member> checkMemberCriteria(AgeGroup ageGroup, Gender gender) {
-    List<Member> criteriaChecking = new ArrayList<>();
-    for (Member member : list) {
-        if (member.ageGroup == ageGroup && member.getGender() == gender) {
-            criteriaChecking.add(member);
+    private List<EliteMember> checkMemberCriteria(AgeGroup ageGroup, Gender gender, Discipline discipline) {
+        List<EliteMember> list = new ArrayList<>();
+        for (Member member : this.memberList) {
+            if (member instanceof EliteMember) {
+                if (member.getAgeGroup() == ageGroup && member.getGender() == gender && ((EliteMember) member).isActiveInDiscipline(discipline)) {
+                    list.add((EliteMember) member);
+                }
+            }
         }
+        return list;
     }
-    return criteriaChecking;
-}
 
+    public List<SwimResult> top5ForDiscipline(AgeGroup ageGroup, Gender gender, Discipline discipline) {
+        List<SwimResult> swimResults = new ArrayList<>();
+        for (EliteMember eliteMember : checkMemberCriteria(ageGroup, gender, discipline)) {
+            swimResults.add(eliteMember.getBestTimeForDiscipline(discipline));
+        }
+        swimResults.sort(new TimeComparator());
+        return swimResults;
+    }
 
     @Override
     public String toString() {
-          String s = "";
-        for (Member member : list) {
-              s += member + "\n";
+        String s = "";
+        for (Member member : memberList) {
+            s += member + "\n";
 
         }
         return s;
