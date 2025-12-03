@@ -5,27 +5,27 @@ import java.util.List;
 
 public class EliteMember extends Member {
     private ArrayList<SwimResult> swimResults;
-     HashSet<Discipline> activeDiscipline;
+    private HashSet<Discipline> activeInDisciplines;
 
     public EliteMember(LocalDate birthday, String email, String name, Gender gender) {
         super(birthday, email, name, gender);
         this.swimResults = new ArrayList<>();
-        this.activeDiscipline = new HashSet<>();
+        this.activeInDisciplines = new HashSet<>();
     }
 
     public void addSwimResultsToList(Discipline discipline, SwimTimer time, LocalDate date) {
         this.swimResults.add(new SwimResult(this, discipline, time, date));
-        this.activeDiscipline.add(discipline);
+        this.activeInDisciplines.add(discipline);
     }
 
     public void addCompSwimResultsToList(Discipline discipline, SwimTimer time, LocalDate date, int placement, String location) {
         this.swimResults.add(new CompetitionResult(this, discipline, time, date, placement, location));
-        this.activeDiscipline.add(discipline);
+        this.activeInDisciplines.add(discipline);
     }
 
-    public boolean isActiveInDiscipline(Discipline discipline){
-        for (Discipline d : activeDiscipline){
-            if (d == discipline){
+    public boolean isActiveInDiscipline(Discipline discipline) {
+        for (Discipline d : activeInDisciplines) {
+            if (d == discipline) {
                 return true;
             }
         }
@@ -48,7 +48,7 @@ public class EliteMember extends Member {
         return list;
     }
 
-    public SwimResult getBestTimeForDiscipline(Discipline discipline){
+    public SwimResult getBestTimeForDiscipline(Discipline discipline) {
         return sortListByTime(discipline).getFirst();
     }
 
