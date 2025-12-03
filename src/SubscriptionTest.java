@@ -39,5 +39,13 @@ class SubscriptionTest {
 
     @org.junit.jupiter.api.Test
     void setHasArrears() {
+        Member member = new Member(LocalDate.of(2000, 10, 10), "@@", "name", Gender.FEMALE);
+
+        // Starter som false
+        assertFalse(member.getSubscription().isHasArrears());
+
+        member.getSubscription().setHasArrears(true);
+
+        assertTrue(member.getSubscription().isHasArrears());
     }
 }
