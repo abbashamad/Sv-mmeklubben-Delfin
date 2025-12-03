@@ -5,27 +5,23 @@ import java.util.List;
 
 public class EliteMember extends Member {
     private ArrayList<SwimResult> swimResults;
-    private HashSet<Discipline> activeInDisciplines;
 
     public EliteMember(LocalDate birthday, String email, String name, Gender gender) {
         super(birthday, email, name, gender);
         this.swimResults = new ArrayList<>();
-        this.activeInDisciplines = new HashSet<>();
     }
 
     public void addSwimResultsToList(Discipline discipline, SwimTimer time, LocalDate date) {
         this.swimResults.add(new SwimResult(this, discipline, time, date));
-        this.activeInDisciplines.add(discipline);
     }
 
     public void addCompSwimResultsToList(Discipline discipline, SwimTimer time, LocalDate date, int placement, String location) {
         this.swimResults.add(new CompetitionResult(this, discipline, time, date, placement, location));
-        this.activeInDisciplines.add(discipline);
     }
 
     public boolean isActiveInDiscipline(Discipline discipline) {
-        for (Discipline d : activeInDisciplines) {
-            if (d == discipline) {
+        for (SwimResult r : swimResults) {
+            if (r.getDiscipline() == discipline) {
                 return true;
             }
         }

@@ -6,6 +6,8 @@ public class Main {
 
         MemberList list = new MemberList();
 
+
+
         list.addEliteToMemberList(LocalDate.of(2011, 11, 5), "KASPER@RR", "KASPER", Gender.MALE);
         EliteMember e0 = (EliteMember) list.findMemberViaID(1);
         e0.addCompSwimResultsToList(Discipline.CRAWL, new SwimTimer(1, 3, 82), LocalDate.of(2011, 9, 10), 1, "Horsens");
@@ -58,18 +60,20 @@ public class Main {
         EliteMember e12 = (EliteMember) list.findMemberViaID(13);
         e12.addCompSwimResultsToList(Discipline.CRAWL, new SwimTimer(0, 57, 43), LocalDate.of(1932, 2, 12), 1, "Kolding");
 
-        list.addEliteToMemberList(LocalDate.of(2022, 4, 14), "SOFIE@RR", "Sofie", Gender.FEMALE);
+        list.addEliteToMemberList(LocalDate.of(2000, 4, 14), "SOFIE@RR", "Sofie", Gender.FEMALE);
         EliteMember e13 = (EliteMember) list.findMemberViaID(14);
         e13.addCompSwimResultsToList(Discipline.BACKCRAWL, new SwimTimer(1, 6, 5), LocalDate.of(1945, 7, 1), 2, "Horsens");
 
         list.addEliteToMemberList(LocalDate.of(2023, 1, 9), "VICTOR@RR", "Victor", Gender.MALE);
         EliteMember e14 = (EliteMember) list.findMemberViaID(15);
         e14.addCompSwimResultsToList(Discipline.BUTTERFLY, new SwimTimer(1, 2, 90), LocalDate.of(2018, 5, 15), 1, "Randers");
+        e14.getSubscription().setActivity();
 
-        list.addEliteToMemberList(LocalDate.of(2023, 8, 11), "ELLEN@RR", "Ellen", Gender.FEMALE);
+        list.addEliteToMemberList(LocalDate.of(1955, 8, 11), "ELLEN@RR", "Ellen", Gender.FEMALE);
         EliteMember e15 = (EliteMember) list.findMemberViaID(16);
         e15.addCompSwimResultsToList(Discipline.BREASTSTROKE, new SwimTimer(1, 17, 8), LocalDate.of(2001, 10, 30), 3, "Esbjerg");
 
+        System.out.println(list.totalIncome());
 
         System.out.println(e0.getBestTimeForDiscipline(Discipline.CRAWL));
 
