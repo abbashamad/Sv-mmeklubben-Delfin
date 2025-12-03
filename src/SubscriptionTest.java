@@ -23,18 +23,25 @@ class SubscriptionTest {
     }
 
     @org.junit.jupiter.api.Test
+    void paymentPassive() {
+        Member member = new Member(LocalDate.of(2010, 10, 10), "@@", "name", Gender.MALE);
+        member.getSubscription().changeSubscriptionType();
+        assertEquals(500, member.getPayment());
+    }
+
+    @org.junit.jupiter.api.Test
     void setPassive() {
         Member member = new Member(LocalDate.of(1940, 10, 10), "@@", "name", Gender.FEMALE);
-        member.getSubscription().setActivity();
-        assertEquals(false, member.getSubscription().isActive());
+        member.getSubscription().changeSubscriptionType();
+        assertFalse(member.getSubscription().isActive());
     }
 
     @org.junit.jupiter.api.Test
     void setActive() {
         Member member = new Member(LocalDate.of(1940, 10, 10), "@@", "name", Gender.FEMALE);
-        member.getSubscription().setActivity();
-        member.getSubscription().setActivity();
-        assertEquals(true, member.getSubscription().isActive());
+        member.getSubscription().changeSubscriptionType();
+        member.getSubscription().changeSubscriptionType();
+        assertTrue(member.getSubscription().isActive());
     }
 
     @org.junit.jupiter.api.Test

@@ -234,7 +234,7 @@ public class MenuSystem {
 
                 case 2:
                     //Hent alle medlemmer og filtrér med Economy.membersInArrears
-                        List<Member> inArrears = Economy.membersInArrears(memberList.getMembers());
+                        List<Member> inArrears = memberList.getMembersInArrears();
 
                         if (inArrears.isEmpty()){
                             System.out.println("Der er ingen medlemmer i restance.");
