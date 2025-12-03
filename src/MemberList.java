@@ -11,6 +11,10 @@ public class MemberList {
         this.serializables = new ArrayList<>();
     }
 
+    public List<Member> getMembers(){
+        return memberList;
+    }
+
     public String totalIncome() {
         return "Forventet samlet indkomst er: " + Economy.totalIncome(memberList);
     }
@@ -18,14 +22,14 @@ public class MemberList {
     public void addMemberToMemberList(LocalDate birthday, String email, String name, Gender gender) {
         Member member = new Member(birthday, email, name, gender);
         this.memberList.add(member);
-        this.serializables.add(member);
+//        this.serializables.add(member);
     }
 
 
     public void addEliteToMemberList(LocalDate birthday, String email, String name, Gender gender) {
         EliteMember member = new EliteMember(birthday, email, name, gender);
         this.memberList.add(member);
-        this.serializables.add(member);
+//        this.serializables.add(member);
     }
 
     public Member findMemberViaID(int id) {

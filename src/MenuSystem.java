@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuSystem {
@@ -213,6 +214,47 @@ public class MenuSystem {
     }
 
     public void ShowAccountingMenu() {
+        boolean running = true;
+
+        while (running){
+            System.out.println("=== Økonomimenu ===");
+            System.out.println("1. Vis Samlet kontingentindkomst");
+            System.out.println("2. Vis medlemmer i restance");
+            System.out.println("3. Tilbage til hovedmenu");
+            System.out.println("Vælg: ");
+
+            int choice = sc.nextInt();
+            sc.nextLine();
+
+            switch (choice){
+                case 1:
+                //Bruger MemberLists totalIncome-metode
+                    System.out.println(memberList.totalIncome());
+                    break;
+
+                case 2:
+                    //Hent alle medlemmer og filtrér med Economy.membersInArrears
+                        List<Member> inArrears = Economy.membersInArrears(memberList.getMembers());
+
+                        if (inArrears.isEmpty()){
+                            System.out.println("Der er ingen medlemmer i restance.");
+                        }else {
+                            System.out.println("Medlemmer i restance:");
+                            for (Member m : inArrears){
+                                System.out.println(m);
+                            }
+                        }
+                        break;
+
+                case 3:
+                    running = false; //Tilbage til hovedmenu
+                    break;
+                default:
+                    System.out.println("Ugyldigt valg, prøv igen.");
+
+
+            }
+        }
 
     }
 
