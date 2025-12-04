@@ -6,9 +6,10 @@ public class Main {
 
         MemberList list = new MemberList();
 
-        createTestMembers(list);
+        //createTestMembers(list);
 
-        FileHandler.saveToCsvFile("MemberData.csv", list);
+        FileHandler.decodeFile("MemberData.csv", list);
+        System.out.println(list);
 
         MenuSystem menu = new MenuSystem(list);
 
