@@ -220,9 +220,9 @@ public class MenuSystem {
         while (running){
             System.out.println("=== Økonomimenu ===");
             System.out.println("1. Vis Samlet kontingentindkomst");
-            System.out.println("2. Vis medlemmer i restance");
-            System.out.println("3. Tilbage til hovedmenu");
-            System.out.println("4. Sæt abonnement som betalt");
+            System.out.println("2. Fremvis medlemmer i restance");
+            System.out.println("3. Sæt abonnement som betalt");
+            System.out.println("4. Tilbage til hovedmenu");
             System.out.println("Vælg: ");
 
             int choice = sc.nextInt();
@@ -249,17 +249,16 @@ public class MenuSystem {
                         break;
 
                 case 3:
-                    running = false; //Tilbage til hovedmenu
-                    break;
-
-                case 4:
             System.out.println(" Indtast MedlemsID for at sætte kontingent som betalt");
           int memberId = sc.nextInt();
                sc.nextLine(); //Clearer mellemrum
                     Member member = memberList.findMemberViaID(memberId);
                     member.getSubscription().setHasArrears(false);
+                    System.out.println(" Medlemmet er nu sat som at have betalt" );
 break;
-
+                case 4:
+                    running = false; //Tilbage til hovedmenu
+                    break;
 
                 default:
                     System.out.println("Ugyldigt valg, prøv igen.");
