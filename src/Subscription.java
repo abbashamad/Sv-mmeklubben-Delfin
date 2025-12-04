@@ -5,7 +5,7 @@ public class Subscription {
 
     public Subscription() {
         this.isActive = true;
-        this.hasArrears = false;
+        this.hasArrears = true;
     }
 
     public double payment(int age) {

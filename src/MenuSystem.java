@@ -140,7 +140,7 @@ public class MenuSystem {
         sc.nextLine();
         SwimTimer timer = new SwimTimer(min, sec, milSec);
 
-        System.out.println("Indtast dato:");
+        System.out.println("Indtast dato (YYYY-MM-DD):");
         LocalDate date = LocalDate.parse(sc.nextLine());
 
 
@@ -199,6 +199,7 @@ public class MenuSystem {
     private void TopFiveButterfly(AgeGroup ageGroup) {
         memberList.top5ForDiscipline(ageGroup, Gender.MALE, Discipline.BUTTERFLY);
 
+
     }
 
     private void TopFiveBcrawl(AgeGroup ageGroup) {
@@ -221,6 +222,7 @@ public class MenuSystem {
             System.out.println("1. Vis Samlet kontingentindkomst");
             System.out.println("2. Vis medlemmer i restance");
             System.out.println("3. Tilbage til hovedmenu");
+            System.out.println("4. Sæt abonnement som betalt");
             System.out.println("Vælg: ");
 
             int choice = sc.nextInt();
@@ -249,6 +251,16 @@ public class MenuSystem {
                 case 3:
                     running = false; //Tilbage til hovedmenu
                     break;
+
+                case 4:
+            System.out.println(" Indtast MedlemsID for at sætte kontingent som betalt");
+          int memberId = sc.nextInt();
+               sc.nextLine(); //Clearer mellemrum
+                    Member member = memberList.findMemberViaID(memberId);
+                    member.getSubscription().setHasArrears(false);
+break;
+
+
                 default:
                     System.out.println("Ugyldigt valg, prøv igen.");
 
