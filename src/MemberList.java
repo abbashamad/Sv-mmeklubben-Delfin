@@ -9,7 +9,7 @@ public class MemberList {
         this.memberList = new ArrayList<>();
     }
 
-    public List<Member> getMemberList(){
+    public List<Member> getMemberList() {
         return memberList;
     }
 
@@ -34,7 +34,7 @@ public class MemberList {
         return "Forventet samlet indkomst er: " + Economy.totalIncome(memberList);
     }
 
-    public List<Member> getMembersInArrears(){
+    public List<Member> getMembersInArrears() {
         return Economy.membersInArrears(memberList);
     }
 
@@ -50,14 +50,24 @@ public class MemberList {
         return list;
     }
 
-    //kun vis top 5 mangler
     public List<SwimResult> top5ForDiscipline(AgeGroup ageGroup, Gender gender, Discipline discipline) {
         List<SwimResult> swimResults = new ArrayList<>();
         for (EliteMember eliteMember : checkMemberCriteria(ageGroup, gender, discipline)) {
             swimResults.add(eliteMember.getBestTimeForDiscipline(discipline));
         }
         swimResults.sort(new TimeComparator());
+
+        swimResults = swimResults.subList(0, 5);
         return swimResults;
+    }
+
+    public String top5ToString(AgeGroup ageGroup, Gender gender, Discipline discipline) {
+        String s = "";
+
+        for (SwimResult swimResult : top5ForDiscipline(ageGroup, gender, discipline)) {
+            s += swimResult + "\n";
+        }
+        return s;
     }
 
     @Override

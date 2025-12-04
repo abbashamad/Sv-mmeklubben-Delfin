@@ -6,7 +6,17 @@ public class Main {
 
         MemberList list = new MemberList();
 
+        createTestMembers(list);
 
+        //FileHandler.saveToCsvFile("MemberData.csv", list.getMemberList());
+
+        MenuSystem menu = new MenuSystem(list);
+
+        menu.showMainMenu();
+
+    }
+
+    public static void createTestMembers(MemberList list){
         list.addEliteToMemberList(LocalDate.of(2011, 11, 5), "KASPER@RR", "KASPER", Gender.MALE);
         EliteMember e0 = (EliteMember) list.findMemberViaID(1);
         e0.addCompSwimResultsToList(Discipline.CRAWL, new SwimTimer(1, 3, 82), LocalDate.of(2011, 9, 10), 1, "Horsens");
@@ -71,12 +81,6 @@ public class Main {
         list.addEliteToMemberList(LocalDate.of(1955, 8, 11), "ELLEN@RR", "Ellen", Gender.FEMALE);
         EliteMember e15 = (EliteMember) list.findMemberViaID(16);
         e15.addCompSwimResultsToList(Discipline.BREASTSTROKE, new SwimTimer(1, 17, 8), LocalDate.of(2001, 10, 30), 3, "Esbjerg");
-
-        //FileHandler.saveToCsvFile("MemberData.csv", list.getMemberList());
-
-        MenuSystem menu = new MenuSystem(list);
-
-        menu.showMainMenu();
 
     }
 }
