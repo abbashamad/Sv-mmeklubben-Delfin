@@ -9,13 +9,14 @@ public class Subscription {
     }
 
     public double payment(int age) {
-        if (isActive == false) {
+        if (!isActive) {
             return 500;
         }
         if (age < 18) {
             return 1000;
-        } else if (age > 60)
+        } else if (age > 60) {
             return 1600 * 0.75;
+        }
         return 1600;
     }
 
@@ -27,9 +28,9 @@ public class Subscription {
         return isActive;
     }
 
-    public String setActivity() {
+    public String changeSubscriptionType() {
         this.isActive = !isActive;
-        if (isActive == false) {
+        if (!isActive) {
             return "Is Inactive";
         }
         return "Is Active";
@@ -38,7 +39,6 @@ public class Subscription {
     public void setHasArrears(boolean hasArrears) {
         this.hasArrears = hasArrears;
     }
-
 
 
 }

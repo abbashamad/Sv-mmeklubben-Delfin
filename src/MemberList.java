@@ -4,32 +4,21 @@ import java.util.List;
 
 public class MemberList {
     private List<Member> memberList;
-    List<Serializable> serializables;
 
     public MemberList() {
         this.memberList = new ArrayList<>();
-        this.serializables = new ArrayList<>();
     }
 
-    public List<Member> getMembers(){
+    public List<Member> getMemberList(){
         return memberList;
     }
 
-    public String totalIncome() {
-        return "Forventet samlet indkomst er: " + Economy.totalIncome(memberList);
-    }
-
     public void addMemberToMemberList(LocalDate birthday, String email, String name, Gender gender) {
-        Member member = new Member(birthday, email, name, gender);
-        this.memberList.add(member);
-//        this.serializables.add(member);
+        this.memberList.add(new Member(birthday, email, name, gender));
     }
-
 
     public void addEliteToMemberList(LocalDate birthday, String email, String name, Gender gender) {
-        EliteMember member = new EliteMember(birthday, email, name, gender);
-        this.memberList.add(member);
-//        this.serializables.add(member);
+        this.memberList.add(new EliteMember(birthday, email, name, gender));
     }
 
     public Member findMemberViaID(int id) {
@@ -39,6 +28,14 @@ public class MemberList {
             }
         }
         return null;
+    }
+
+    public String totalIncome() {
+        return "Forventet samlet indkomst er: " + Economy.totalIncome(memberList);
+    }
+
+    public List<Member> getMembersInArrears(){
+        return Economy.membersInArrears(memberList);
     }
 
     private List<EliteMember> checkMemberCriteria(AgeGroup ageGroup, Gender gender, Discipline discipline) {
@@ -53,6 +50,7 @@ public class MemberList {
         return list;
     }
 
+    //kun vis top 5 mangler
     public List<SwimResult> top5ForDiscipline(AgeGroup ageGroup, Gender gender, Discipline discipline) {
         List<SwimResult> swimResults = new ArrayList<>();
         for (EliteMember eliteMember : checkMemberCriteria(ageGroup, gender, discipline)) {
