@@ -81,16 +81,14 @@ public class MenuSystem {
     public void ShowSwimtimeMenu() {
         System.out.println("\n Svømmeresultater");
         System.out.println("1. Opret ny svømmetid");
-        System.out.println("2. Se Statistik over top 5 Senior Svømmere");
-        System.out.println("3. Se Statistik over top 5 Junior Svømmere");
-        System.out.println("4. Tilbage til hovedmenu");
+        System.out.println("2. Se Statistik over top 5 Svømmere");
+        System.out.println("3. Tilbage til hovedmenu");
         System.out.print("Vælg: ");
 
         switch (sc.nextLine()) {
             case "1" -> CreateNewSwimResult();
-            case "2" -> SeeTopJuniorSwimmers();
-            case "3" -> SeeTopSeniorSwimmers();
-            case "4" -> showMainMenu();
+            case "2" -> SeeTopSwimmers();
+            case "3" -> showMainMenu();
             default -> System.out.println("Forkert valg kammerat");
         }
     }
@@ -156,62 +154,46 @@ public class MenuSystem {
             eliteMember.addCompSwimResultsToList(discipline, timer, date, placement, loacation);
         } else {
             System.out.println("Forkert valg kammerat");
-            return;
         }
     }
 
-    private void SeeTopSeniorSwimmers() {
+    private void SeeTopSwimmers() {
         System.out.println("\n Vælg Svømme-disciplin");
-        System.out.println("1.  Top 5 Crawl");
-        System.out.println("2.  Top 5 Brystsvømning");
-        System.out.println("3.  Top 5 Butterfly");
-        System.out.println("4.  Top 5 Backcrawl");
+        System.out.println("1.  Senior/Male -> Top 5 Crawl");
+        System.out.println("2.  Senior/Female -> Top 5 Brystsvømning");
+        System.out.println("3.  Junior/Male -> Top 5 Butterfly");
+        System.out.println("4.  Junior/Female -> Top 5 Backcrawl");
         System.out.print("Vælg Disciplin: ");
 
 
         switch (sc.nextLine()) {
-            case "1" -> TopFiveCrawl(AgeGroup.SENIOR);
-            case "2" -> TopFiveBreast(AgeGroup.SENIOR);
-            case "3" -> TopFiveButterfly(AgeGroup.SENIOR);
-            case "4" -> TopFiveBcrawl(AgeGroup.SENIOR);
+            case "1" -> TopFiveCrawl(AgeGroup.SENIOR, Gender.MALE);
+            case "2" -> TopFiveBreast(AgeGroup.SENIOR, Gender.FEMALE);
+            case "3" -> TopFiveButterfly(AgeGroup.JUNIOR, Gender.MALE);
+            case "4" -> TopFiveBcrawl(AgeGroup.SENIOR, Gender.FEMALE);
             default -> System.out.println("Forkert valg kammerat");
         }
     }
 
-    public void SeeTopJuniorSwimmers() {
-        System.out.println("\n Vælg Svømme-disciplin");
-        System.out.println("1.  Top 5 Crawl");
-        System.out.println("2.  Top 5 Brystsvømning");
-        System.out.println("3.  Top 5 Butterfly");
-        System.out.println("4.  Top 5 Backcrawl");
-        System.out.print("Vælg Disciplin: ");
 
-
-        switch (sc.nextLine()) {
-            case "1" -> TopFiveCrawl(AgeGroup.JUNIOR);
-            case "2" -> TopFiveBreast(AgeGroup.JUNIOR);
-            case "3" -> TopFiveButterfly(AgeGroup.JUNIOR);
-            case "4" -> TopFiveBcrawl(AgeGroup.JUNIOR);
-            default -> System.out.println("Forkert valg kammerat");
-        }
-    }
-
-    private void TopFiveButterfly(AgeGroup ageGroup) {
-        memberList.top5ForDiscipline(ageGroup, Gender.MALE, Discipline.BUTTERFLY);
-
+    private void swimmerDiscipline(){
 
     }
 
-    private void TopFiveBcrawl(AgeGroup ageGroup) {
-        memberList.top5ForDiscipline(ageGroup, Gender.MALE, Discipline.BACKCRAWL);
+    private void TopFiveButterfly(AgeGroup ageGroup, Gender gender) {
+        memberList.top5ForDiscipline(ageGroup, gender, Discipline.BUTTERFLY);
     }
 
-    private void TopFiveBreast(AgeGroup ageGroup) {
-        memberList.top5ForDiscipline(ageGroup, Gender.MALE, Discipline.BREASTSTROKE);
+    private void TopFiveBcrawl(AgeGroup ageGroup, Gender gender) {
+        memberList.top5ForDiscipline(ageGroup, gender, Discipline.BACKCRAWL);
     }
 
-    private void TopFiveCrawl(AgeGroup ageGroup) {
-        memberList.top5ForDiscipline(ageGroup, Gender.MALE, Discipline.CRAWL);
+    private void TopFiveBreast(AgeGroup ageGroup, Gender gender) {
+        memberList.top5ForDiscipline(ageGroup, gender, Discipline.BREASTSTROKE);
+    }
+
+    private void TopFiveCrawl(AgeGroup ageGroup, Gender gender) {
+        memberList.top5ForDiscipline(ageGroup, gender, Discipline.CRAWL);
     }
 
     public void ShowAccountingMenu() {

@@ -58,9 +58,12 @@ public class MemberList {
         }
         swimResults.sort(new TimeComparator());
 
-        int limit = Math.min(swimResults.size(), 5);
+        int limit = Math.min(swimResults.size(), 5);//returns whichever is the smallest to counter index issue
         swimResults = swimResults.subList(0, limit);
 
+        if (swimResults.isEmpty()){
+            s = "\nNo Record";
+        }
         for (SwimResult result : swimResults){
             s += result + "\n";
         }
