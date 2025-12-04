@@ -8,7 +8,7 @@ public class Main {
 
         createTestMembers(list);
 
-        //FileHandler.saveToCsvFile("MemberData.csv", list.getMemberList());
+        FileHandler.saveToCsvFile("MemberData.csv", list);
 
         MenuSystem menu = new MenuSystem(list);
 

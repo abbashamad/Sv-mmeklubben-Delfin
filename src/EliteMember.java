@@ -18,6 +18,10 @@ public class EliteMember extends Member {
         this.swimResults.add(new CompetitionResult(this, discipline, time, date, placement, location));
     }
 
+    public ArrayList<SwimResult> getSwimResults() {
+        return swimResults;
+    }
+
     public boolean isActiveInDiscipline(Discipline discipline) {
         for (SwimResult r : swimResults) {
             if (r.getDiscipline() == discipline) {
@@ -45,6 +49,11 @@ public class EliteMember extends Member {
 
     public SwimResult getBestTimeForDiscipline(Discipline discipline) {
         return sortListByTime(discipline).getFirst();
+    }
+
+    @Override
+    public String serialize() {
+        return String.format("elite,%s,%s,%s,%s,%s%n",birthday, email, name, gender, subscription.isActive());
     }
 
 }

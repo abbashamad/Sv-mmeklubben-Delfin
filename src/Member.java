@@ -2,13 +2,13 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public class Member implements Serializable, Decodable{
-    private final LocalDate birthday;
+    protected final LocalDate birthday;
     private static int nextId = 1;
-    private final int id;
-    private String email;
-    private String name;
-    private final Gender gender;
-    private final Subscription subscription;
+    protected final int id;
+    protected String email;
+    protected String name;
+    protected final Gender gender;
+    protected final Subscription subscription;
 
 
     public Member(LocalDate birthday, String email, String name, Gender gender) {
@@ -66,7 +66,7 @@ public class Member implements Serializable, Decodable{
 
     @Override
     public String serialize() {
-        return String.format("M,%s,%s,%s,%s,%s%n",birthday, email, name, gender, subscription.isActive());
+        return String.format("member,%s,%s,%s,%s,%s%n",birthday, email, name, gender, subscription.isActive());
 
     }
 

@@ -24,4 +24,9 @@ public class CompetitionResult extends SwimResult {
     public String toString() {
         return String.format("%-30s %-10d %s", super.toString(), placement, competitionName);
     }
+
+    @Override
+    public String serialize() {
+        return String.format("comp,%s,%s,%s,%s,%s%n",discipline, swimTime, swimDate,placement,competitionName);
+    }
 }

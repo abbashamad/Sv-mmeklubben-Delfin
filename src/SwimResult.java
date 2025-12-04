@@ -1,10 +1,10 @@
 import java.time.LocalDate;
 
 public class SwimResult implements Serializable, Decodable {
-    private final Member member;
-    private final Discipline discipline;
-    private final SwimTimer swimTime;
-    private final LocalDate swimDate;
+    protected final Member member;
+    protected final Discipline discipline;
+    protected final SwimTimer swimTime;
+    protected final LocalDate swimDate;
 
     public SwimResult(Member member, Discipline discipline, SwimTimer swimTime, LocalDate swimDate) {
         this.member = member;
@@ -38,10 +38,9 @@ public class SwimResult implements Serializable, Decodable {
 
     @Override
     public String serialize() {
-        return "";
+        return String.format("training,%s,%s,%s%n",discipline, swimTime, swimDate);
     }
 
-    //SwimResult/void
     public void decode(String record) {
         String[] fields = record.split(",");
         //new SwimResult(fields[0],fields);
