@@ -158,41 +158,63 @@ public class MenuSystem {
     }
 
     private void SeeTopSwimmers() {
-        System.out.println("\n Vælg Svømme-disciplin");
-        System.out.println("1.  Senior/Male -> Top 5 Crawl");
-        System.out.println("2.  Senior/Female -> Top 5 Brystsvømning");
-        System.out.println("3.  Junior/Male -> Top 5 Butterfly");
-        System.out.println("4.  Junior/Female -> Top 5 Backcrawl");
+        System.out.println("\n Vælg kategori: ");
+        System.out.println("1.  Senior/Male ");
+        System.out.println("2.  Senior/Female ");
+        System.out.println("3.  Junior/Male ");
+        System.out.println("4.  Junior/Female ");
         System.out.print("Vælg Disciplin: ");
 
 
         switch (sc.nextLine()) {
-            case "1" -> TopFiveCrawl(AgeGroup.SENIOR, Gender.MALE);
-            case "2" -> TopFiveBreast(AgeGroup.SENIOR, Gender.FEMALE);
-            case "3" -> TopFiveButterfly(AgeGroup.JUNIOR, Gender.MALE);
-            case "4" -> TopFiveBcrawl(AgeGroup.SENIOR, Gender.FEMALE);
+            case "1" -> swimmerDiscipline(AgeGroup.SENIOR, Gender.MALE);
+            case "2" -> swimmerDiscipline(AgeGroup.SENIOR, Gender.FEMALE);
+            case "3" -> swimmerDiscipline(AgeGroup.JUNIOR, Gender.MALE);
+            case "4" -> swimmerDiscipline(AgeGroup.JUNIOR, Gender.FEMALE);
             default -> System.out.println("Forkert valg kammerat");
         }
     }
 
 
-    private void swimmerDiscipline(){
+    private void swimmerDiscipline(AgeGroup ageGroup, Gender gender){
 
+        System.out.println("\n Vælg kategori: ");
+        System.out.println("1. Top 5 Crawl");
+        System.out.println("2. Top 5 Brystsvømning");
+        System.out.println("3. Top 5 Butterfly");
+        System.out.println("4. Top 5 Backcrawl");
+        System.out.print("Vælg Disciplin: ");
+
+        switch (sc.nextLine()) {
+            case "1" -> TopFiveCrawl(ageGroup, gender);
+            case "2" -> TopFiveBreast(ageGroup, gender);
+            case "3" -> TopFiveButterfly(ageGroup, gender);
+            case "4" -> TopFiveBcrawl(ageGroup, gender);
+            default -> System.out.println("Forkert valg kammerat");
+        }
     }
 
     private void TopFiveButterfly(AgeGroup ageGroup, Gender gender) {
+        System.out.println(ageGroup);
+        System.out.println(gender);
         memberList.top5ForDiscipline(ageGroup, gender, Discipline.BUTTERFLY);
     }
 
     private void TopFiveBcrawl(AgeGroup ageGroup, Gender gender) {
+        System.out.println(ageGroup);
+        System.out.println(gender);
         memberList.top5ForDiscipline(ageGroup, gender, Discipline.BACKCRAWL);
     }
 
     private void TopFiveBreast(AgeGroup ageGroup, Gender gender) {
+        System.out.println(ageGroup);
+        System.out.println(gender);
         memberList.top5ForDiscipline(ageGroup, gender, Discipline.BREASTSTROKE);
     }
 
     private void TopFiveCrawl(AgeGroup ageGroup, Gender gender) {
+        System.out.println(ageGroup);
+        System.out.println(gender);
         memberList.top5ForDiscipline(ageGroup, gender, Discipline.CRAWL);
     }
 

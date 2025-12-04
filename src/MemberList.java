@@ -62,7 +62,7 @@ public class MemberList {
         swimResults = swimResults.subList(0, limit);
 
         if (swimResults.isEmpty()){
-            s = "\nNo Record";
+            s = "\nNo Record Found";
         }
         for (SwimResult result : swimResults){
             s += result + "\n";

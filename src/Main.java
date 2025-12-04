@@ -9,7 +9,7 @@ public class Main {
         //createTestMembers(list);
 
         FileHandler.decodeFile("MemberData.csv", list);
-        System.out.println(list);
+        //System.out.println(list);
 
         MenuSystem menu = new MenuSystem(list);
 
