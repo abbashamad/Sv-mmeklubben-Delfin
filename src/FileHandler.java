@@ -3,8 +3,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class FileHandler {
@@ -19,10 +17,11 @@ public class FileHandler {
                 i++;
                 writer.write(member.serialize());
                 if (member instanceof EliteMember) {
-                    for (Serializable swimResult : ((EliteMember) member).getSwimResults()){
+                    for (Serializable swimResult : ((EliteMember) member).getSwimResults()) {
                         writer.write(swimResult.serialize());
                     }
                 }
+                writer.write("\n");
             }
             writer.close();
 
@@ -31,20 +30,37 @@ public class FileHandler {
         }
     }
 
-    public static void decodeFile(String filename,MemberList memberList) {
+    public static void decodeFile(String filename, MemberList memberList) {
         try {
             Scanner scanner = new Scanner(new File(filename));
+
+            String line;
+            String[] fields;
 
             int i = 0;
             while (scanner.hasNextLine()) {
                 i++;
 
-                String line = scanner.nextLine();
-                String[] fields = line.split(",");
+                line = scanner.nextLine();
+                fields = line.split(",");
 
-                if (fields[0].equals("member")){
+                if (fields[0].equals("member")) {
                     memberList.addMemberToMemberList(LocalDate.parse(fields[1]), fields[2], fields[3], Gender.valueOf(fields[4]));
-                }else {
+                    scanner.nextLine();
+                } else {
+                    memberList.addEliteToMemberList(LocalDate.parse(fields[1]), fields[2], fields[3], Gender.valueOf(fields[4]));
+                    while (!(line = scanner.nextLine()).isEmpty()) {
+                        fields = line.split(",");
+                        if (fields[0].equals("training")) {
+                            EliteMember eliteMember = (EliteMember) memberList.findMemberViaID(i);
+                            String[] swimTime = fields[2].split(":");
+                            eliteMember.addSwimResultsToList(Discipline.valueOf(fields[1]), new SwimTimer(Integer.parseInt(swimTime[0]), Integer.parseInt(swimTime[1]), Integer.parseInt(swimTime[2])), LocalDate.parse(fields[3]));
+                        } else {
+                            EliteMember eliteMember = (EliteMember) memberList.findMemberViaID(i);
+                            String[] swimTime = fields[2].split(":");
+                            eliteMember.addCompSwimResultsToList(Discipline.valueOf(fields[1]), new SwimTimer(Integer.parseInt(swimTime[0]), Integer.parseInt(swimTime[1]), Integer.parseInt(swimTime[2])), LocalDate.parse(fields[3]), Integer.parseInt(fields[4]), fields[5]);
+                        }
+                    }
 
                 }
 
