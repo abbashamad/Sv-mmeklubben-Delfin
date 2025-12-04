@@ -82,5 +82,7 @@ public class Main {
         EliteMember e15 = (EliteMember) list.findMemberViaID(16);
         e15.addCompSwimResultsToList(Discipline.BREASTSTROKE, new SwimTimer(1, 17, 8), LocalDate.of(2001, 10, 30), 3, "Esbjerg");
 
+        
+
     }
 }
