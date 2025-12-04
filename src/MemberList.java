@@ -50,25 +50,32 @@ public class MemberList {
         return list;
     }
 
-    public List<SwimResult> top5ForDiscipline(AgeGroup ageGroup, Gender gender, Discipline discipline) {
+    public void top5ForDiscipline(AgeGroup ageGroup, Gender gender, Discipline discipline) {
+        String s = "";
         List<SwimResult> swimResults = new ArrayList<>();
         for (EliteMember eliteMember : checkMemberCriteria(ageGroup, gender, discipline)) {
             swimResults.add(eliteMember.getBestTimeForDiscipline(discipline));
         }
         swimResults.sort(new TimeComparator());
 
-        swimResults = swimResults.subList(0, 5);
-        return swimResults;
-    }
+        int limit = Math.min(swimResults.size(), 5);
+        swimResults = swimResults.subList(0, limit);
 
-    public String top5ToString(AgeGroup ageGroup, Gender gender, Discipline discipline) {
-        String s = "";
-
-        for (SwimResult swimResult : top5ForDiscipline(ageGroup, gender, discipline)) {
-            s += swimResult + "\n";
+        for (SwimResult result : swimResults){
+            s += result + "\n";
         }
-        return s;
+
+        System.out.println(s);
     }
+
+//    public void top5ToString(AgeGroup ageGroup, Gender gender, Discipline discipline) {
+//        String s = "";
+//
+//        for (SwimResult swimResult : top5ForDiscipline(ageGroup, gender, discipline)) {
+//            s += swimResult + "\n";
+//        }
+//        System.out.println(s);
+//    } Removed because you can fit it in one method, To String unnecessary
 
     @Override
     public String toString() {
