@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-public class SwimResult implements Serializable, Decodable {
+public class SwimResult implements Serializable {
     protected final Member member;
     protected final Discipline discipline;
     protected final SwimTimer swimTime;
@@ -38,11 +38,6 @@ public class SwimResult implements Serializable, Decodable {
 
     @Override
     public String serialize() {
-        return String.format("training,%s,%s,%s%n",discipline, swimTime, swimDate);
-    }
-
-    public void decode(String record) {
-        String[] fields = record.split(",");
-        //new SwimResult(fields[0],fields);
+        return String.format("training,%s,%s,%s,%s%n",member.getId(),discipline, swimTime, swimDate);
     }
 }

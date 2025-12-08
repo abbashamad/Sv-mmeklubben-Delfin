@@ -11,9 +11,19 @@ public class Main {
         //createTestMembers(list);
 
         FileHandler.decodeFile("MemberData.csv", list);
+        FileHandler.decodeFile("SwimResultData.csv", list);
 
-        List<Serializable> serializables = new ArrayList<>(list.getMemberList());
-        FileHandler.saveToCsvFile("MemberData.csv", serializables);
+        List<Serializable> memberSerializables = new ArrayList<>(list.getMemberList());
+        FileHandler.saveToCsvFile("MemberData.csv", memberSerializables);
+
+        List<Serializable> resultSerializables = new ArrayList<>();
+        for (Member member: list.getMemberList()){
+            if (member instanceof EliteMember){
+                resultSerializables.addAll(((EliteMember) member).getSwimResults());
+            }
+        }
+
+        FileHandler.saveToCsvFile("SwimResultData.csv", resultSerializables);
 
         //System.out.println(list);
 

@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.time.Period;
 
-public class Member implements Serializable, Decodable {
+public class Member implements Serializable {
     protected final LocalDate birthday;
     private static int nextId = 1;
     protected final int id;
@@ -67,11 +67,6 @@ public class Member implements Serializable, Decodable {
     @Override
     public String serialize() {
         return String.format("member,%s,%s,%s,%s,%s,%s%n", birthday, email, name, gender, subscription.isActive(), subscription.isHasArrears());
-
-    }
-
-    @Override
-    public void decode(String record) {
 
     }
 }

@@ -11,17 +11,8 @@ public class FileHandler {
         try {
             PrintWriter writer = new PrintWriter(filename);
 
-            int i = 0;
-
             for (Serializable serializable : serializables) {
-                i++;
                 writer.write(serializable.serialize());
-                if (serializable instanceof EliteMember) {
-                    for (Serializable swimResult : ((EliteMember) serializable).getSwimResults()) {
-                        writer.write(swimResult.serialize());
-                    }
-                }
-                writer.write("\n");
             }
             writer.close();
 
@@ -46,21 +37,13 @@ public class FileHandler {
 
                 if (fields[0].equals("member")) {
                     decodeMember(memberList, i, fields);
-                    scanner.nextLine();
-                } else {
+                } else if (fields[0].equals("elite")) {
                     decodeEliteMember(memberList, i, fields);
-
-                    while (!(line = scanner.nextLine()).isEmpty()) {
-                        fields = line.split(",");
-                        if (fields[0].equals("training")) {
-                            decodeSwimResult(memberList, i, fields);
-                        } else {
-                            decodeCompetitionResult(memberList, i, fields);
-                        }
-                    }
-
+                } else if (fields[0].equals("training")) {
+                    decodeSwimResult(memberList, fields);
+                } else if (fields[0].equals("comp")) {
+                    decodeCompetitionResult(memberList,fields);
                 }
-
             }
         } catch (FileNotFoundException e) {
             System.out.println("Fejl: " + e.getMessage());
@@ -81,14 +64,14 @@ public class FileHandler {
         memberList.findMemberViaID(i).getSubscription().setHasArrears(Boolean.parseBoolean(fields[6]));
     }
 
-    private static void decodeSwimResult(MemberList memberList, int i, String[] fields) {
-        EliteMember eliteMember = (EliteMember) memberList.findMemberViaID(i);
-        eliteMember.addSwimResultsToList(Discipline.valueOf(fields[1]), SwimTimer.parse(fields[2]), LocalDate.parse(fields[3]));
+    private static void decodeSwimResult(MemberList memberList, String[] fields) {
+        EliteMember eliteMember = (EliteMember) memberList.findMemberViaID(Integer.parseInt(fields[1]));
+        eliteMember.addSwimResultsToList(Discipline.valueOf(fields[2]), SwimTimer.parse(fields[3]), LocalDate.parse(fields[4]));
     }
 
-    private static void decodeCompetitionResult(MemberList memberList, int i, String[] fields) {
-        EliteMember eliteMember = (EliteMember) memberList.findMemberViaID(i);
-        eliteMember.addCompSwimResultsToList(Discipline.valueOf(fields[1]), SwimTimer.parse(fields[2]), LocalDate.parse(fields[3]), Integer.parseInt(fields[4]), fields[5]);
+    private static void decodeCompetitionResult(MemberList memberList, String[] fields) {
+        EliteMember eliteMember = (EliteMember) memberList.findMemberViaID(Integer.parseInt(fields[1]));
+        eliteMember.addCompSwimResultsToList(Discipline.valueOf(fields[2]), SwimTimer.parse(fields[3]), LocalDate.parse(fields[4]), Integer.parseInt(fields[5]), fields[6]);
     }
 
 }
