@@ -83,7 +83,7 @@ public class Main {
         list.addEliteToMemberList(LocalDate.of(2023, 1, 9), "VICTOR@RR", "Victor", Gender.MALE);
         EliteMember e14 = (EliteMember) list.findMemberViaID(15);
         e14.addCompSwimResultsToList(Discipline.BUTTERFLY, new SwimTimer(1, 2, 90), LocalDate.of(2018, 5, 15), 1, "Randers");
-        e14.getSubscription().changeSubscriptionType(false);
+        e14.getSubscription().setIsActive(false);
 
         list.addEliteToMemberList(LocalDate.of(1955, 8, 11), "ELLEN@RR", "Ellen", Gender.FEMALE);
         EliteMember e15 = (EliteMember) list.findMemberViaID(16);

@@ -5,7 +5,7 @@ public class Subscription {
 
     public Subscription() {
         this.isActive = true;
-        this.hasArrears = true;
+        this.hasArrears = false;
     }
 
     public double payment(int age) {
@@ -28,12 +28,8 @@ public class Subscription {
         return isActive;
     }
 
-    public String changeSubscriptionType(boolean isActive) {
+    public void setIsActive(boolean isActive) {
         this.isActive = isActive;
-        if (!this.isActive) {
-            return "Is Inactive";
-        }
-        return "Is Active";
     }
 
     public void setHasArrears(boolean hasArrears) {

@@ -70,14 +70,14 @@ public class FileHandler {
     private static void decodeMember(MemberList memberList, int i, String[] fields) {
         memberList.addMemberToMemberList(LocalDate.parse(fields[1]), fields[2], fields[3], Gender.valueOf(fields[4]));
 
-        memberList.findMemberViaID(i).getSubscription().changeSubscriptionType(Boolean.parseBoolean(fields[5]));
+        memberList.findMemberViaID(i).getSubscription().setIsActive(Boolean.parseBoolean(fields[5]));
         memberList.findMemberViaID(i).getSubscription().setHasArrears(Boolean.parseBoolean(fields[6]));
     }
 
     private static void decodeEliteMember(MemberList memberList, int i, String[] fields) {
         memberList.addEliteToMemberList(LocalDate.parse(fields[1]), fields[2], fields[3], Gender.valueOf(fields[4]));
 
-        memberList.findMemberViaID(i).getSubscription().changeSubscriptionType(Boolean.parseBoolean(fields[5]));
+        memberList.findMemberViaID(i).getSubscription().setIsActive(Boolean.parseBoolean(fields[5]));
         memberList.findMemberViaID(i).getSubscription().setHasArrears(Boolean.parseBoolean(fields[6]));
     }
 
