@@ -72,7 +72,7 @@ public class Member implements Serializable, Decodable {
 
     @Override
     public void decode(String record) {
-        
+
     }
 }
 
