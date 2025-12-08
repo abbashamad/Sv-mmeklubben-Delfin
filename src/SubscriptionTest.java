@@ -1,3 +1,5 @@
+import org.junit.jupiter.api.Test;
+
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,7 +24,7 @@ class SubscriptionTest {
         assertEquals(1000, member.getPayment());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void paymentPassive() {
         Member member = new Member(LocalDate.of(2010, 10, 10), "@@", "name", Gender.MALE);
         member.getSubscription().setIsActive(false);
@@ -39,6 +41,7 @@ class SubscriptionTest {
     @org.junit.jupiter.api.Test
     void setActive() {
         Member member = new Member(LocalDate.of(1940, 10, 10), "@@", "name", Gender.FEMALE);
+        member.getSubscription().setIsActive(false);
         member.getSubscription().setIsActive(true);
         assertTrue(member.getSubscription().isActive());
     }

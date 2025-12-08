@@ -199,25 +199,25 @@ public class MenuSystem {
     private void TopFiveButterfly(AgeGroup ageGroup, Gender gender) {
         System.out.println("\nDu har valgte: " + ageGroup + "/" + gender );
         System.out.println(Discipline.BUTTERFLY);
-        memberList.top5ForDiscipline(ageGroup, gender, Discipline.BUTTERFLY);
+        memberList.top5ToString(ageGroup, gender, Discipline.BUTTERFLY);
     }
 
     private void TopFiveBcrawl(AgeGroup ageGroup, Gender gender) {
         System.out.println("\nDu har valgte: " + ageGroup + "/" + gender );
         System.out.println(Discipline.BACKCRAWL);
-        memberList.top5ForDiscipline(ageGroup, gender, Discipline.BACKCRAWL);
+        memberList.top5ToString(ageGroup, gender, Discipline.BACKCRAWL);
     }
 
     private void TopFiveBreast(AgeGroup ageGroup, Gender gender) {
         System.out.println("\nDu har valgte: " + ageGroup + "/" + gender );
         System.out.println(Discipline.BREASTSTROKE);
-        memberList.top5ForDiscipline(ageGroup, gender, Discipline.BREASTSTROKE);
+        memberList.top5ToString(ageGroup, gender, Discipline.BREASTSTROKE);
     }
 
     private void TopFiveCrawl(AgeGroup ageGroup, Gender gender) {
         System.out.println("\nDu har valgte: " + ageGroup + "/" + gender );
         System.out.println(Discipline.CRAWL);
-        memberList.top5ForDiscipline(ageGroup, gender, Discipline.CRAWL);
+        memberList.top5ToString(ageGroup, gender, Discipline.CRAWL);
     }
 
     public void ShowAccountingMenu() {

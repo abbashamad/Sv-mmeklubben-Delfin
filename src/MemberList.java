@@ -64,6 +64,10 @@ public class MemberList {
     public void top5ToString(AgeGroup ageGroup, Gender gender, Discipline discipline) {
         String s = "";
 
+        if (top5ForDiscipline(ageGroup, gender, discipline).isEmpty()){
+            System.out.println("No Record");
+        }
+
         for (SwimResult swimResult : top5ForDiscipline(ageGroup, gender, discipline)) {
             s += swimResult + "\n";
         }
