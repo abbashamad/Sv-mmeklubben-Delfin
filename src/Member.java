@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.time.Period;
 
-public class Member implements Serializable, Decodable{
+public class Member implements Serializable, Decodable {
     protected final LocalDate birthday;
     private static int nextId = 1;
     protected final int id;
@@ -66,19 +66,13 @@ public class Member implements Serializable, Decodable{
 
     @Override
     public String serialize() {
-        return String.format("member,%s,%s,%s,%s,%s%n",birthday, email, name, gender, subscription.isActive());
+        return String.format("member,%s,%s,%s,%s,%s,%s%n", birthday, email, name, gender, subscription.isActive(), subscription.isHasArrears());
 
     }
 
     @Override
     public void decode(String record) {
-        String[] fields = record.split(",");
-        Member member = new Member(LocalDate.parse(fields[1]),fields[2],fields[3],Gender.valueOf(fields[4]));
-
-        if (!Boolean.parseBoolean(fields[5])){
-            member.getSubscription().changeSubscriptionType();
-        }
-
+        
     }
 }
 

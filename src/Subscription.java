@@ -28,9 +28,9 @@ public class Subscription {
         return isActive;
     }
 
-    public String changeSubscriptionType() {
-        this.isActive = !isActive;
-        if (!isActive) {
+    public String changeSubscriptionType(boolean isActive) {
+        this.isActive = isActive;
+        if (!this.isActive) {
             return "Is Inactive";
         }
         return "Is Active";

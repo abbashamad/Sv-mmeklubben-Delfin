@@ -53,7 +53,7 @@ public class EliteMember extends Member {
 
     @Override
     public String serialize() {
-        return String.format("elite,%s,%s,%s,%s,%s%n",birthday, email, name, gender, subscription.isActive());
+        return String.format("elite,%s,%s,%s,%s,%s,%s%n",birthday, email, name, gender, subscription.isActive(),subscription.isHasArrears());
     }
 
 }

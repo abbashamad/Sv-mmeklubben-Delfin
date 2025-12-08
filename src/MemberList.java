@@ -50,8 +50,7 @@ public class MemberList {
         return list;
     }
 
-    public void top5ForDiscipline(AgeGroup ageGroup, Gender gender, Discipline discipline) {
-        String s = "";
+    public List<SwimResult> top5ForDiscipline(AgeGroup ageGroup, Gender gender, Discipline discipline) {
         List<SwimResult> swimResults = new ArrayList<>();
         for (EliteMember eliteMember : checkMemberCriteria(ageGroup, gender, discipline)) {
             swimResults.add(eliteMember.getBestTimeForDiscipline(discipline));
@@ -59,26 +58,17 @@ public class MemberList {
         swimResults.sort(new TimeComparator());
 
         int limit = Math.min(swimResults.size(), 5);//returns whichever is the smallest to counter index issue
-        swimResults = swimResults.subList(0, limit);
-
-        if (swimResults.isEmpty()){
-            s = "\nNo Record";
-        }
-        for (SwimResult result : swimResults){
-            s += result + "\n";
-        }
-
-        System.out.println(s);
+        return swimResults.subList(0, limit);
     }
 
-//    public void top5ToString(AgeGroup ageGroup, Gender gender, Discipline discipline) {
-//        String s = "";
-//
-//        for (SwimResult swimResult : top5ForDiscipline(ageGroup, gender, discipline)) {
-//            s += swimResult + "\n";
-//        }
-//        System.out.println(s);
-//    } Removed because you can fit it in one method, To String unnecessary
+    public void top5ToString(AgeGroup ageGroup, Gender gender, Discipline discipline) {
+        String s = "";
+
+        for (SwimResult swimResult : top5ForDiscipline(ageGroup, gender, discipline)) {
+            s += swimResult + "\n";
+        }
+        System.out.println(s);
+    }
 
     @Override
     public String toString() {
