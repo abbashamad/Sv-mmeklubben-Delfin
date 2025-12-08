@@ -20,6 +20,7 @@ public class MenuSystem {
             System.out.println("2. Svømmeresultater");
             System.out.println("3. Kontingent og Økonomi");
             System.out.println("4. Luk programmet");
+        //    System.out.println("5. Gem medlemsinformation");
             System.out.print("Vælg: ");
 
             switch (sc.nextLine()) {
@@ -27,6 +28,7 @@ public class MenuSystem {
                 case "2" -> ShowSwimtimeMenu();
                 case "3" -> ShowAccountingMenu();
                 case "4" -> running = false;
+            //    case "5" -> FileHandler.saveToCsvFile(String filename, MemberList serializables);
                 default -> System.out.println("Invalid choice.");
             }
         }
@@ -163,7 +165,7 @@ public class MenuSystem {
         System.out.println("2.  Senior/Female ");
         System.out.println("3.  Junior/Male ");
         System.out.println("4.  Junior/Female ");
-        System.out.print("Vælg Disciplin: ");
+        System.out.print("Vælg Division: ");
 
 
         switch (sc.nextLine()) {
