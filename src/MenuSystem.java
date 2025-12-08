@@ -150,7 +150,7 @@ public class MenuSystem {
             System.out.print("Indtast antal placering");
             int placement = sc.nextInt();
             sc.nextLine();
-            System.out.print("Indtast antal stævnets navn");
+            System.out.print("Indtast stævnets navn");
             String loacation = sc.nextLine();
 
             eliteMember.addCompSwimResultsToList(discipline, timer, date, placement, loacation);
