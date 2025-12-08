@@ -1,4 +1,6 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -9,6 +11,10 @@ public class Main {
         //createTestMembers(list);
 
         FileHandler.decodeFile("MemberData.csv", list);
+
+        List<Serializable> serializables = new ArrayList<>(list.getMemberList());
+        FileHandler.saveToCsvFile("MemberData.csv", serializables);
+
         //System.out.println(list);
 
         MenuSystem menu = new MenuSystem(list);
@@ -77,7 +83,7 @@ public class Main {
         list.addEliteToMemberList(LocalDate.of(2023, 1, 9), "VICTOR@RR", "Victor", Gender.MALE);
         EliteMember e14 = (EliteMember) list.findMemberViaID(15);
         e14.addCompSwimResultsToList(Discipline.BUTTERFLY, new SwimTimer(1, 2, 90), LocalDate.of(2018, 5, 15), 1, "Randers");
-        e14.getSubscription().changeSubscriptionType();
+        e14.getSubscription().changeSubscriptionType(false);
 
         list.addEliteToMemberList(LocalDate.of(1955, 8, 11), "ELLEN@RR", "Ellen", Gender.FEMALE);
         EliteMember e15 = (EliteMember) list.findMemberViaID(16);
