@@ -3,7 +3,15 @@ public class SwimTimer implements Comparable<SwimTimer> {
     private final int sec;
     private final int milSec;
 
-    public SwimTimer(int min, int sec, int milSec) {
+    public SwimTimer(int min, int sec, int milSec){
+        if (min < 0){
+            throw new  SwimTimeException("Invalid value for minute of SwimTime (valid values > -1):" + min);
+        }if (sec < 0 || sec > 59){
+            throw new  SwimTimeException("Invalid value for minute of SwimTime (valid values  0 - 59):" + sec);
+        }if (milSec < 0 || milSec > 999){
+            throw new  SwimTimeException("Invalid value for millisecond of SwimTime (valid values  0 - 999):" + milSec);
+        }
+
         this.min = min;
         this.sec = sec;
         this.milSec = milSec;
@@ -19,6 +27,11 @@ public class SwimTimer implements Comparable<SwimTimer> {
 
     public int getMilSec() {
         return milSec;
+    }
+
+    public static SwimTimer parse(String swimTimme){
+        String[] fields = swimTimme.split(":");
+        return new SwimTimer(Integer.parseInt(fields[0]),Integer.parseInt(fields[1]),Integer.parseInt(fields[2]));
     }
 
     @Override

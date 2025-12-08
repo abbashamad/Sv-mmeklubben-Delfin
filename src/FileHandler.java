@@ -3,20 +3,21 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class FileHandler {
-    public static void saveToCsvFile(String filename, MemberList serializables) {
+    public static void saveToCsvFile(String filename, List<Serializable> serializables) {
         try {
             PrintWriter writer = new PrintWriter(filename);
 
             int i = 0;
 
-            for (Serializable member : serializables.getMemberList()) {
+            for (Serializable serializable : serializables) {
                 i++;
-                writer.write(member.serialize());
-                if (member instanceof EliteMember) {
-                    for (Serializable swimResult : ((EliteMember) member).getSwimResults()) {
+                writer.write(serializable.serialize());
+                if (serializable instanceof EliteMember) {
+                    for (Serializable swimResult : ((EliteMember) serializable).getSwimResults()) {
                         writer.write(swimResult.serialize());
                     }
                 }
