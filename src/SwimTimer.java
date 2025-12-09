@@ -29,8 +29,8 @@ public class SwimTimer implements Comparable<SwimTimer> {
         return milSec;
     }
 
-    public static SwimTimer parse(String swimTimme){
-        String[] fields = swimTimme.split(":");
+    public static SwimTimer parse(String swimTime){
+        String[] fields = swimTime.split(":");
         return new SwimTimer(Integer.parseInt(fields[0]),Integer.parseInt(fields[1]),Integer.parseInt(fields[2]));
     }
 
