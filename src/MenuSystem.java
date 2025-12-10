@@ -11,6 +11,10 @@ public class MenuSystem {
         sc = new Scanner(System.in);
     }
 
+
+    /***
+     * Displays main menu and handles all navigation until program ends by user input
+     */
     public void showMainMenu() {
         boolean running = true;
 
@@ -35,6 +39,9 @@ public class MenuSystem {
     }
 
 
+    /**
+     * Displays menu for member creation, viewing existing members and editing member info
+     */
     public void ShowMemberMenu() {
         System.out.println("\n Medlemsorganisering");
         System.out.println("1. Opret nyt medlem");
@@ -53,33 +60,47 @@ public class MenuSystem {
         }
     }
 
+    /**Create New Member method
+     * Takes name, email, birthday, gender and auto-sorts the created member into an elite or regular member
+     */
     public void CreateNewMember() {
         System.out.print("Enter Name: ");
         String name = sc.nextLine();
+
         System.out.print("Enter Email: ");
-        String email = sc.nextLine();
+        String email = sc.nextLine().toUpperCase();
+
         System.out.print("Enter Birthday (YYYY-MM-DD): ");
         LocalDate birthday = LocalDate.parse(sc.nextLine());
-        System.out.print("Enter gender (MALE/FEMALE): ");
+
+        System.out.print("Enter Gender (MALE/FEMALE): ");
         Gender gender = Gender.valueOf(sc.nextLine().toUpperCase());
 
-        System.out.print("Elite swimmer? (Y/N): ");
+        System.out.print("Are You An Elite Swimmer? (Y/N): ");
         String answer = sc.next();
+
+        //Decides member type
         if (answer.equalsIgnoreCase("Y")) {
             memberList.addEliteToMemberList(birthday, email, name, gender);
-            sc.nextLine();
+            System.out.println("\nElite Member Tilføjet!");
         } else if (answer.equalsIgnoreCase("N")) {
             memberList.addMemberToMemberList(birthday, email, name, gender);
-            sc.nextLine();
+            System.out.println("\nMember Tilføjet!");
         } else {
             System.out.println("Fejl");
         }
+
+        sc.nextLine();
     }
 
     public void EditMemberInfo() {
-
+        //TODO:Method for editing member info
     }
 
+
+    /**
+     *Displays Swim Results, option to creates new results, shows top 5 swimmers
+     */
     public void ShowSwimtimeMenu() {
         System.out.println("\n Svømmeresultater");
         System.out.println("1. Opret ny svømmetid");
@@ -95,29 +116,38 @@ public class MenuSystem {
         }
     }
 
+    /**
+     *
+     * Creates New Swim Results for members that are Elite Swimmers
+     */
     public void CreateNewSwimResult() {
+
         System.out.print("Indtast Medlemsnummer/ID/Navn Eller whatevs ");
         int memberId = sc.nextInt();
         sc.nextLine();
-        Member member = memberList.findMemberViaID(memberId);
+
+        Member member = memberList.findMemberViaID(memberId);//Searches for member that matches the ID inputted
+
         if (member == null) {
             System.out.println("Medlem ikke fundet!");
-            return;
+            return;//Error if member does not exist
         } else if (!(member instanceof EliteMember)) {
             System.out.println("Medlem er ikke konkurrence svømmer");
-            return;
+            return;//Error if the member is a regular
         }
         EliteMember eliteMember = (EliteMember) member;
 
-        System.out.println("Tast 1 for træning og 2 for stævne");
+        System.out.println("Tast 1 for træning og 2 for stævne");//Checks if result is of training or competition
         int resultType = sc.nextInt();
         sc.nextLine();
 
+        //Discipline Selection
         System.out.println("\n Vælg  Svømme-disciplin");
         System.out.println("1. CRAWL");
         System.out.println("2. BREASTSTROKE");
         System.out.println("3. BUTTERFLY");
         System.out.println("4. BACKCRAWL");
+
         String disciplineChoice = sc.nextLine();
         Discipline discipline;
 
@@ -131,6 +161,8 @@ public class MenuSystem {
                 return;
             }
         }
+
+        //Swim Time input
         System.out.print("Indtast først antal minutter brugt ");
         int min = sc.nextInt();
         System.out.print("Indtast antal sekunder");
@@ -159,6 +191,11 @@ public class MenuSystem {
         }
     }
 
+    /**
+     * Displays top 5 swim times based on their age group, gender and discipline
+     */
+
+    //Age group and gender
     private void SeeTopSwimmers() {
         System.out.println("\n Vælg kategori: ");
         System.out.println("1.  Senior/Male ");
@@ -177,7 +214,7 @@ public class MenuSystem {
         }
     }
 
-
+    //Swim Discipline
     private void swimmerDiscipline(AgeGroup ageGroup, Gender gender){
 
         System.out.println("\n Vælg kategori: ");
@@ -196,6 +233,18 @@ public class MenuSystem {
         }
     }
 
+    private void TopFiveCrawl(AgeGroup ageGroup, Gender gender) {
+        System.out.println("\nDu har valgte: " + ageGroup + "/" + gender );
+        System.out.println(Discipline.CRAWL);
+        memberList.top5ToString(ageGroup, gender, Discipline.CRAWL);
+    }
+
+    private void TopFiveBreast(AgeGroup ageGroup, Gender gender) {
+        System.out.println("\nDu har valgte: " + ageGroup + "/" + gender );
+        System.out.println(Discipline.BREASTSTROKE);
+        memberList.top5ToString(ageGroup, gender, Discipline.BREASTSTROKE);
+    }
+
     private void TopFiveButterfly(AgeGroup ageGroup, Gender gender) {
         System.out.println("\nDu har valgte: " + ageGroup + "/" + gender );
         System.out.println(Discipline.BUTTERFLY);
@@ -208,21 +257,15 @@ public class MenuSystem {
         memberList.top5ToString(ageGroup, gender, Discipline.BACKCRAWL);
     }
 
-    private void TopFiveBreast(AgeGroup ageGroup, Gender gender) {
-        System.out.println("\nDu har valgte: " + ageGroup + "/" + gender );
-        System.out.println(Discipline.BREASTSTROKE);
-        memberList.top5ToString(ageGroup, gender, Discipline.BREASTSTROKE);
-    }
-
-    private void TopFiveCrawl(AgeGroup ageGroup, Gender gender) {
-        System.out.println("\nDu har valgte: " + ageGroup + "/" + gender );
-        System.out.println(Discipline.CRAWL);
-        memberList.top5ToString(ageGroup, gender, Discipline.CRAWL);
-    }
+    /**
+     *
+     * Displays accounting and handles subscriptions
+     */
 
     public void ShowAccountingMenu() {
         boolean running = true;
 
+        //Accounting Menu
         while (running){
             System.out.println("=== Økonomimenu ===");
             System.out.println("1. Vis Samlet kontingentindkomst");
@@ -255,13 +298,14 @@ public class MenuSystem {
                         break;
 
                 case 3:
-            System.out.println(" Indtast MedlemsID for at sætte kontingent som betalt");
-          int memberId = sc.nextInt();
-               sc.nextLine(); //Clearer mellemrum
+                    System.out.println(" Indtast MedlemsID for at sætte kontingent som betalt");
+                    int memberId = sc.nextInt();
+                    sc.nextLine(); //Clearer mellemrum
+
                     Member member = memberList.findMemberViaID(memberId);
                     member.getSubscription().setHasArrears(false);
-                    System.out.println(" Medlemmet er nu sat som at have betalt" );
-break;
+                    System.out.println(" Medlemmet er nu sat som at have betalt");
+                    break;
                 case 4:
                     running = false; //Tilbage til hovedmenu
                     break;
@@ -269,11 +313,8 @@ break;
                 default:
                     System.out.println("Ugyldigt valg, prøv igen.");
 
-
             }
         }
 
     }
-
-
 }
