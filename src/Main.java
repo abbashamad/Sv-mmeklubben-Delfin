@@ -1,5 +1,3 @@
-package delfin;
-
 import delfin.enums.Discipline;
 import delfin.files.FileHandler;
 import delfin.interfaces.Serializable;

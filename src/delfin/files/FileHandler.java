@@ -27,7 +27,7 @@ public class FileHandler {
      */
     public static void saveToCsvFile(String filename, List<Serializable> serializables) {
         try {
- //           PrintWriter writer = new PrintWriter("src/delfin/files/"+filename);
+            PrintWriter writer = new PrintWriter("src/delfin/files/"+filename);
 
             for (Serializable serializable : serializables) {
                 writer.write(serializable.serialize());
@@ -46,7 +46,7 @@ public class FileHandler {
      */
     public static void decodeFile(String filename, MemberList memberList) {
         try {
- //           Scanner scanner = new Scanner(new File("src/delfin/files/"+filename));
+            Scanner scanner = new Scanner(new File("src/delfin/files/"+filename));
 
             String line;
             String[] fields;
