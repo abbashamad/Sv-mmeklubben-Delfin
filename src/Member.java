@@ -21,6 +21,29 @@ public class Member implements Serializable {
 
     }
 
+    /**
+     *Updating member info for existing members
+     * @param newName : Name to change to
+     * @param newEmail : New Email to change to
+     */
+
+    public void updateMember(String newName, String newEmail){
+        if (newName != null && !newName.isEmpty()){//updates name if not null
+            String oldName = getName();
+            this.name = newName;
+            System.out.printf("%s has been updated to %s%n",oldName , getName());
+        } else {
+            System.out.println("Error: Name can not be empty");
+        }
+        if(newEmail != null && !newEmail.isEmpty()){//updates email if not null
+            String oldEmail = getEmail();
+            this.email = newEmail;
+            System.out.printf("%s has been updated to %s%n",oldEmail , getEmail());
+        }else {
+            System.out.println("Error: Email can not be empty");
+        }
+    }
+
     public int getAge() {
         return Period.between(getBirthday(), LocalDate.now()).getYears();
     }

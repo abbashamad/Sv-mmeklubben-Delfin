@@ -3,6 +3,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MenuSystem {
+    /**
+     *
+     *
+     */
     private MemberList memberList;
     public Scanner sc;
 
@@ -24,7 +28,7 @@ public class MenuSystem {
             System.out.println("2. Svømmeresultater");
             System.out.println("3. Kontingent og Økonomi");
             System.out.println("4. Luk programmet");
-        //    System.out.println("5. Gem medlemsinformation");
+            //    System.out.println("5. Gem medlemsinformation");
             System.out.print("Vælg: ");
 
             switch (sc.nextLine()) {
@@ -32,7 +36,7 @@ public class MenuSystem {
                 case "2" -> ShowSwimtimeMenu();
                 case "3" -> ShowAccountingMenu();
                 case "4" -> running = false;
-            //    case "5" -> FileHandler.saveToCsvFile(String filename, MemberList serializables);
+                //    case "5" -> FileHandler.saveToCsvFile(String filename, MemberList serializables);
                 default -> System.out.println("Invalid choice.");
             }
         }
@@ -43,7 +47,7 @@ public class MenuSystem {
      * Displays menu for member creation, viewing existing members and editing member info
      */
     public void ShowMemberMenu() {
-        System.out.println("\n Medlemsorganisering");
+        System.out.println("\n ===Member Menu===");
         System.out.println("1. Opret nyt medlem");
         System.out.println("2. Vis eksisterende medlemmer");
         System.out.println("3. Ret i eksisterende medlemsinfo"); // HVAD SKAL VI RETTE? KUN AKTIV / PASSIV?
@@ -60,7 +64,8 @@ public class MenuSystem {
         }
     }
 
-    /**Create New Member method
+    /**
+     * Create New Member method
      * Takes name, email, birthday, gender and auto-sorts the created member into an elite or regular member
      */
     public void CreateNewMember() {
@@ -93,13 +98,41 @@ public class MenuSystem {
         sc.nextLine();
     }
 
+    /**
+     * Updating existing member information via Member Menu
+     */
     public void EditMemberInfo() {
         //TODO:Method for editing member info
+        System.out.println("==Member Update==");
+        System.out.println("* You can only change your name and email *");
+
+        System.out.print("\nEnter Member ID: ");
+        int id = sc.nextInt();
+        Member member = memberList.findMemberViaID(id);
+        if (member == null){
+            System.out.println("Error: Member does not exist");
+            sc.nextLine();//Clear buffer
+            showMainMenu();
+        }
+
+        assert member != null;
+        System.out.printf("You have selected: %s, ID:%04d", member.getName(), member.getId());
+        sc.nextLine();//Clear buffer
+
+        System.out.print("\nEnter New Name: ");
+        String newName = sc.nextLine();
+        System.out.print("Enter New Email: ");
+        String newEmail = sc.nextLine().toUpperCase();
+
+        //Updates and displays change
+        System.out.println("Update Successful");
+        member.updateMember(newName, newEmail);
+
     }
 
 
     /**
-     *Displays Swim Results, option to creates new results, shows top 5 swimmers
+     * Displays Swim Results, option to creates new results, shows top 5 swimmers
      */
     public void ShowSwimtimeMenu() {
         System.out.println("\n Svømmeresultater");
@@ -163,36 +196,36 @@ public class MenuSystem {
         }
 
         //Swim Time input
-        System.out.print("Indtast først antal minutter brugt ");
+        System.out.print("Indtast først antal minutter brugt: ");
         int min = sc.nextInt();
-        System.out.print("Indtast antal sekunder");
+        System.out.print("Indtast antal sekunder: ");
         int sec = sc.nextInt();
-        System.out.print("Indtast antal millisekunder");
+        System.out.print("Indtast antal millisekunder: ");
         int milSec = sc.nextInt();
         sc.nextLine();
         SwimTimer timer = new SwimTimer(min, sec, milSec);
 
-        System.out.println("Indtast dato (YYYY-MM-DD):");
+        System.out.println("Indtast dato (YYYY-MM-DD): ");
         LocalDate date = LocalDate.parse(sc.nextLine());
 
-
+        //Determines Result Type (1 for Training, 2 for competition's placement and event location)
         if (resultType == 1) {
             eliteMember.addSwimResultsToList(discipline, timer, date);
         } else if (resultType == 2) {
-            System.out.print("Indtast antal placering");
+            System.out.print("Indtast antal placering: ");
             int placement = sc.nextInt();
             sc.nextLine();
-            System.out.print("Indtast stævnets navn");
-            String loacation = sc.nextLine();
+            System.out.print("Indtast stævnets navn: ");
+            String location = sc.nextLine();
 
-            eliteMember.addCompSwimResultsToList(discipline, timer, date, placement, loacation);
+            eliteMember.addCompSwimResultsToList(discipline, timer, date, placement, location);
         } else {
             System.out.println("Forkert valg kammerat");
         }
     }
 
     /**
-     * Displays top 5 swim times based on their age group, gender and discipline
+     * Displays top 5 swim times for every discipline based on their age group and gender
      */
 
     //Age group and gender
@@ -215,7 +248,7 @@ public class MenuSystem {
     }
 
     //Swim Discipline
-    private void swimmerDiscipline(AgeGroup ageGroup, Gender gender){
+    private void swimmerDiscipline(AgeGroup ageGroup, Gender gender) {
 
         System.out.println("\n Vælg kategori: ");
         System.out.println("1. Top 5 Crawl");
@@ -234,25 +267,25 @@ public class MenuSystem {
     }
 
     private void TopFiveCrawl(AgeGroup ageGroup, Gender gender) {
-        System.out.println("\nDu har valgte: " + ageGroup + "/" + gender );
+        System.out.println("\nDu har valgte: " + ageGroup + "/" + gender);
         System.out.println(Discipline.CRAWL);
         memberList.top5ToString(ageGroup, gender, Discipline.CRAWL);
     }
 
     private void TopFiveBreast(AgeGroup ageGroup, Gender gender) {
-        System.out.println("\nDu har valgte: " + ageGroup + "/" + gender );
+        System.out.println("\nDu har valgte: " + ageGroup + "/" + gender);
         System.out.println(Discipline.BREASTSTROKE);
         memberList.top5ToString(ageGroup, gender, Discipline.BREASTSTROKE);
     }
 
     private void TopFiveButterfly(AgeGroup ageGroup, Gender gender) {
-        System.out.println("\nDu har valgte: " + ageGroup + "/" + gender );
+        System.out.println("\nDu har valgte: " + ageGroup + "/" + gender);
         System.out.println(Discipline.BUTTERFLY);
         memberList.top5ToString(ageGroup, gender, Discipline.BUTTERFLY);
     }
 
     private void TopFiveBcrawl(AgeGroup ageGroup, Gender gender) {
-        System.out.println("\nDu har valgte: " + ageGroup + "/" + gender );
+        System.out.println("\nDu har valgte: " + ageGroup + "/" + gender);
         System.out.println(Discipline.BACKCRAWL);
         memberList.top5ToString(ageGroup, gender, Discipline.BACKCRAWL);
     }
@@ -266,7 +299,7 @@ public class MenuSystem {
         boolean running = true;
 
         //Accounting Menu
-        while (running){
+        while (running) {
             System.out.println("=== Økonomimenu ===");
             System.out.println("1. Vis Samlet kontingentindkomst");
             System.out.println("2. Fremvis medlemmer i restance");
@@ -277,25 +310,25 @@ public class MenuSystem {
             int choice = sc.nextInt();
             sc.nextLine();
 
-            switch (choice){
+            switch (choice) {
                 case 1:
-                //Bruger MemberLists totalIncome-metode
+                    //Bruger MemberLists totalIncome-metode
                     System.out.println(memberList.totalIncome());
                     break;
 
                 case 2:
                     //Hent alle medlemmer og filtrér med Economy.membersInArrears
-                        List<Member> inArrears = memberList.getMembersInArrears();
+                    List<Member> inArrears = memberList.getMembersInArrears();
 
-                        if (inArrears.isEmpty()){
-                            System.out.println("Der er ingen medlemmer i restance.");
-                        }else {
-                            System.out.println("Medlemmer i restance:");
-                            for (Member m : inArrears){
-                                System.out.println(m);
-                            }
+                    if (inArrears.isEmpty()) {
+                        System.out.println("Der er ingen medlemmer i restance.");
+                    } else {
+                        System.out.println("Medlemmer i restance:");
+                        for (Member m : inArrears) {
+                            System.out.println(m);
                         }
-                        break;
+                    }
+                    break;
 
                 case 3:
                     System.out.println(" Indtast MedlemsID for at sætte kontingent som betalt");

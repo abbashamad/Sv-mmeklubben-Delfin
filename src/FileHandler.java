@@ -6,7 +6,15 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class FileHandler {
+
+    /**
+     *
+     * Saving .csv files
+     * @param filename : name of file
+     * @param serializables : members in serialised formats
+     */
     public static void saveToCsvFile(String filename, List<Serializable> serializables) {
         try {
             PrintWriter writer = new PrintWriter(filename);
@@ -21,6 +29,11 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Reading .csv files
+     * @param filename: name of file
+     * @param memberList: list of members in .csv
+     */
     public static void decodeFile(String filename, MemberList memberList) {
         try {
             Scanner scanner = new Scanner(new File(filename));
