@@ -106,27 +106,34 @@ public class MenuSystem {
         System.out.println("==Member Update==");
         System.out.println("* You can only change your name and email *");
 
+        //Member to edit
         System.out.print("\nEnter Member ID: ");
         int id = sc.nextInt();
         Member member = memberList.findMemberViaID(id);
         if (member == null){
             System.out.println("Error: Member does not exist");
             sc.nextLine();//Clear buffer
-            showMainMenu();
+            ShowMemberMenu();
         }
 
         assert member != null;
         System.out.printf("You have selected: %s, ID:%04d", member.getName(), member.getId());
         sc.nextLine();//Clear buffer
 
-        System.out.print("\nEnter New Name: ");
+        //New Entry
+        System.out.print("\nEnter New Name (leave blank to skip): ");
         String newName = sc.nextLine();
-        System.out.print("Enter New Email: ");
+        System.out.print("Enter New Email (leave blank to skip): ");
         String newEmail = sc.nextLine().toUpperCase();
 
         //Updates and displays change
-        System.out.println("Update Successful");
+        if (newName.isEmpty() && newEmail.isEmpty()){
+            System.out.println("Update Failed");
+        }else {
+            System.out.println("Update Successful");
+        }
         member.updateMember(newName, newEmail);
+        ShowMemberMenu();
     }
 
 

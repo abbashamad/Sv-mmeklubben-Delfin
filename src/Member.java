@@ -36,14 +36,14 @@ public class Member implements Serializable {
             this.name = newName;
             System.out.printf("%s has been updated to %s%n",oldName , getName());
         } else {
-            System.out.println("Error: Name can not be empty");
+            System.out.println("Name is unchanged");
         }
         if(newEmail != null && !newEmail.isEmpty()){//updates email if not null
             String oldEmail = getEmail();
             this.email = newEmail;
             System.out.printf("%s has been updated to %s%n",oldEmail , getEmail());
         }else {
-            System.out.println("Error: Email can not be empty");
+            System.out.println("Email is unchanged");
         }
     }
 
