@@ -1,3 +1,12 @@
+package delfin.mainsystem;
+
+import delfin.enums.AgeGroup;
+import delfin.enums.Discipline;
+import delfin.members.EliteMember;
+import delfin.enums.Gender;
+import delfin.members.Member;
+import delfin.results.SwimTimer;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;

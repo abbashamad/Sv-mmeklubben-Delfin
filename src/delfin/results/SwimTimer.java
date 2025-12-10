@@ -1,3 +1,7 @@
+package delfin.results;
+
+import delfin.exceptions.SwimTimeException;
+
 public class SwimTimer implements Comparable<SwimTimer> {
     private final int min;
     private final int sec;
@@ -5,7 +9,7 @@ public class SwimTimer implements Comparable<SwimTimer> {
 
     public SwimTimer(int min, int sec, int milSec){
         if (min < 0){
-            throw new  SwimTimeException("Invalid value for minute of SwimTime (valid values > -1):" + min);
+            throw new SwimTimeException("Invalid value for minute of SwimTime (valid values > -1):" + min);
         }if (sec < 0 || sec > 59){
             throw new  SwimTimeException("Invalid value for minute of SwimTime (valid values  0 - 59):" + sec);
         }if (milSec < 0 || milSec > 999){

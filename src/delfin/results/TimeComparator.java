@@ -1,3 +1,5 @@
+package delfin.results;
+
 import java.util.Comparator;
 
 public class TimeComparator implements Comparator<SwimResult> {

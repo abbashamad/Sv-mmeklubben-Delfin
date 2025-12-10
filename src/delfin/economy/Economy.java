@@ -1,3 +1,7 @@
+package delfin.economy;
+
+import delfin.members.Member;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,3 +1,5 @@
+package delfin.economy;
+
 public class Subscription {
     private boolean isActive;
     private boolean hasArrears;

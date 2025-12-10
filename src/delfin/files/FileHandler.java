@@ -1,3 +1,13 @@
+package delfin.files;
+
+import delfin.mainsystem.MemberList;
+import delfin.interfaces.Serializable;
+import delfin.enums.Discipline;
+import delfin.members.EliteMember;
+import delfin.enums.Gender;
+import delfin.results.SwimTimer;
+import delfin.files.*;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -17,7 +27,7 @@ public class FileHandler {
      */
     public static void saveToCsvFile(String filename, List<Serializable> serializables) {
         try {
-            PrintWriter writer = new PrintWriter(filename);
+ //           PrintWriter writer = new PrintWriter("src/delfin/files/"+filename);
 
             for (Serializable serializable : serializables) {
                 writer.write(serializable.serialize());
@@ -36,7 +46,7 @@ public class FileHandler {
      */
     public static void decodeFile(String filename, MemberList memberList) {
         try {
-            Scanner scanner = new Scanner(new File(filename));
+ //           Scanner scanner = new Scanner(new File("src/delfin/files/"+filename));
 
             String line;
             String[] fields;
