@@ -2,12 +2,21 @@ public class Subscription {
     private boolean isActive;
     private boolean hasArrears;
 
+    /**
+     * Handles payment calculations for members in clubs
+     *
+     */
 
     public Subscription() {
         this.isActive = true;
         this.hasArrears = false;
     }
 
+    /**
+     * Auto-calculates payment by age and if they have an active or inactive subscription
+     * @param age: Age of member
+     * @return : calculated amount
+     */
     public double payment(int age) {
         if (!isActive) {
             return 500;
@@ -23,7 +32,6 @@ public class Subscription {
     public boolean isHasArrears() {
         return hasArrears;
     }
-
     public boolean isActive() {
         return isActive;
     }

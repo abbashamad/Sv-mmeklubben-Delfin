@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class MenuSystem {
     /**
-     *
+     *Displays and handles all menu functions
      *
      */
     private MemberList memberList;
@@ -127,7 +127,6 @@ public class MenuSystem {
         //Updates and displays change
         System.out.println("Update Successful");
         member.updateMember(newName, newEmail);
-
     }
 
 

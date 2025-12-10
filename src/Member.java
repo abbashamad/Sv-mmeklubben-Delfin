@@ -1,6 +1,9 @@
 import java.time.LocalDate;
 import java.time.Period;
 
+/**
+ * Can be serialized
+ */
 public class Member implements Serializable {
     protected final LocalDate birthday;
     private static int nextId = 1;
@@ -44,10 +47,19 @@ public class Member implements Serializable {
         }
     }
 
+    /**
+     * Converts date to current age for further use
+     * @return int as age based on member's birthday
+     */
     public int getAge() {
         return Period.between(getBirthday(), LocalDate.now()).getYears();
     }
 
+    /**
+     *
+     * Calculates and sorts to group based on age
+     * @return : enum respective to age-group
+     */
     public AgeGroup getAgeGroup() {
         if (getAge() < 18) {
             return AgeGroup.JUNIOR;
@@ -90,7 +102,6 @@ public class Member implements Serializable {
     @Override
     public String serialize() {
         return String.format("member,%s,%s,%s,%s,%s,%s%n", birthday, email, name, gender, subscription.isActive(), subscription.isHasArrears());
-
     }
 }
 

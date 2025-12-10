@@ -1,5 +1,9 @@
 import java.time.LocalDate;
 
+/**
+ *
+ * Competition Results for Elite Swimmers, Uses Swim Result as template
+ */
 public class CompetitionResult extends SwimResult {
     private int placement;
     private String competitionName;
