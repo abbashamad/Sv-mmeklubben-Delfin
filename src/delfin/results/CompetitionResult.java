@@ -31,7 +31,7 @@ public class CompetitionResult extends SwimResult {
 
     @Override
     public String toString() {
-        return String.format("%-30s %-10d %s", super.toString(), placement, competitionName);
+        return super.toString() + String.format("%-7d %s", placement, competitionName);
     }
 
     @Override
