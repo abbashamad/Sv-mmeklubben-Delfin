@@ -127,11 +127,11 @@ public class MenuSystem {
      */
     public void EditMemberInfo() {
         //TODO:Method for editing member info
-        System.out.println("==Member Update==");
-        System.out.println("* You can only change your name and email *");
+        System.out.println("==Medlemsopdatering==");
+        System.out.println("* Du kan kun skifte Email og Navn *");
 
         //Member to edit
-        System.out.print("\nEnter Member ID: ");
+        System.out.print("\nIndtast medlems-ID: ");
         String idInput = sc.nextLine();
         int id;
         try {
@@ -149,20 +149,20 @@ public class MenuSystem {
         }
 
         assert member != null;
-        System.out.printf("You have selected: %s, ID:%04d", member.getName(), member.getId());
+        System.out.printf("Du har valgt: %s, ID:%04d", member.getName(), member.getId());
         sc.nextLine();//Clear buffer
 
         //New Entry
-        System.out.print("\nEnter New Name (leave blank to skip): ");
+        System.out.print("\nIndtast nyt navn(tast Enter for springe over): ");
         String newName = sc.nextLine();
-        System.out.print("Enter New Email (leave blank to skip): ");
+        System.out.print("Indtast ny Email (tast Enter for springe over): ");
         String newEmail = sc.nextLine().toUpperCase();
 
         //Updates and displays change
         if (newName.isEmpty() && newEmail.isEmpty()){
-            System.out.println("Update Failed");
+            System.out.println("Opdatering fejlet");
         }else {
-            System.out.println("Update Successful");
+            System.out.println("Medlemsinformationen er opdateret");
         }
         member.updateMember(newName, newEmail);
         ShowMemberMenu();
