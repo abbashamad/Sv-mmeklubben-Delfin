@@ -84,10 +84,24 @@ public class MenuSystem {
         String email = sc.nextLine().toUpperCase();
 
         System.out.print("Enter Birthday (YYYY-MM-DD): ");
-        LocalDate birthday = LocalDate.parse(sc.nextLine());
+        String birthdayInput = sc.nextLine();
+        LocalDate birthday;
+        try {
+            birthday = LocalDate.parse(birthdayInput);
+        } catch (Exception e) {
+            System.out.println("Forkert datoformat. Brug YYYY-MM-DD.");
+            return;
+        }
 
-        System.out.print("Enter Gender (MALE/FEMALE): ");
-        Gender gender = Gender.valueOf(sc.nextLine().toUpperCase());
+            System.out.print("Enter Gender (MALE/FEMALE): ");
+        String genderInput = sc.nextLine().toUpperCase();
+        Gender gender;
+        try {
+            gender = Gender.valueOf(genderInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Ugyldigt køn. Brug MALE eller FEMALE.");
+            return;
+        }
 
         System.out.print("Are You An Elite Swimmer? (Y/N): ");
         String answer = sc.next();
@@ -116,7 +130,15 @@ public class MenuSystem {
 
         //Member to edit
         System.out.print("\nEnter Member ID: ");
-        int id = sc.nextInt();
+        String idInput = sc.nextLine();
+        int id;
+        try {
+            id = Integer.parseInt(idInput);
+        } catch (NumberFormatException e) {
+            System.out.println("Du skal indtaste et tal som ID.");
+            return;
+        }
+
         Member member = memberList.findMemberViaID(id);
         if (member == null){
             System.out.println("Error: Member does not exist");
