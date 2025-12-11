@@ -112,9 +112,9 @@ public class Member implements Serializable {
 
     }
 
-    public String toStringGender(){
+    public String toStringGender(){//To use in showTeam display in MenuSystem
         String s = subscription.isActive() ? "Aktive" : "Passiv";
-        String g = getGender().equals(Gender.MALE) ? "Male" : "Female";
+        String g = getGender().equals(Gender.MALE) ? "Mand" : "Kvinde";
 
         return String.format("%s %-15s %-25s %-20s %s", String.format("%04d ", id), name, email, s, g);
     }

@@ -38,7 +38,7 @@ public class MenuSystem {
         while (running) {
             System.out.println("\n=== Hovedmenu ===");
             System.out.println("1. Medlemmer");
-            System.out.println("2. Svømmeresultater");
+            System.out.println("2. Holdssstatistik");
             System.out.println("3. Kontingent og Økonomi");
             System.out.println("4. Luk programmet");
             System.out.println("5. Gem medlemsinformation");
@@ -178,7 +178,7 @@ public class MenuSystem {
      * Displays Swim Results, option to creates new results, shows top 5 swimmers
      */
     public void ShowSwimtimeMenu() {
-        System.out.println("\n Svømmeresultater");
+        System.out.println("\n Svømmeresultater Og Holdsinformation");
         System.out.println("1. Opret ny svømmetid");
         System.out.println("2. Se Statistik over top 5 Svømmere");
         System.out.println("3. Se hold"); //TODO
@@ -341,7 +341,7 @@ public class MenuSystem {
      * Menu to show members based on their
      */
     public void showTeamMenu(){ //Todo
-        System.out.println("Choose AgeGroup: ");
+        System.out.println("\n Vælg Hold: ");
         System.out.println("1. Junior");
         System.out.println("2. Senior");
         System.out.print("Vælg: ");
@@ -359,7 +359,8 @@ public class MenuSystem {
      */
 
     public void showTeam(AgeGroup ageGroup){
-        System.out.println("SVØMMEKLUB DELFIN " + ageGroup + " TEAM");
+        //Printing team info
+        System.out.println("==== SVØMMEKLUB DELFIN * " + ageGroup + " * TEAM =====");
         String s = String.format("%-5s %-15s %-25s %-20s %s","ID", "NAME", "EMAIL","STATUS", "GENDER")+"\n";
         s += "-".repeat(80);
         System.out.println(s);
@@ -367,7 +368,7 @@ public class MenuSystem {
         for(EliteMember m : memberList.sortTeamByAgeGroup(ageGroup)){
             System.out.println(m.toStringGender());
         }
-        ShowSwimtimeMenu();
+        ShowSwimtimeMenu(); //Goes back to previous menu
     }
 
     /**
@@ -490,6 +491,11 @@ public class MenuSystem {
         FileHandler.saveToCsvFile("SwimResultData.csv", resultSerializables);
     }
 
+
+    /**
+     *
+     * Search function for a single member
+     */
     public void showMemberById() {
         System.out.print("Indtast medlems-ID: ");
         String input = sc.nextLine();
@@ -503,6 +509,9 @@ public class MenuSystem {
             }
 
         Member m = memberList.findMemberViaID(id);
-        System.out.println(m);
+        String s = String.format("%-5s %-15s %-25s %-20s %s","ID", "NAME", "EMAIL","STATUS", "GENDER")+"\n";
+        s += "-".repeat(80);
+        System.out.println(s);
+        System.out.println(m.toStringGender());
         }
     }
