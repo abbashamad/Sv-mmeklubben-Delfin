@@ -103,7 +103,7 @@ public class Member implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("%s %-10s %-10s", String.format("%04d ", id), name, email);
+        return String.format("%s %-17s %-10s", String.format("%04d ", id), name, email);
     }
 
     @Override
