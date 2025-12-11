@@ -65,7 +65,7 @@ public class MenuSystem {
         System.out.println("\n ===Member Menu===");
         System.out.println("1. Opret nyt medlem");
         System.out.println("2. Vis eksisterende medlemmer");
-        System.out.println("3. Ret i eksisterende medlemsinfo");// HVAD SKAL VI RETTE? KUN AKTIV / PASSIV?
+        System.out.println("3. Ret i eksisterende medlemsinfo");
              System.out.println("4. Søg efter medlem");
         System.out.println("5. Tilbage til hovedmenu");
         System.out.print("Vælg: ");
@@ -166,9 +166,10 @@ public class MenuSystem {
             System.out.println("Update Failed");
         }else {
             System.out.println("Update Successful");
+
         }
+
         member.updateMember(newName, newEmail);
-      //  ShowMemberMenu();
     }
 
 
@@ -345,7 +346,8 @@ public class MenuSystem {
             System.out.println("1. Vis Samlet kontingentindkomst");
             System.out.println("2. Fremvis medlemmer i restance");
             System.out.println("3. Sæt abonnement som betalt");
-            System.out.println("4. Tilbage til hovedmenu");
+            System.out.println("4. Skift Aktiv/passiv status");
+            System.out.println("5. Tilbage til hovedmenu");
             System.out.println("Vælg: ");
 
             int choice = sc.nextInt();
@@ -381,6 +383,44 @@ public class MenuSystem {
                     System.out.println(" Medlemmet er nu sat som at have betalt");
                     break;
                 case 4:
+                    System.out.println("Indtast MedlemsID for at ændre Active/Passive status:");
+                    int statusId = sc.nextInt();
+                    sc.nextLine(); // clear buffer
+
+                    Member mStat = memberList.findMemberViaID(statusId);
+
+                    if (mStat == null) {
+                        System.out.println("Medlem ikke fundet.");
+                        break;
+                    }
+
+                    System.out.println("\nNuværende status: " +
+                            (mStat.getSubscription().isActive() ? "Aktiv" : "Passiv"));
+
+                    System.out.println("Vælg ny status:");
+                    System.out.println("1. Aktiv");
+                    System.out.println("2. Passiv");
+                    System.out.print("Valg: ");
+
+                    int statusChoice = sc.nextInt();
+                    sc.nextLine();
+
+                    switch (statusChoice) {
+                        case 1:
+                            mStat.getSubscription().setIsActive(true);
+                            System.out.println("Status ændret til Aktiv.");
+                            break;
+
+                        case 2:
+                            mStat.getSubscription().setIsActive(false);
+                            System.out.println("Status ændret til Passiv.");
+                            break;
+
+                        default:
+                            System.out.println("Ugyldigt valg. Status ændres ikke.");
+                    }
+                    break;
+                case 5:
                     running = false; //Tilbage til hovedmenu
                     break;
 
