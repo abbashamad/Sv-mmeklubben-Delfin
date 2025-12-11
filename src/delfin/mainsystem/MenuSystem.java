@@ -66,8 +66,8 @@ public class MenuSystem {
         System.out.println("1. Opret nyt medlem");
         System.out.println("2. Vis eksisterende medlemmer");
         System.out.println("3. Ret i eksisterende medlemsinfo");// HVAD SKAL VI RETTE? KUN AKTIV / PASSIV?
-            System.out.println("4. Søg efter medlem");
-        System.out.println("4. Tilbage");
+             System.out.println("4. Søg efter medlem");
+        System.out.println("5. Tilbage til hovedmenu");
         System.out.print("Vælg: ");
 
         switch (sc.nextLine()) {
@@ -82,13 +82,13 @@ public class MenuSystem {
     }
 
     public void CreateNewMember() {
-        System.out.print("Enter Name: ");
+        System.out.print("Indtast Navn: ");
         String name = sc.nextLine();
 
-        System.out.print("Enter Email: ");
+        System.out.print("Indtast Email: ");
         String email = sc.nextLine().toUpperCase();
 
-        System.out.print("Enter Birthday (YYYY-MM-DD): ");
+        System.out.print("Indtast fødselsdato (YYYY-MM-DD): ");
         String birthdayInput = sc.nextLine();
         LocalDate birthday;
         try {
@@ -98,7 +98,7 @@ public class MenuSystem {
             return;
         }
 
-        System.out.print("Enter Gender (MALE/FEMALE): ");
+        System.out.print("Indtast køn (MALE/FEMALE): ");
         String genderInput = sc.nextLine().toUpperCase();
         Gender gender;
         try {
@@ -108,16 +108,16 @@ public class MenuSystem {
             return;
         }
 
-        System.out.print("Are You An Elite Swimmer? (Y/N): ");
+        System.out.print("Er medlemmet EliteSvømmer? (Y/N): ");
         String answer = sc.next();
 
         //Decides member type
         if (answer.equalsIgnoreCase("Y")) {
             memberList.addEliteToMemberList(birthday, email, name, gender);
-            System.out.println("\nElite Member Tilføjet!");
+            System.out.println("\nEliteMedlem Tilføjet!");
         } else if (answer.equalsIgnoreCase("N")) {
             memberList.addMemberToMemberList(birthday, email, name, gender);
-            System.out.println("\nMember Tilføjet!");
+            System.out.println("\nMedlem Tilføjet!");
         } else {
             System.out.println("Fejl");
         }
@@ -146,20 +146,19 @@ public class MenuSystem {
 
         Member member = memberList.findMemberViaID(id);
         if (member == null){
-            System.out.println("Error: Member does not exist");
+            System.out.println("Fejl: Intet medlem med dette ID eksisterer");
             sc.nextLine();//Clear buffer
             ShowMemberMenu();
             return;
         }
 
-        assert member != null;
-        System.out.printf("You have selected: %s, ID:%04d", member.getName(), member.getId());
+        System.out.printf("Du har valgt: %s, ID:%04d", member.getName(), member.getId());
         sc.nextLine();//Clear buffer
 
         //New Entry
-        System.out.print("\nEnter New Name (leave blank to skip): ");
+        System.out.print("\nIndtast nyt navn (tryk Enter for at beholde nuværende): ");
         String newName = sc.nextLine();
-        System.out.print("Enter New Email (leave blank to skip): ");
+        System.out.print("Indtast ny Email (tryk Enter for at beholde nuværende): ");
         String newEmail = sc.nextLine().toUpperCase();
 
         //Updates and displays change
@@ -169,7 +168,7 @@ public class MenuSystem {
             System.out.println("Update Successful");
         }
         member.updateMember(newName, newEmail);
-        ShowMemberMenu();
+      //  ShowMemberMenu();
     }
 
 
