@@ -32,11 +32,6 @@ public class SwimResult implements Serializable {
         return swimTime;
     }
 
-
-    public LocalDate getSwimDate() {
-        return swimDate;
-    }
-
     @Override
     public String toString() {
         return String.format("%s %-12s %-15s %-14s %-17s", String.format("%04d ", member.getId()), member.getName(), discipline, swimTime, swimDate);

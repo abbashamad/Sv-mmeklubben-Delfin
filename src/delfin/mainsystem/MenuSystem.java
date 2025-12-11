@@ -11,7 +11,6 @@ import delfin.members.Member;
 import delfin.results.SwimTimer;
 
 import java.io.IOException;
-import java.lang.annotation.ElementType;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

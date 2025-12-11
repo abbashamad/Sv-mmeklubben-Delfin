@@ -56,14 +56,11 @@ public class FileHandler {
                 line = scanner.nextLine();
                 fields = line.split(",");
 
-                if (fields[0].equals("member")) {
-                    decodeMember(memberList, fields);
-                } else if (fields[0].equals("elite")) {
-                    decodeEliteMember(memberList, fields);
-                } else if (fields[0].equals("training")) {
-                    decodeSwimResult(memberList, fields);
-                } else if (fields[0].equals("comp")) {
-                    decodeCompetitionResult(memberList, fields);
+                switch (fields[0]) {
+                    case "member" -> decodeMember(memberList, fields);
+                    case "elite" -> decodeEliteMember(memberList, fields);
+                    case "training" -> decodeSwimResult(memberList, fields);
+                    case "comp" -> decodeCompetitionResult(memberList, fields);
                 }
             }
         } catch (FileNotFoundException e) {

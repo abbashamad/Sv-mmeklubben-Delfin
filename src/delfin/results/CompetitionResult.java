@@ -21,14 +21,6 @@ public class CompetitionResult extends SwimResult {
         this.competitionName = competitionName;
     }
 
-    public int getPlacement() {
-        return placement;
-    }
-
-    public String getCompetitionName() {
-        return competitionName;
-    }
-
     @Override
     public String toString() {
         return super.toString() + String.format("%-7d %s", placement, competitionName);
