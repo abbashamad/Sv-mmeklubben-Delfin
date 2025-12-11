@@ -65,7 +65,8 @@ public class MenuSystem {
         System.out.println("\n ===Member Menu===");
         System.out.println("1. Opret nyt medlem");
         System.out.println("2. Vis eksisterende medlemmer");
-        System.out.println("3. Ret i eksisterende medlemsinfo"); // HVAD SKAL VI RETTE? KUN AKTIV / PASSIV?
+        System.out.println("3. Ret i eksisterende medlemsinfo");// HVAD SKAL VI RETTE? KUN AKTIV / PASSIV?
+            System.out.println("4. Søg efter medlem");
         System.out.println("4. Tilbage");
         System.out.print("Vælg: ");
 
@@ -73,7 +74,8 @@ public class MenuSystem {
             case "1" -> CreateNewMember();
             case "2" -> System.out.println(memberList);
             case "3" -> EditMemberInfo();
-            case "4" -> running = false;
+            case "4" -> showMemberById();
+            case "5" -> running = false;
             default -> System.out.println("Forkert valg kammerat");
         }
         }
