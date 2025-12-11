@@ -47,7 +47,7 @@ public class FileHandler {
      */
     public static void decodeFile(String filename, MemberList memberList) {
         try {
-            Scanner scanner = new Scanner(new File("src/delfin/files/"+filename));//Also u1pdated filepath
+            Scanner scanner = new Scanner(new File("src/delfin/files/"+filename));//Also updated filepath
 
             String line;
             String[] fields;

@@ -2,6 +2,8 @@ package delfin.mainsystem;
 
 import delfin.enums.AgeGroup;
 import delfin.enums.Discipline;
+import delfin.files.FileHandler;
+import delfin.interfaces.Serializable;
 import delfin.members.EliteMember;
 import delfin.enums.Gender;
 import delfin.members.Member;
@@ -367,8 +369,7 @@ public class MenuSystem {
     public void saveAllToCsv() {
 
         // Save Members
-        List<Serializable> memberSerializables =
-                new ArrayList<>(memberList.getMemberList());
+        List<Serializable> memberSerializables = new ArrayList<>(memberList.getMemberList());
         FileHandler.saveToCsvFile("MemberData.csv", memberSerializables);
 
         // Save Results
