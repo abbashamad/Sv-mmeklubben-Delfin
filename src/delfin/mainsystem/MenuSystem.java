@@ -59,6 +59,9 @@ public class MenuSystem {
      * Displays menu for member creation, viewing existing members and editing member info
      */
     public void ShowMemberMenu() {
+        boolean running = true;
+
+        while (running) {
         System.out.println("\n ===Member Menu===");
         System.out.println("1. Opret nyt medlem");
         System.out.println("2. Vis eksisterende medlemmer");
@@ -70,9 +73,9 @@ public class MenuSystem {
             case "1" -> CreateNewMember();
             case "2" -> System.out.println(memberList);
             case "3" -> EditMemberInfo();
-            case "4" -> {return;}
+            case "4" -> running = false;
             default -> System.out.println("Forkert valg kammerat");
-
+        }
         }
     }
 
