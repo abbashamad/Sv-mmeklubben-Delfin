@@ -92,7 +92,7 @@ public class MemberList {
 
     @Override
     public String toString() {
-        String s = "";
+        String s = String.format("%-5s %-17s %-10s","ID", "NAME", "EMAIL")+"\n" + "-".repeat(50)+"\n";
         for (Member member : memberList) {
             s += member + "\n";
 
