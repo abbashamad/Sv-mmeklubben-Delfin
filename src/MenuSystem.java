@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,7 +29,7 @@ public class MenuSystem {
             System.out.println("2. Svømmeresultater");
             System.out.println("3. Kontingent og Økonomi");
             System.out.println("4. Luk programmet");
-            //    System.out.println("5. Gem medlemsinformation");
+            System.out.println("5. Gem medlemsinformation");
             System.out.print("Vælg: ");
 
             switch (sc.nextLine()) {
@@ -36,7 +37,7 @@ public class MenuSystem {
                 case "2" -> ShowSwimtimeMenu();
                 case "3" -> ShowAccountingMenu();
                 case "4" -> running = false;
-                //    case "5" -> FileHandler.saveToCsvFile(String filename, MemberList serializables);
+                case "5" -> saveAllToCsv();
                 default -> System.out.println("Invalid choice.");
             }
         }
@@ -58,16 +59,12 @@ public class MenuSystem {
             case "1" -> CreateNewMember();
             case "2" -> System.out.println(memberList);
             case "3" -> EditMemberInfo();
-            case "4" -> showMainMenu();
+            case "4" -> {return;}
             default -> System.out.println("Forkert valg kammerat");
 
         }
     }
 
-    /**
-     * Create New Member method
-     * Takes name, email, birthday, gender and auto-sorts the created member into an elite or regular member
-     */
     public void CreateNewMember() {
         System.out.print("Enter Name: ");
         String name = sc.nextLine();
@@ -352,8 +349,29 @@ public class MenuSystem {
                 default:
                     System.out.println("Ugyldigt valg, prøv igen.");
 
+
             }
         }
 
+    }
+
+    public void saveAllToCsv() {
+
+        // Save Members
+        List<Serializable> memberSerializables =
+                new ArrayList<>(memberList.getMemberList());
+        FileHandler.saveToCsvFile("MemberData.csv", memberSerializables);
+
+        // Save Results
+        List<Serializable> resultSerializables = new ArrayList<>();
+        for (Member member : memberList.getMemberList()) {
+            if (member instanceof EliteMember) {
+                resultSerializables.addAll(
+                        ((EliteMember) member).getSwimResults()
+                );
+            }
+        }
+
+        FileHandler.saveToCsvFile("SwimResultData.csv", resultSerializables);
     }
 }
