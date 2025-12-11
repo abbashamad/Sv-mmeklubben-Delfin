@@ -39,16 +39,16 @@ public class MenuSystem {
             System.out.println("1. Medlemmer");
             System.out.println("2. Svømmeresultater");
             System.out.println("3. Kontingent og Økonomi");
-            System.out.println("4. Luk programmet");
-            System.out.println("5. Gem medlemsinformation");
+            System.out.println("4. Gem medlemsinformation");
+            System.out.println("5. Luk programmet");
             System.out.print("Vælg: ");
 
             switch (sc.nextLine()) {
                 case "1" -> ShowMemberMenu();
                 case "2" -> ShowSwimtimeMenu();
                 case "3" -> ShowAccountingMenu();
-                case "4" -> running = false;
-                case "5" -> saveAllToCsv();
+                case "4" -> saveAllToCsv();
+                case "5" -> running = false;
                 default -> System.out.println("Invalid choice.");
             }
         }
@@ -65,7 +65,7 @@ public class MenuSystem {
         System.out.println("1. Opret nyt medlem");
         System.out.println("2. Vis eksisterende medlemmer");
         System.out.println("3. Ret i eksisterende medlemsinfo"); // HVAD SKAL VI RETTE? KUN AKTIV / PASSIV?
-        System.out.println("4. Tilbage");
+        System.out.println("4. Tilbage til Hovedmenu");
         System.out.print("Vælg: ");
 
         switch (sc.nextLine()) {
@@ -143,7 +143,7 @@ public class MenuSystem {
 
         Member member = memberList.findMemberViaID(id);
         if (member == null){
-            System.out.println("Error: Member does not exist");
+            System.out.println("Fejl: medlem eksisterer ikke!");
             sc.nextLine();//Clear buffer
             ShowMemberMenu();
         }
@@ -193,7 +193,7 @@ public class MenuSystem {
      */
     public void CreateNewSwimResult() {
 
-        System.out.print("Indtast Medlemsnummer/ID/Navn Eller whatevs ");
+        System.out.print("Indtast Medlemsnummer/ID");
         int memberId = sc.nextInt();
         sc.nextLine();
 
@@ -203,7 +203,7 @@ public class MenuSystem {
             System.out.println("Medlem ikke fundet!");
             return;//Error if member does not exist
         } else if (!(member instanceof EliteMember)) {
-            System.out.println("Medlem er ikke konkurrence svømmer");
+            System.out.println("Fejl: Medlem er ikke konkurrence svømmer");
             return;//Error if the member is a regular
         }
         EliteMember eliteMember = (EliteMember) member;
@@ -258,7 +258,7 @@ public class MenuSystem {
 
             eliteMember.addCompSwimResultsToList(discipline, timer, date, placement, location);
         } else {
-            System.out.println("Forkert valg kammerat");
+            System.out.println("Forkert valg, prøv igen");
         }
     }
 
@@ -305,25 +305,25 @@ public class MenuSystem {
     }
 
     private void TopFiveCrawl(AgeGroup ageGroup, Gender gender) {
-        System.out.println("\nDu har valgte: " + ageGroup + "/" + gender);
+        System.out.println("\nDu har valgt: " + ageGroup + "/" + gender);
         System.out.println(Discipline.CRAWL);
         memberList.top5ToString(ageGroup, gender, Discipline.CRAWL);
     }
 
     private void TopFiveBreast(AgeGroup ageGroup, Gender gender) {
-        System.out.println("\nDu har valgte: " + ageGroup + "/" + gender);
+        System.out.println("\nDu har valgt: " + ageGroup + "/" + gender);
         System.out.println(Discipline.BREASTSTROKE);
         memberList.top5ToString(ageGroup, gender, Discipline.BREASTSTROKE);
     }
 
     private void TopFiveButterfly(AgeGroup ageGroup, Gender gender) {
-        System.out.println("\nDu har valgte: " + ageGroup + "/" + gender);
+        System.out.println("\nDu har valgt: " + ageGroup + "/" + gender);
         System.out.println(Discipline.BUTTERFLY);
         memberList.top5ToString(ageGroup, gender, Discipline.BUTTERFLY);
     }
 
     private void TopFiveBcrawl(AgeGroup ageGroup, Gender gender) {
-        System.out.println("\nDu har valgte: " + ageGroup + "/" + gender);
+        System.out.println("\nDu har valgt: " + ageGroup + "/" + gender);
         System.out.println(Discipline.BACKCRAWL);
         memberList.top5ToString(ageGroup, gender, Discipline.BACKCRAWL);
     }
