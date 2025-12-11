@@ -2,8 +2,6 @@ package delfin.test;
 
 import delfin.economy.Economy;
 import delfin.members.Member;
-import delfin.members.EliteMember;
-import delfin.enums.AgeGroup;
 import delfin.enums.Gender;
 
 import org.junit.jupiter.api.Assertions;
@@ -12,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class EconomyTest {

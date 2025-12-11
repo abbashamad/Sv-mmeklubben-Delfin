@@ -28,7 +28,7 @@ public class MemberList {
         this.memberList.add(new Member(birthday, email, name, gender));
     }
 
-    public void addMemberToMemberList(Member member){
+    public void addMemberToMemberList(Member member) {
         this.memberList.add(member);
     }
 
@@ -56,8 +56,9 @@ public class MemberList {
 
     /**
      * Sorts elite members in memberlists based on age group, gender and discipline
-     * @param ageGroup : uses enum to sort by JUNIOR and SENIOR
-     * @param gender: uses enum to sort by MALE or FEMALE
+     *
+     * @param ageGroup    : uses enum to sort by JUNIOR and SENIOR
+     * @param gender:     uses enum to sort by MALE or FEMALE
      * @param discipline: uses enum to sort by swim discipline
      * @return returns sorted list of elite members by indicated criteria
      */
@@ -77,8 +78,9 @@ public class MemberList {
 
     /**
      * Sorts elite members in memberlists based on age group and gender
+     *
      * @param ageGroup : uses enum to sort by JUNIOR and SENIOR
-     * @param gender: uses enum to sort by MALE or FEMALE
+     * @param gender:  uses enum to sort by MALE or FEMALE
      * @return returns sorted list of elite members by indicated criteria
      */
 
@@ -96,6 +98,7 @@ public class MemberList {
 
     /**
      * Sorts elite members in memberlists based on age group and gender
+     *
      * @param ageGroup : uses enum to sort by JUNIOR and SENIOR
      * @return returns sorted list of elite members by indicated criteria
      */
@@ -112,14 +115,12 @@ public class MemberList {
         return list;
     }
 
-    public List<EliteMember> sortTeamByAgeGroup(AgeGroup ageGroup){
+    public List<EliteMember> sortTeamByAgeGroup(AgeGroup ageGroup) {
         return new ArrayList<>(checkMemberCriteria(ageGroup));
-}
+    }
 
 
-
-
-public List<SwimResult> top5ForDiscipline(AgeGroup ageGroup, Gender gender, Discipline discipline) {
+    public List<SwimResult> top5ForDiscipline(AgeGroup ageGroup, Gender gender, Discipline discipline) {
         List<SwimResult> swimResults = new ArrayList<>();
         for (EliteMember eliteMember : checkMemberCriteria(ageGroup, gender, discipline)) {
             swimResults.add(eliteMember.getBestTimeForDiscipline(discipline));
@@ -131,13 +132,13 @@ public List<SwimResult> top5ForDiscipline(AgeGroup ageGroup, Gender gender, Disc
     }
 
     public void top5ToString(AgeGroup ageGroup, Gender gender, Discipline discipline) {
-        if (top5ForDiscipline(ageGroup, gender, discipline).isEmpty()){
+        if (top5ForDiscipline(ageGroup, gender, discipline).isEmpty()) {
             System.out.println("No Record");
             return;
         }
 
-        String s = String.format("%-5s %-12s %-12s %-14s %-12s %-11s %s","ID", "NAVN", "DISCIPLIN","TID", "DATO", "PLACERING", "STÆVNE")+"\n";
-        s += "-".repeat(85)+"\n";
+        String s = String.format("%-5s %-12s %-15s %-14s %-12s %-11s %s", "ID", "NAVN", "DISCIPLIN", "TID", "DATO", "PLACERING", "STÆVNE") + "\n";
+        s += "-".repeat(85) + "\n";
 
         for (SwimResult swimResult : top5ForDiscipline(ageGroup, gender, discipline)) {
             s += swimResult + "\n";
@@ -147,8 +148,8 @@ public List<SwimResult> top5ForDiscipline(AgeGroup ageGroup, Gender gender, Disc
 
     @Override
     public String toString() {
-        String s = String.format("%-5s %-15s %-25s %s","ID", "NAME", "EMAIL","STATUS")+"\n";
-        s += "-".repeat(60)+"\n";
+        String s = String.format("%-5s %-15s %-25s %s", "ID", "NAME", "EMAIL", "STATUS") + "\n";
+        s += "-".repeat(60) + "\n";
         for (Member member : memberList) {
             s += member + "\n";
 

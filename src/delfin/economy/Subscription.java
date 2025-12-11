@@ -16,6 +16,7 @@ public class Subscription {
 
     /**
      * Auto-calculates payment by age and if they have an active or inactive subscription
+     *
      * @param age: Age of member
      * @return : calculated amount
      */
@@ -34,6 +35,7 @@ public class Subscription {
     public boolean isHasArrears() {
         return hasArrears;
     }
+
     public boolean isActive() {
         return isActive;
     }

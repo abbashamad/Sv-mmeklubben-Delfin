@@ -7,11 +7,9 @@ import delfin.members.EliteMember;
 import delfin.enums.Gender;
 import delfin.members.Member;
 import delfin.results.SwimTimer;
-import delfin.files.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.List;
@@ -23,31 +21,31 @@ public class FileHandler {
     /**
      *
      * Saving .csv files
-     * @param filename : name of file
+     *
+     * @param filename      : name of file
      * @param serializables : members in serialised formats
      */
-    public static void saveToCsvFile(String filename, List<Serializable> serializables) {
-        try {
-            PrintWriter writer = new PrintWriter("src/delfin/files/"+filename);//Updated filepath
+    public static void saveToCsvFile(String filename, List<Serializable> serializables) throws FileNotFoundException {
 
-            for (Serializable serializable : serializables) {
-                writer.write(serializable.serialize());
-            }
-            writer.close();
+        PrintWriter writer = new PrintWriter("src/delfin/files/" + filename);//Updated filepath
 
-        } catch (IOException e) {
-            System.out.println("Fejl: " + e.getMessage());
+        for (Serializable serializable : serializables) {
+            writer.write(serializable.serialize());
         }
+        writer.close();
+
+
     }
 
     /**
      * Reading .csv files
-     * @param filename: name of file
+     *
+     * @param filename:   name of file
      * @param memberList: list of members in .csv
      */
     public static void decodeFile(String filename, MemberList memberList) {
         try {
-            Scanner scanner = new Scanner(new File("src/delfin/files/"+filename));//Also updated filepath
+            Scanner scanner = new Scanner(new File("src/delfin/files/" + filename));//Also updated filepath
 
             String line;
             String[] fields;
@@ -65,7 +63,7 @@ public class FileHandler {
                 } else if (fields[0].equals("training")) {
                     decodeSwimResult(memberList, fields);
                 } else if (fields[0].equals("comp")) {
-                    decodeCompetitionResult(memberList,fields);
+                    decodeCompetitionResult(memberList, fields);
                 }
             }
         } catch (FileNotFoundException e) {

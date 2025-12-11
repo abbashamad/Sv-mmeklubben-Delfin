@@ -60,9 +60,18 @@ public class EliteMember extends Member {
         return sortListByTime(discipline).getFirst();
     }
 
+    public String swimResultsToString() {
+        String s = "";
+
+        for (SwimResult swimResult : swimResults) {
+            s += swimResult + "\n";
+        }
+        return s;
+    }
+
     @Override
     public String serialize() {
-        return String.format("elite,%s,%s,%s,%s,%s,%s%n",birthday, email, name, gender, subscription.isActive(),subscription.isHasArrears());
+        return String.format("elite,%s,%s,%s,%s,%s,%s%n", birthday, email, name, gender, subscription.isActive(), subscription.isHasArrears());
     }
 
 }

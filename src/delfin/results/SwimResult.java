@@ -39,11 +39,11 @@ public class SwimResult implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("%s %-12s %-12s %-14s %-17s",String.format("%04d ", member.getId()),member.getName(), discipline,swimTime,swimDate);
+        return String.format("%s %-12s %-15s %-14s %-17s", String.format("%04d ", member.getId()), member.getName(), discipline, swimTime, swimDate);
     }
 
     @Override
     public String serialize() {
-        return String.format("training,%s,%s,%s,%s%n",member.getId(),discipline, swimTime, swimDate);
+        return String.format("training,%s,%s,%s,%s%n", member.getId(), discipline, swimTime, swimDate);
     }
 }

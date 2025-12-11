@@ -2,6 +2,7 @@ package delfin.mainsystem;
 
 import delfin.enums.AgeGroup;
 import delfin.enums.Discipline;
+import delfin.exceptions.SwimTimeException;
 import delfin.files.FileHandler;
 import delfin.interfaces.Serializable;
 import delfin.members.EliteMember;
@@ -9,6 +10,7 @@ import delfin.enums.Gender;
 import delfin.members.Member;
 import delfin.results.SwimTimer;
 
+import java.io.IOException;
 import java.lang.annotation.ElementType;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,11 +19,11 @@ import java.util.Scanner;
 
 public class MenuSystem {
     /**
-     *Displays and handles all menu functions
+     * Displays and handles all menu functions
      *
      */
     private MemberList memberList;
-    public Scanner sc;
+    private Scanner sc;
 
     public MenuSystem(MemberList memberList) {
         this.memberList = memberList;
@@ -40,16 +42,16 @@ public class MenuSystem {
             System.out.println("1. Medlemmer");
             System.out.println("2. Holdssstatistik");
             System.out.println("3. Kontingent og Økonomi");
-            System.out.println("4. Luk programmet");
-            System.out.println("5. Gem medlemsinformation");
+            System.out.println("4. Gem medlemsinformation");
+            System.out.println("5. Luk programmet");
             System.out.print("Vælg: ");
 
             switch (sc.nextLine()) {
                 case "1" -> ShowMemberMenu();
                 case "2" -> ShowSwimtimeMenu();
                 case "3" -> ShowAccountingMenu();
-                case "4" -> running = false;
-                case "5" -> saveAllToCsv();
+                case "4" -> saveAllToCsv();
+                case "5" -> running = false;
                 default -> System.out.println("Invalid choice.");
             }
         }
@@ -59,30 +61,30 @@ public class MenuSystem {
     /**
      * Displays menu for member creation, viewing existing members and editing member info
      */
-    public void ShowMemberMenu() {
+    private void ShowMemberMenu() {
         boolean running = true;
 
         while (running) {
-        System.out.println("\n ===Member Menu===");
-        System.out.println("1. Opret nyt medlem");
-        System.out.println("2. Vis eksisterende medlemmer");
-        System.out.println("3. Ret i eksisterende medlemsinfo");
-             System.out.println("4. Søg efter medlem");
-        System.out.println("5. Tilbage til hovedmenu");
-        System.out.print("Vælg: ");
+            System.out.println("\n ===Member Menu===");
+            System.out.println("1. Opret nyt medlem");
+            System.out.println("2. Vis eksisterende medlemmer");
+            System.out.println("3. Ret i eksisterende medlemsinfo");
+            System.out.println("4. Søg efter medlem");
+            System.out.println("5. Tilbage til hovedmenu");
+            System.out.print("Vælg: ");
 
-        switch (sc.nextLine()) {
-            case "1" -> CreateNewMember();
-            case "2" -> System.out.println(memberList);
-            case "3" -> EditMemberInfo();
-            case "4" -> showMemberById();
-            case "5" -> running = false;
-            default -> System.out.println("Forkert valg kammerat");
-        }
+            switch (sc.nextLine()) {
+                case "1" -> CreateNewMember();
+                case "2" -> System.out.println(memberList);
+                case "3" -> EditMemberInfo();
+                case "4" -> showMemberById();
+                case "5" -> running = false;
+                default -> System.out.println("Forkert valg kammerat");
+            }
         }
     }
 
-    public void CreateNewMember() {
+    private void CreateNewMember() {
         System.out.print("Indtast Navn: ");
         String name = sc.nextLine();
 
@@ -129,8 +131,7 @@ public class MenuSystem {
     /**
      * Updating existing member information via Member Menu
      */
-    public void EditMemberInfo() {
-        //TODO:Method for editing member info
+    private void EditMemberInfo() {
         System.out.println("==Member Update==");
         System.out.println("* You can only change your name and email *");
 
@@ -146,7 +147,7 @@ public class MenuSystem {
         }
 
         Member member = memberList.findMemberViaID(id);
-        if (member == null){
+        if (member == null) {
             System.out.println("Fejl: Intet medlem med dette ID eksisterer");
             sc.nextLine();//Clear buffer
             ShowMemberMenu();
@@ -163,9 +164,9 @@ public class MenuSystem {
         String newEmail = sc.nextLine().toUpperCase();
 
         //Updates and displays change
-        if (newName.isEmpty() && newEmail.isEmpty()){
+        if (newName.isEmpty() && newEmail.isEmpty()) {
             System.out.println("Update Failed");
-        }else {
+        } else {
             System.out.println("Update Successful");
 
         }
@@ -177,18 +178,18 @@ public class MenuSystem {
     /**
      * Displays Swim Results, option to creates new results, shows top 5 swimmers
      */
-    public void ShowSwimtimeMenu() {
+    private void ShowSwimtimeMenu() {
         System.out.println("\n Svømmeresultater Og Holdsinformation");
         System.out.println("1. Opret ny svømmetid");
         System.out.println("2. Se Statistik over top 5 Svømmere");
-        System.out.println("3. Se hold"); //TODO
+        System.out.println("3. Se hold");
         System.out.println("4. Tilbage til hovedmenu");
         System.out.print("Vælg: ");
 
         switch (sc.nextLine()) {
             case "1" -> CreateNewSwimResult();
             case "2" -> SeeTopSwimmers();
-            case "3" -> showTeamMenu(); //TODO
+            case "3" -> showTeamMenu();
             case "4" -> showMainMenu();
             default -> System.out.println("Forkert valg kammerat");
         }
@@ -198,7 +199,7 @@ public class MenuSystem {
      *
      * Creates New Swim Results for members that are Elite Swimmers
      */
-    public void CreateNewSwimResult() {
+    private void CreateNewSwimResult() {
 
         System.out.print("Indtast Medlemsnummer/ID/Navn Eller whatevs ");
         int memberId = sc.nextInt();
@@ -240,18 +241,31 @@ public class MenuSystem {
             }
         }
 
-        //Swim Time input
-        System.out.print("Indtast først antal minutter brugt: ");
-        int min = sc.nextInt();
-        System.out.print("Indtast antal sekunder: ");
-        int sec = sc.nextInt();
-        System.out.print("Indtast antal millisekunder: ");
-        int milSec = sc.nextInt();
-        sc.nextLine();
-        SwimTimer timer = new SwimTimer(min, sec, milSec);
+        SwimTimer timer;
+        try {
+            //Swim Time input
+            System.out.print("Indtast først antal minutter brugt: ");
+            int min = sc.nextInt();
+            System.out.print("Indtast antal sekunder: ");
+            int sec = sc.nextInt();
+            System.out.print("Indtast antal millisekunder: ");
+            int milSec = sc.nextInt();
+            sc.nextLine();
+            timer = new SwimTimer(min, sec, milSec);
+        } catch (SwimTimeException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
 
         System.out.println("Indtast dato (YYYY-MM-DD): ");
-        LocalDate date = LocalDate.parse(sc.nextLine());
+        String dateInput = sc.nextLine();
+        LocalDate date;
+        try {
+            date = LocalDate.parse(dateInput);
+        } catch (Exception e) {
+            System.out.println("Forkert datoformat. Brug YYYY-MM-DD.");
+            return;
+        }
 
         //Determines Result Type (1 for Training, 2 for competition's placement and event location)
         if (resultType == 1) {
@@ -340,13 +354,13 @@ public class MenuSystem {
      *
      * Menu to show members based on their
      */
-    public void showTeamMenu(){ //Todo
+    private void showTeamMenu() {
         System.out.println("\n Vælg Hold: ");
         System.out.println("1. Junior");
         System.out.println("2. Senior");
         System.out.print("Vælg: ");
 
-        switch (sc.nextLine()){
+        switch (sc.nextLine()) {
             case "1" -> showTeam(AgeGroup.JUNIOR);
             case "2" -> showTeam(AgeGroup.SENIOR);
             default -> System.out.println("Forkert valg");
@@ -358,14 +372,14 @@ public class MenuSystem {
      * Shows elite members in teams based on their age group
      */
 
-    public void showTeam(AgeGroup ageGroup){
+    private void showTeam(AgeGroup ageGroup) {
         //Printing team info
         System.out.println("==== SVØMMEKLUB DELFIN * " + ageGroup + " * TEAM =====");
-        String s = String.format("%-5s %-15s %-25s %-20s %s","ID", "NAME", "EMAIL","STATUS", "GENDER")+"\n";
+        String s = String.format("%-5s %-15s %-25s %-20s %s", "ID", "NAME", "EMAIL", "STATUS", "GENDER") + "\n";
         s += "-".repeat(80);
         System.out.println(s);
 
-        for(EliteMember m : memberList.sortTeamByAgeGroup(ageGroup)){
+        for (EliteMember m : memberList.sortTeamByAgeGroup(ageGroup)) {
             System.out.println(m.toStringGender());
         }
         ShowSwimtimeMenu(); //Goes back to previous menu
@@ -376,7 +390,7 @@ public class MenuSystem {
      * Displays accounting and handles subscriptions
      */
 
-    public void ShowAccountingMenu() {
+    private void ShowAccountingMenu() {
         boolean running = true;
 
         //Accounting Menu
@@ -472,23 +486,27 @@ public class MenuSystem {
 
     }
 
-    public void saveAllToCsv() {
+    private void saveAllToCsv() {
+        try {
+            // Save Members
+            List<Serializable> memberSerializables = new ArrayList<>(memberList.getMemberList());
+            FileHandler.saveToCsvFile("MemberData.csv", memberSerializables);
 
-        // Save Members
-        List<Serializable> memberSerializables = new ArrayList<>(memberList.getMemberList());
-        FileHandler.saveToCsvFile("MemberData.csv", memberSerializables);
-
-        // Save Results
-        List<Serializable> resultSerializables = new ArrayList<>();
-        for (Member member : memberList.getMemberList()) {
-            if (member instanceof EliteMember) {
-                resultSerializables.addAll(
-                        ((EliteMember) member).getSwimResults()
-                );
+            // Save Results
+            List<Serializable> resultSerializables = new ArrayList<>();
+            for (Member member : memberList.getMemberList()) {
+                if (member instanceof EliteMember) {
+                    resultSerializables.addAll(
+                            ((EliteMember) member).getSwimResults()
+                    );
+                }
             }
-        }
 
-        FileHandler.saveToCsvFile("SwimResultData.csv", resultSerializables);
+            FileHandler.saveToCsvFile("SwimResultData.csv", resultSerializables);
+
+        } catch (IOException e) {
+            System.out.println("Fejl: " + e.getMessage());
+        }
     }
 
 
@@ -496,7 +514,7 @@ public class MenuSystem {
      *
      * Search function for a single member
      */
-    public void showMemberById() {
+    private void showMemberById() {
         System.out.print("Indtast medlems-ID: ");
         String input = sc.nextLine();
         int id;
@@ -506,12 +524,23 @@ public class MenuSystem {
         } catch (NumberFormatException e) {
             System.out.println("ID skal være et tal.");
             return;
-            }
+        }
 
         Member m = memberList.findMemberViaID(id);
-        String s = String.format("%-5s %-15s %-25s %-20s %s","ID", "NAME", "EMAIL","STATUS", "GENDER")+"\n";
-        s += "-".repeat(80);
-        System.out.println(s);
-        System.out.println(m.toStringGender());
+        if (m == null) {
+            System.out.println("Medlemmet findes ikke");
+        } else {
+            String s = String.format("%-5s %-15s %-25s %-20s %s", "ID", "NAME", "EMAIL", "STATUS", "GENDER") + "\n";
+            s += "-".repeat(80);
+            System.out.println(s);
+            System.out.println(m.toStringGender());
+
+            if (m instanceof EliteMember) {
+                System.out.println("\n" + String.format("%-5s %-12s %-15s %-14s %-12s %-11s %s", "ID", "NAVN", "DISCIPLIN", "TID", "DATO", "PLACERING", "STÆVNE"));
+                System.out.println("-".repeat(85));
+                System.out.println(((EliteMember) m).swimResultsToString());
+            }
         }
+
     }
+}
