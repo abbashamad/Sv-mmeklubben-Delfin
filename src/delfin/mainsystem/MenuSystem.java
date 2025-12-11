@@ -66,8 +66,8 @@ public class MenuSystem {
         System.out.println("1. Opret nyt medlem");
         System.out.println("2. Vis eksisterende medlemmer");
         System.out.println("3. Ret i eksisterende medlemsinfo");// HVAD SKAL VI RETTE? KUN AKTIV / PASSIV?
-            System.out.println("4. Søg efter medlem");
-        System.out.println("4. Tilbage");
+        System.out.println("4. Søg efter medlem");
+        System.out.println("5. Tilbage");
         System.out.print("Vælg: ");
 
         switch (sc.nextLine()) {
@@ -413,6 +413,10 @@ public class MenuSystem {
         FileHandler.saveToCsvFile("SwimResultData.csv", resultSerializables);
     }
 
+    /**
+     * Displays information of searched member by ID
+     *
+     */
     public void showMemberById() {
         System.out.print("Indtast medlems-ID: ");
         String input = sc.nextLine();
