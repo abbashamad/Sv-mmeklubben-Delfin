@@ -1,3 +1,12 @@
+package delfin.members;
+
+import delfin.enums.Discipline;
+import delfin.enums.Gender;
+import delfin.results.CompetitionResult;
+import delfin.results.SwimResult;
+import delfin.results.SwimTimer;
+import delfin.results.TimeComparator;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

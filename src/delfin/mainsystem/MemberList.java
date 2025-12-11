@@ -1,3 +1,14 @@
+package delfin.mainsystem;
+
+import delfin.economy.Economy;
+import delfin.enums.AgeGroup;
+import delfin.enums.Discipline;
+import delfin.members.EliteMember;
+import delfin.enums.Gender;
+import delfin.members.Member;
+import delfin.results.SwimResult;
+import delfin.results.TimeComparator;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +26,10 @@ public class MemberList {
 
     public void addMemberToMemberList(LocalDate birthday, String email, String name, Gender gender) {
         this.memberList.add(new Member(birthday, email, name, gender));
+    }
+
+    public void addMemberToMemberList(Member member){
+        this.memberList.add(member);
     }
 
     public void addEliteToMemberList(LocalDate birthday, String email, String name, Gender gender) {
@@ -49,6 +64,7 @@ public class MemberList {
         }
         return list;
     }
+
 
     public List<SwimResult> top5ForDiscipline(AgeGroup ageGroup, Gender gender, Discipline discipline) {
         List<SwimResult> swimResults = new ArrayList<>();

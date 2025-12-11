@@ -1,3 +1,8 @@
+package delfin.results;
+
+import delfin.enums.Discipline;
+import delfin.members.Member;
+
 import java.time.LocalDate;
 
 /**

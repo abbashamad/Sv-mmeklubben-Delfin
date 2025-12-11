@@ -1,3 +1,9 @@
+package delfin.results;
+
+import delfin.interfaces.Serializable;
+import delfin.enums.Discipline;
+import delfin.members.Member;
+
 import java.time.LocalDate;
 
 public class SwimResult implements Serializable {

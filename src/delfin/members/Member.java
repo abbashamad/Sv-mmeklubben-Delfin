@@ -1,3 +1,10 @@
+package delfin.members;
+
+import delfin.interfaces.Serializable;
+import delfin.economy.Subscription;
+import delfin.enums.AgeGroup;
+import delfin.enums.Gender;
+
 import java.time.LocalDate;
 import java.time.Period;
 
