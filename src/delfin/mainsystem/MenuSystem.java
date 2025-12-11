@@ -63,7 +63,6 @@ public class MenuSystem {
         System.out.println("1. Opret nyt medlem");
         System.out.println("2. Vis eksisterende medlemmer");
         System.out.println("3. Ret i eksisterende medlemsinfo"); // HVAD SKAL VI RETTE? KUN AKTIV / PASSIV?
-
         System.out.println("4. Tilbage");
         System.out.print("Vælg: ");
 
@@ -71,9 +70,7 @@ public class MenuSystem {
             case "1" -> CreateNewMember();
             case "2" -> System.out.println(memberList);
             case "3" -> EditMemberInfo();
-            case "4" -> {
-                return;
-            }
+            case "4" -> {return;}
             default -> System.out.println("Forkert valg kammerat");
 
         }
@@ -143,7 +140,7 @@ public class MenuSystem {
         }
 
         Member member = memberList.findMemberViaID(id);
-        if (member == null) {
+        if (member == null){
             System.out.println("Error: Member does not exist");
             sc.nextLine();//Clear buffer
             ShowMemberMenu();
@@ -161,9 +158,9 @@ public class MenuSystem {
         String newEmail = sc.nextLine().toUpperCase();
 
         //Updates and displays change
-        if (newName.isEmpty() && newEmail.isEmpty()) {
+        if (newName.isEmpty() && newEmail.isEmpty()){
             System.out.println("Update Failed");
-        } else {
+        }else {
             System.out.println("Update Successful");
         }
         member.updateMember(newName, newEmail);

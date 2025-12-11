@@ -53,6 +53,15 @@ public class MemberList {
         return Economy.membersInArrears(memberList);
     }
 
+
+    /**
+     * Sorts elite members in memberlists based on age group, gender and discipline
+     * @param ageGroup : uses enum to sort by JUNIOR and SENIOR
+     * @param gender: uses enum to sort by MALE or FEMALE
+     * @param discipline: uses enum to sort by swim discipline
+     * @return returns sorted list of elite members by indicated criteria
+     */
+
     private List<EliteMember> checkMemberCriteria(AgeGroup ageGroup, Gender gender, Discipline discipline) {
         List<EliteMember> list = new ArrayList<>();
         for (Member member : this.memberList) {
@@ -64,6 +73,26 @@ public class MemberList {
         }
         return list;
     }
+
+    /**
+     * Sorts elite members in memberlists based on age group and gender
+     * @param ageGroup : uses enum to sort by JUNIOR and SENIOR
+     * @param gender: uses enum to sort by MALE or FEMALE
+     * @return returns sorted list of elite members by indicated criteria
+     */
+
+    private List<EliteMember> checkMemberCriteria(AgeGroup ageGroup, Gender gender) {
+        List<EliteMember> list = new ArrayList<>();
+        for (Member member : this.memberList) {
+            if (member instanceof EliteMember) {
+                if (member.getAgeGroup() == ageGroup && member.getGender() == gender) {
+                    list.add((EliteMember) member);
+                }
+            }
+        }
+        return list;
+    }
+
 
 
     public List<SwimResult> top5ForDiscipline(AgeGroup ageGroup, Gender gender, Discipline discipline) {
