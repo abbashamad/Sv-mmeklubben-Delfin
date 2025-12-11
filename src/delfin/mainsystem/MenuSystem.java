@@ -72,7 +72,7 @@ public class MenuSystem {
             case "1" -> CreateNewMember();
             case "2" -> System.out.println(memberList);
             case "3" -> EditMemberInfo();
-            case "4" -> {return;}
+            case "4" -> running = false;
             default -> System.out.println("Forkert valg kammerat");
         }
         }
