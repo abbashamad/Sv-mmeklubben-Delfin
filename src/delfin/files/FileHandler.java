@@ -5,6 +5,7 @@ import delfin.interfaces.Serializable;
 import delfin.enums.Discipline;
 import delfin.members.EliteMember;
 import delfin.enums.Gender;
+import delfin.members.Member;
 import delfin.results.SwimTimer;
 import delfin.files.*;
 
@@ -46,22 +47,21 @@ public class FileHandler {
      */
     public static void decodeFile(String filename, MemberList memberList) {
         try {
-            Scanner scanner = new Scanner(new File("src/delfin/files/"+filename));//Also updated filepath
+            Scanner scanner = new Scanner(new File("src/delfin/files/"+filename));//Also u1pdated filepath
 
             String line;
             String[] fields;
 
-            int i = 0;
+
             while (scanner.hasNextLine()) {
-                i++;
 
                 line = scanner.nextLine();
                 fields = line.split(",");
 
                 if (fields[0].equals("member")) {
-                    decodeMember(memberList, i, fields);
+                    decodeMember(memberList, fields);
                 } else if (fields[0].equals("elite")) {
-                    decodeEliteMember(memberList, i, fields);
+                    decodeEliteMember(memberList, fields);
                 } else if (fields[0].equals("training")) {
                     decodeSwimResult(memberList, fields);
                 } else if (fields[0].equals("comp")) {
@@ -73,18 +73,22 @@ public class FileHandler {
         }
     }
 
-    private static void decodeMember(MemberList memberList, int i, String[] fields) {
-        memberList.addMemberToMemberList(LocalDate.parse(fields[1]), fields[2], fields[3], Gender.valueOf(fields[4]));
+    private static void decodeMember(MemberList memberList, String[] fields) {
+        Member member = new Member(LocalDate.parse(fields[1]), fields[2], fields[3], Gender.valueOf(fields[4]));
 
-        memberList.findMemberViaID(i).getSubscription().setIsActive(Boolean.parseBoolean(fields[5]));
-        memberList.findMemberViaID(i).getSubscription().setHasArrears(Boolean.parseBoolean(fields[6]));
+        member.getSubscription().setIsActive(Boolean.parseBoolean(fields[5]));
+        member.getSubscription().setHasArrears(Boolean.parseBoolean(fields[6]));
+
+        memberList.addMemberToMemberList(member);
     }
 
-    private static void decodeEliteMember(MemberList memberList, int i, String[] fields) {
-        memberList.addEliteToMemberList(LocalDate.parse(fields[1]), fields[2], fields[3], Gender.valueOf(fields[4]));
+    private static void decodeEliteMember(MemberList memberList, String[] fields) {
+        EliteMember member = new EliteMember(LocalDate.parse(fields[1]), fields[2], fields[3], Gender.valueOf(fields[4]));
 
-        memberList.findMemberViaID(i).getSubscription().setIsActive(Boolean.parseBoolean(fields[5]));
-        memberList.findMemberViaID(i).getSubscription().setHasArrears(Boolean.parseBoolean(fields[6]));
+        member.getSubscription().setIsActive(Boolean.parseBoolean(fields[5]));
+        member.getSubscription().setHasArrears(Boolean.parseBoolean(fields[6]));
+
+        memberList.addMemberToMemberList(member);
     }
 
     private static void decodeSwimResult(MemberList memberList, String[] fields) {
