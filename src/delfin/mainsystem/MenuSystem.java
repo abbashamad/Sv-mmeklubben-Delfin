@@ -60,11 +60,13 @@ public class MenuSystem {
      */
     public void ShowMemberMenu() {
         boolean running = true;
+
         while (running) {
         System.out.println("\n ===Member Menu===");
         System.out.println("1. Opret nyt medlem");
         System.out.println("2. Vis eksisterende medlemmer");
-        System.out.println("3. Ret i eksisterende medlemsinfo"); // HVAD SKAL VI RETTE? KUN AKTIV / PASSIV?
+        System.out.println("3. Ret i eksisterende medlemsinfo");// HVAD SKAL VI RETTE? KUN AKTIV / PASSIV?
+            System.out.println("4. Søg efter medlem");
         System.out.println("4. Tilbage");
         System.out.print("Vælg: ");
 
@@ -72,7 +74,8 @@ public class MenuSystem {
             case "1" -> CreateNewMember();
             case "2" -> System.out.println(memberList);
             case "3" -> EditMemberInfo();
-            case "4" -> running = false;
+            case "4" -> showMemberById();
+            case "5" -> running = false;
             default -> System.out.println("Forkert valg kammerat");
         }
         }
@@ -95,7 +98,7 @@ public class MenuSystem {
             return;
         }
 
-            System.out.print("Enter Gender (MALE/FEMALE): ");
+        System.out.print("Enter Gender (MALE/FEMALE): ");
         String genderInput = sc.nextLine().toUpperCase();
         Gender gender;
         try {
@@ -146,6 +149,7 @@ public class MenuSystem {
             System.out.println("Error: Member does not exist");
             sc.nextLine();//Clear buffer
             ShowMemberMenu();
+            return;
         }
 
         assert member != null;
@@ -408,4 +412,20 @@ public class MenuSystem {
 
         FileHandler.saveToCsvFile("SwimResultData.csv", resultSerializables);
     }
-}
+
+    public void showMemberById() {
+        System.out.print("Indtast medlems-ID: ");
+        String input = sc.nextLine();
+        int id;
+
+        try {
+            id = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            System.out.println("ID skal være et tal.");
+            return;
+            }
+
+        Member m = memberList.findMemberViaID(id);
+        System.out.println(m);
+        }
+    }
