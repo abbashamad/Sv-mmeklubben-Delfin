@@ -131,11 +131,13 @@ public List<SwimResult> top5ForDiscipline(AgeGroup ageGroup, Gender gender, Disc
     }
 
     public void top5ToString(AgeGroup ageGroup, Gender gender, Discipline discipline) {
-        String s = "";
-
         if (top5ForDiscipline(ageGroup, gender, discipline).isEmpty()){
             System.out.println("No Record");
+            return;
         }
+
+        String s = String.format("%-5s %-12s %-12s %-14s %-12s %-11s %s","ID", "NAVN", "DISCIPLIN","TID", "DATO", "PLACERING", "STÆVNE")+"\n";
+        s += "-".repeat(85)+"\n";
 
         for (SwimResult swimResult : top5ForDiscipline(ageGroup, gender, discipline)) {
             s += swimResult + "\n";
