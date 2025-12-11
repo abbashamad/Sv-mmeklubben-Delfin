@@ -9,6 +9,7 @@ import delfin.enums.Gender;
 import delfin.members.Member;
 import delfin.results.SwimTimer;
 
+import java.lang.annotation.ElementType;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -180,13 +181,15 @@ public class MenuSystem {
         System.out.println("\n Svømmeresultater");
         System.out.println("1. Opret ny svømmetid");
         System.out.println("2. Se Statistik over top 5 Svømmere");
-        System.out.println("3. Tilbage til hovedmenu");
+        System.out.println("3. Se hold"); //TODO
+        System.out.println("4. Tilbage til hovedmenu");
         System.out.print("Vælg: ");
 
         switch (sc.nextLine()) {
             case "1" -> CreateNewSwimResult();
             case "2" -> SeeTopSwimmers();
-            case "3" -> showMainMenu();
+            case "3" -> showTeamMenu(); //TODO
+            case "4" -> showMainMenu();
             default -> System.out.println("Forkert valg kammerat");
         }
     }
@@ -330,6 +333,41 @@ public class MenuSystem {
         System.out.println("\nDu har valgte: " + ageGroup + "/" + gender);
         System.out.println(Discipline.BACKCRAWL);
         memberList.top5ToString(ageGroup, gender, Discipline.BACKCRAWL);
+    }
+
+
+    /**
+     *
+     * Menu to show members based on their
+     */
+    public void showTeamMenu(){ //Todo
+        System.out.println("Choose AgeGroup: ");
+        System.out.println("1. Junior");
+        System.out.println("2. Senior");
+        System.out.print("Vælg: ");
+
+        switch (sc.nextLine()){
+            case "1" -> showTeam(AgeGroup.JUNIOR);
+            case "2" -> showTeam(AgeGroup.SENIOR);
+            default -> System.out.println("Forkert valg");
+        }
+    }
+
+    /**
+     *
+     * Shows elite members in teams based on their age group
+     */
+
+    public void showTeam(AgeGroup ageGroup){
+        System.out.println("SVØMMEKLUB DELFIN " + ageGroup + " TEAM");
+        String s = String.format("%-5s %-15s %-25s %-20s %s","ID", "NAME", "EMAIL","STATUS", "GENDER")+"\n";
+        s += "-".repeat(80);
+        System.out.println(s);
+
+        for(EliteMember m : memberList.sortTeamByAgeGroup(ageGroup)){
+            System.out.println(m.toStringGender());
+        }
+        ShowSwimtimeMenu();
     }
 
     /**

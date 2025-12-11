@@ -112,6 +112,13 @@ public class Member implements Serializable {
 
     }
 
+    public String toStringGender(){
+        String s = subscription.isActive() ? "Aktive" : "Passiv";
+        String g = getGender().equals(Gender.MALE) ? "Male" : "Female";
+
+        return String.format("%s %-15s %-25s %-20s %s", String.format("%04d ", id), name, email, s, g);
+    }
+
     @Override
     public String serialize() {
         return String.format("member,%s,%s,%s,%s,%s,%s%n", birthday, email, name, gender, subscription.isActive(), subscription.isHasArrears());

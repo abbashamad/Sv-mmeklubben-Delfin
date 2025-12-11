@@ -74,6 +74,7 @@ public class MemberList {
         return list;
     }
 
+
     /**
      * Sorts elite members in memberlists based on age group and gender
      * @param ageGroup : uses enum to sort by JUNIOR and SENIOR
@@ -93,9 +94,32 @@ public class MemberList {
         return list;
     }
 
+    /**
+     * Sorts elite members in memberlists based on age group and gender
+     * @param ageGroup : uses enum to sort by JUNIOR and SENIOR
+     * @return returns sorted list of elite members by indicated criteria
+     */
+
+    private List<EliteMember> checkMemberCriteria(AgeGroup ageGroup) {
+        List<EliteMember> list = new ArrayList<>();
+        for (Member member : this.memberList) {
+            if (member instanceof EliteMember) {
+                if (member.getAgeGroup() == ageGroup) {
+                    list.add((EliteMember) member);
+                }
+            }
+        }
+        return list;
+    }
+
+    public List<EliteMember> sortTeamByAgeGroup(AgeGroup ageGroup){
+        return new ArrayList<>(checkMemberCriteria(ageGroup));
+}
 
 
-    public List<SwimResult> top5ForDiscipline(AgeGroup ageGroup, Gender gender, Discipline discipline) {
+
+
+public List<SwimResult> top5ForDiscipline(AgeGroup ageGroup, Gender gender, Discipline discipline) {
         List<SwimResult> swimResults = new ArrayList<>();
         for (EliteMember eliteMember : checkMemberCriteria(ageGroup, gender, discipline)) {
             swimResults.add(eliteMember.getBestTimeForDiscipline(discipline));
