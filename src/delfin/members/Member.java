@@ -32,30 +32,32 @@ public class Member implements Serializable {
     }
 
     /**
-     *Updating member info for existing members
-     * @param newName : Name to change to
+     * Updating member info for existing members
+     *
+     * @param newName  : Name to change to
      * @param newEmail : New Email to change to
      */
 
-    public void updateMember(String newName, String newEmail){
-        if (newName != null && !newName.isEmpty()){//updates name if not null
+    public void updateMember(String newName, String newEmail) {
+        if (newName != null && !newName.isEmpty()) {//updates name if not null
             String oldName = getName();
             this.name = newName;
-            System.out.printf("%s has been updated to %s%n",oldName , getName());
+            System.out.printf("%s has been updated to %s%n", oldName, getName());
         } else {
             System.out.println("Name is unchanged");
         }
-        if(newEmail != null && !newEmail.isEmpty()){//updates email if not null
+        if (newEmail != null && !newEmail.isEmpty()) {//updates email if not null
             String oldEmail = getEmail();
             this.email = newEmail;
-            System.out.printf("%s has been updated to %s%n",oldEmail , getEmail());
-        }else {
+            System.out.printf("%s has been updated to %s%n", oldEmail, getEmail());
+        } else {
             System.out.println("Email is unchanged");
         }
     }
 
     /**
      * Converts date to current age for further use
+     *
      * @return int as age based on member's birthday
      */
     public int getAge() {
@@ -65,6 +67,7 @@ public class Member implements Serializable {
     /**
      *
      * Calculates and sorts to group based on age
+     *
      * @return : enum respective to age-group
      */
     public AgeGroup getAgeGroup() {
@@ -103,7 +106,10 @@ public class Member implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("%s %-17s %-10s", String.format("%04d ", id), name, email);
+        String s = subscription.isActive() ? "Aktive" : "Passiv";
+
+        return String.format("%s %-15s %-25s %s", String.format("%04d ", id), name, email, s);
+
     }
 
     @Override

@@ -121,7 +121,8 @@ public class MemberList {
 
     @Override
     public String toString() {
-        String s = String.format("%-5s %-17s %-10s","ID", "NAME", "EMAIL")+"\n" + "-".repeat(50)+"\n";
+        String s = String.format("%-5s %-15s %-25s %s","ID", "NAME", "EMAIL","STATUS")+"\n";
+        s += "-".repeat(60)+"\n";
         for (Member member : memberList) {
             s += member + "\n";
 
