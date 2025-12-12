@@ -200,7 +200,7 @@ public class MenuSystem {
      */
     private void CreateNewSwimResult() {
 
-        System.out.print("Indtast Medlemsnummer/ID/Navn Eller whatevs ");
+        System.out.print("Indtast Medlemsnummer");
         int memberId = sc.nextInt();
         sc.nextLine();
 
@@ -215,7 +215,7 @@ public class MenuSystem {
         }
         EliteMember eliteMember = (EliteMember) member;
 
-        System.out.println("Tast 1 for træning og 2 for stævne");//Checks if result is of training or competition
+        System.out.println("Tast 1 for træning ellr 2 for stævne");//Checks if result is of training or competition
         int resultType = sc.nextInt();
         sc.nextLine();
 
